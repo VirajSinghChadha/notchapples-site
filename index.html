@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NotchApples — Your MacBook's notch, finally useful</title>
+<meta name="description" content="A free, open-source macOS app that turns the MacBook notch into a purple productivity hub: AI chat, window snapping, clipboard, file shelf, timer and more.">
+<style>
+:root{--bg:#0a0612;--card:#150d24;--line:#2a1d44;--tx:#f2ecfb;--mut:#a89bc2;--p:#a855f7;--p2:#7c3aed;--glow:rgba(168,85,247,.35)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font:16px/1.6 -apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);background:rgba(10,6,18,.7);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-weight:700;display:flex;gap:10px;align-items:center}
+.logo i{width:26px;height:14px;background:#000;border:2px solid var(--p);border-radius:0 0 10px 10px;box-shadow:0 0 12px var(--glow)}
+nav .links{display:flex;gap:22px;align-items:center;font-size:14px;color:var(--mut)}
+nav .links a:hover{color:var(--tx)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:12px;font-weight:600;background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;box-shadow:0 8px 30px var(--glow);transition:.2s;border:0;cursor:pointer;font-size:15px}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;border:1px solid var(--line);box-shadow:none;color:var(--tx)}
+.btn.ghost:hover{border-color:var(--p)}
+nav .btn{padding:8px 16px;font-size:13px;color:#fff}
+/* hero */
+.hero{text-align:center;padding:70px 0 40px;position:relative}
+.hero:before{content:"";position:absolute;left:50%;top:-100px;width:800px;height:500px;transform:translateX(-50%);background:radial-gradient(closest-side,var(--glow),transparent);pointer-events:none}
+.pill{display:inline-block;border:1px solid var(--line);background:var(--card);padding:5px 14px;border-radius:99px;font-size:13px;color:var(--mut);margin-bottom:22px}
+h1{font-size:clamp(38px,7vw,74px);line-height:1.05;letter-spacing:-.03em;font-weight:800;position:relative}
+h1 span,h2 span{background:linear-gradient(135deg,#d8b4fe,var(--p),var(--p2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.sub{max-width:620px;margin:22px auto 30px;color:var(--mut);font-size:19px;position:relative}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative}
+.meta{margin-top:18px;font-size:13px;color:var(--mut)}
+/* demo */
+.mac{margin:50px auto 0;max-width:900px;border-radius:18px 18px 8px 8px;border:1px solid var(--line);background:linear-gradient(160deg,#2b1250,#12081f 60%,#1d0d3a);box-shadow:0 40px 100px rgba(0,0,0,.6),0 0 80px rgba(124,58,237,.2);overflow:hidden;position:relative;height:480px}
+.menubar{height:28px;background:rgba(0,0,0,.35);display:flex;justify-content:space-between;align-items:center;padding:0 14px;font-size:12px;color:#ddd}
+.notch{position:absolute;top:0;left:50%;transform:translateX(-50%);background:#000;border-radius:0 0 22px 22px;width:170px;height:32px;transition:all .55s cubic-bezier(.2,.9,.25,1.1);overflow:hidden;cursor:pointer;z-index:5;box-shadow:0 0 0 1px rgba(168,85,247,.5),0 10px 40px var(--glow)}
+.notch.open{width:min(600px,94%);height:290px;border-radius:0 0 30px 30px}
+.notch .idle{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:11px;color:var(--p);transition:opacity .2s}
+.notch.open .idle{opacity:0;pointer-events:none}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--p);box-shadow:0 0 8px var(--p)}
+.panel{opacity:0;transition:opacity .3s .15s;padding:38px 20px 16px;height:100%;display:flex;flex-direction:column}
+.notch.open .panel{opacity:1}
+.tabs{display:flex;gap:6px;justify-content:center;margin-bottom:14px;flex-wrap:wrap}
+.tabs button{background:#150d24;color:var(--mut);border:1px solid var(--line);border-radius:99px;padding:4px 12px;font-size:12px;cursor:pointer}
+.tabs button.on{background:var(--p2);color:#fff;border-color:var(--p)}
+.view{display:none;flex:1;font-size:13px;animation:in .35s}
+.view.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(6px)}}
+.row{display:flex;gap:10px;margin-bottom:8px}
+.box{background:#150d24;border:1px solid var(--line);border-radius:12px;padding:10px 12px;flex:1}
+.box b{display:block;font-size:22px}.box small{color:var(--mut)}
+.msg{padding:8px 12px;border-radius:12px;margin-bottom:8px;max-width:80%}
+.msg.u{background:var(--p2);margin-left:auto}.msg.a{background:#1d1233}
+.clip{display:flex;justify-content:space-between;background:#150d24;padding:8px 12px;border-radius:10px;margin-bottom:6px;font-family:ui-monospace,monospace;font-size:12px}
+.clip em{color:var(--p);font-style:normal}
+.shelf{display:flex;gap:10px}
+.file{flex:1;border:1px dashed var(--p);border-radius:12px;padding:16px 6px;text-align:center;font-size:12px;background:#150d24}
+.file div{font-size:26px}
+.timer{text-align:center;font-size:56px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.timer small{display:block;font-size:12px;color:var(--mut);font-weight:400}
+.hint{position:absolute;bottom:14px;left:0;right:0;text-align:center;font-size:13px;color:var(--mut)}
+.snapdemo{position:absolute;left:8%;right:8%;bottom:50px;top:230px;display:grid;grid-template-columns:1fr 1fr;gap:8px;opacity:.9}
+.snapdemo div{border-radius:10px;border:1px solid var(--line);background:rgba(21,13,36,.8);padding:8px;font-size:11px;color:var(--mut)}
+/* sections */
+section{padding:90px 0}
+h2{font-size:clamp(30px,5vw,48px);letter-spacing:-.02em;line-height:1.1;text-align:center;font-weight:800}
+.lead{text-align:center;color:var(--mut);max-width:600px;margin:14px auto 46px;font-size:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;transition:.25s}
+.card:hover{border-color:var(--p);transform:translateY(-4px);box-shadow:0 12px 40px rgba(124,58,237,.2)}
+.card .ic{font-size:28px;margin-bottom:10px}
+.card h3{font-size:18px;margin-bottom:6px}
+.card p{color:var(--mut);font-size:14.5px}
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px}
+.why div{padding-left:18px;border-left:2px solid var(--p)}
+.why h3{margin-bottom:6px}.why p{color:var(--mut)}
+.compare{max-width:760px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.compare .card ul{list-style:none;padding:0;color:var(--mut);font-size:14.5px}
+.compare li{padding:5px 0}
+.compare .no li:before{content:"✕  ";color:#f87171}.compare .yes li:before{content:"✓  ";color:#4ade80}
+.compare .yes{border-color:var(--p)}
+.install{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:40px;max-width:820px;margin:0 auto;text-align:center;box-shadow:0 0 80px rgba(124,58,237,.15)}
+pre{background:#000;border:1px solid var(--line);border-radius:12px;padding:16px;text-align:left;overflow-x:auto;font-size:13px;margin:22px 0;position:relative;color:#d8b4fe}
+.copy{position:absolute;right:10px;top:10px;font-size:12px;background:var(--line);color:var(--tx);border:0;border-radius:8px;padding:4px 10px;cursor:pointer}
+.stack{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:20px}
+.stack span{border:1px solid var(--line);border-radius:99px;padding:4px 14px;font-size:13px;color:var(--mut)}
+footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:var(--mut);font-size:14px}
+@media(max-width:700px){nav .links a:not(.btn){display:none}.compare{grid-template-columns:1fr}.mac{height:430px}.notch.open{height:300px}.timer{font-size:44px}.install{padding:26px 18px}}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a href="#" class="logo"><i></i> NotchApples</a>
+  <div class="links"><a href="#demo">Demo</a><a href="#features">Features</a><a href="#why">Why</a><a href="#install">Install</a>
+  <a class="btn" href="https://github.com/AdityaJainDXB/NotchApples/releases/latest">Download</a></div>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="pill">✦ Free · Open source · macOS 14+</div>
+  <h1>That notch isn't dead space.<br>Make it <span>work for you.</span></h1>
+  <p class="sub">NotchApples turns your MacBook's notch into a purple productivity hub — AI chat, window snapping, clipboard history, a file shelf, focus timer and more, one hover away.</p>
+  <div class="cta">
+    <a class="btn" href="https://github.com/AdityaJainDXB/NotchApples/releases/latest">⬇ Download for Mac</a>
+    <a class="btn ghost" href="https://github.com/AdityaJainDXB/NotchApples">★ View on GitHub</a>
+  </div>
+  <p class="meta">No account. No tracking. Everything runs locally.</p>
+
+  <div id="demo" class="mac" aria-label="Interactive demo of NotchApples">
+    <div class="menubar"><span> &nbsp;<b>Finder</b> &nbsp; File &nbsp; Edit &nbsp; View</span><span>🔋 92% &nbsp; Tue 9:41</span></div>
+    <div class="notch" id="notch">
+      <div class="idle"><span class="dot"></span><span>♪</span></div>
+      <div class="panel">
+        <div class="tabs" id="tabs"></div>
+        <div class="view on" data-t="Today">
+          <div class="row"><div class="box"><small>Weather</small><b>☀️ 24°</b></div><div class="box"><small>Battery</small><b>🔋 92%</b></div></div>
+          <div class="box"><small>Up next</small><br>10:00 · Design review<br><small>13:30 · Lunch with Sam</small></div>
+        </div>
+        <div class="view" data-t="AI Chat">
+          <div class="msg u">Summarize what's on my screen</div>
+          <div class="msg a">It's a pull request adding dark mode. 3 files changed, tests passing ✅</div>
+          <div class="box" style="color:var(--mut)">Gemini · Groq · Ollama · Claude · ChatGPT…</div>
+        </div>
+        <div class="view" data-t="Clipboard">
+          <div class="clip"><span>brew install --cask notch-apple</span><em>📌</em></div>
+          <div class="clip"><span>https://github.com/…/NotchApples</span></div>
+          <div class="clip"><span>#a855f7</span></div>
+        </div>
+        <div class="view" data-t="Shelf">
+          <div class="shelf"><div class="file"><div>📄</div>report.pdf</div><div class="file"><div>🖼️</div>hero.png</div><div class="file"><div>📦</div>build.zip</div></div>
+        </div>
+        <div class="view" data-t="Focus">
+          <div class="timer" id="timer">25:00<small>Pomodoro · deep work</small></div>
+        </div>
+      </div>
+    </div>
+    <div class="snapdemo"><div>Window A</div><div>Window B</div></div>
+    <div class="hint" id="hint">👆 Hover or click the notch — it's live</div>
+  </div>
+</div></header>
+
+<section id="features"><div class="wrap">
+  <h2>One notch. <span>Every tool.</span></h2>
+  <p class="lead">Fourteen modules, all optional. Turn on what you need in Settings → Modules.</p>
+  <div class="grid">
+    <div class="card"><div class="ic">🤖</div><h3>AI Chat</h3><p>Free providers (Gemini, Groq, OpenRouter, Ollama) or paid (Claude, ChatGPT, DeepSeek) — with screen sharing.</p></div>
+    <div class="card"><div class="ic">🪟</div><h3>Window Management</h3><p>Drag windows to snap zones, tile layouts and save arrangements with keyboard shortcuts.</p></div>
+    <div class="card"><div class="ic">💬</div><h3>Messenger</h3><p>Anonymous, encrypted chat on your Wi-Fi or in private rooms.</p></div>
+    <div class="card"><div class="ic">📋</div><h3>Clipboard History</h3><p>Searchable history with pinning and filtering. Never lose a copy again.</p></div>
+    <div class="card"><div class="ic">🗂️</div><h3>File Shelf</h3><p>Drop files in the notch, grab them where you need them. Persistent via security-scoped bookmarks.</p></div>
+    <div class="card"><div class="ic">📅</div><h3>Today Tab</h3><p>Weather, calendar events and battery status at a glance.</p></div>
+    <div class="card"><div class="ic">🍅</div><h3>Focus Timer</h3><p>Built-in Pomodoro with notifications to keep you in flow.</p></div>
+    <div class="card"><div class="ic">🎚️</div><h3>Audio Control</h3><p>Per-app volume and a 10-band equalizer.</p></div>
+    <div class="card"><div class="ic">🛡️</div><h3>VPN</h3><p>Free OpenVPN servers or import your own profile.</p></div>
+    <div class="card"><div class="ic">🔍</div><h3>Search</h3><p>Spotlight-powered file search right from the notch.</p></div>
+    <div class="card"><div class="ic">🔐</div><h3>Biometric Lock</h3><p>Touch ID, or face unlock through your webcam. Templates stay on-device.</p></div>
+    <div class="card"><div class="ic">📝</div><h3>Notes & Widgets</h3><p>Quick notes and desktop widgets, instantly available.</p></div>
+    <div class="card"><div class="ic">📡</div><h3>Share</h3><p>AirDrop and PairDrop support for fast sharing.</p></div>
+    <div class="card"><div class="ic">🎵</div><h3>Now Playing</h3><p>See the current track without switching apps.</p></div>
+  </div>
+</div></section>
+
+<section id="why" style="background:linear-gradient(#0a0612,#100820,#0a0612)"><div class="wrap">
+  <h2>Why it's <span>useful</span></h2>
+  <p class="lead">The notch is prime real estate at the top of your screen. Most apps ignore it. We use it.</p>
+  <div class="why">
+    <div><h3>Replace a pile of apps</h3><p>Clipboard manager, window snapper, shelf, timer, AI client, VPN — one lightweight app instead of six menu-bar icons.</p></div>
+    <div><h3>Zero context switching</h3><p>Everything is one hover away from anywhere. No Dock hunting, no Cmd-Tab, no lost focus.</p></div>
+    <div><h3>Private by design</h3><p>No accounts, servers or tracking. Network calls only go to the AI provider you choose, GitHub, and Open-Meteo for weather.</p></div>
+    <div><h3>Yours to shape</h3><p>Every module is optional. Enable only what you use and keep the rest out of your way.</p></div>
+    <div><h3>Free forever</h3><p>MIT-licensed and open source. Built with Swift and SwiftUI — read it, fork it, improve it.</p></div>
+    <div><h3>Makes the notch feel intentional</h3><p>Turn the one part of your MacBook people complain about into the part you use most.</p></div>
+  </div>
+  <div class="compare" style="margin-top:60px">
+    <div class="card no"><h3>Without NotchApples</h3><ul><li>A dead black cutout</li><li>6 separate utility apps</li><li>Lost clipboard items</li><li>Manual window dragging</li></ul></div>
+    <div class="card yes"><h3>With NotchApples</h3><ul><li>A live, useful control center</li><li>One app, modular</li><li>Searchable, pinned history</li><li>Snap zones & saved layouts</li></ul></div>
+  </div>
+</div></section>
+
+<section id="install"><div class="wrap">
+  <div class="install">
+    <h2>Get <span>NotchApples</span></h2>
+    <p class="lead" style="margin-bottom:0">Requires macOS 14 Sonoma or newer.</p>
+    <pre><button class="copy" onclick="cp(this)">Copy</button><code id="brew">brew tap adityajaindxb/notchapples https://github.com/AdityaJainDXB/NotchApples
+brew install --cask notch-apple</code></pre>
+    <p style="color:var(--mut);margin-bottom:18px">or grab the DMG and drag it to Applications.</p>
+    <a class="btn" href="https://github.com/AdityaJainDXB/NotchApples/releases/latest">⬇ Download latest DMG</a>
+    <p class="meta">The app is ad-hoc signed (not notarized), so macOS may ask you to approve it on first launch.</p>
+    <div class="stack"><span>Swift</span><span>SwiftUI</span><span>AppKit</span><span>ScreenCaptureKit</span><span>Vision</span><span>CryptoKit</span><span>Core Audio</span><span>MIT</span></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">Made with 💜 · <a href="https://github.com/AdityaJainDXB/NotchApples" style="color:var(--p)">github.com/AdityaJainDXB/NotchApples</a> · MIT License</div></footer>
+
+<script>
+const notch=document.getElementById('notch'),tabsEl=document.getElementById('tabs'),views=[...document.querySelectorAll('.view')],hint=document.getElementById('hint');
+let cur=0,auto=true,timerId;
+views.forEach((v,i)=>{const b=document.createElement('button');b.textContent=v.dataset.t;b.onclick=e=>{e.stopPropagation();auto=false;show(i)};tabsEl.appendChild(b)});
+function show(i){cur=i;views.forEach((v,j)=>v.classList.toggle('on',i===j));[...tabsEl.children].forEach((b,j)=>b.classList.toggle('on',i===j))}
+show(0);
+function open(){notch.classList.add('open');hint.textContent='Pick a tab — every module lives here'}
+function close(){notch.classList.remove('open');hint.textContent='👆 Hover or click the notch — it\'s live'}
+notch.addEventListener('mouseenter',()=>{auto=false;open()});
+notch.addEventListener('mouseleave',close);
+notch.addEventListener('click',()=>notch.classList.contains('open')?close():open());
+// auto-play until user interacts
+setTimeout(function loop(){if(!auto)return;open();let n=0;const t=setInterval(()=>{if(!auto){clearInterval(t);return}n++;if(n>=views.length){clearInterval(t);close();setTimeout(loop,2500);return}show(n)},1800)},1500);
+// timer
+let s=1500;setInterval(()=>{s=s>0?s-1:1500;document.getElementById('timer').firstChild.textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')},1000);
+function cp(b){navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('brew').textContent);b.textContent='Copied!';setTimeout(()=>b.textContent='Copy',1500)}
+</script>
+</body>
+</html>

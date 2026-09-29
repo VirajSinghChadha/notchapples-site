@@ -1,214 +1,536 @@
 <!doctype html>
 <html lang="en">
+<script>document.documentElement.classList.add('js')</script>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NotchApples — Your MacBook's notch, finally useful</title>
-<meta name="description" content="A free, open-source macOS app that turns the MacBook notch into a purple productivity hub: AI chat, window snapping, clipboard, file shelf, timer and more.">
+<title>Notch apple — your MacBook notch, finally useful</title>
+<meta name="description" content="Notch apple is a free, open-source macOS app that turns the MacBook notch into a purple productivity hub: AI chat, window snapping, clipboard history, file shelf, focus timer, tools, mirror and more. No accounts, no tracking.">
+<meta property="og:title" content="Notch apple — your MacBook notch, finally useful">
+<meta property="og:description" content="Free, open source and fully local. AI, window snapping, clipboard, shelf, focus timer and more — living in your notch.">
+<meta property="og:image" content="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/screenshots/claude.png">
+<meta name="theme-color" content="#0a0612">
+<link rel="icon" href="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0a0612;--card:#150d24;--line:#2a1d44;--tx:#f2ecfb;--mut:#a89bc2;--p:#a855f7;--p2:#7c3aed;--glow:rgba(168,85,247,.35)}
-*{box-sizing:border-box;margin:0}
+:root{
+  --bg:#07040d;--bg2:#0d0818;--card:#130b22;--card2:#1a1030;--line:rgba(168,85,247,.16);--line2:rgba(255,255,255,.07);
+  --tx:#f4efff;--mut:#a79cc0;--dim:#6f6589;--p:#a855f7;--p2:#7c3aed;--p3:#d8b4fe;--glow:rgba(168,85,247,.38);
+  --green:#4ade80;--r:20px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--tx);font:16px/1.6 -apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;overflow-x:hidden}
+body{background:var(--bg);color:var(--tx);font:16px/1.6 Inter,-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
-.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
-nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);background:rgba(10,6,18,.7);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
-.logo{font-weight:700;display:flex;gap:10px;align-items:center}
-.logo i{width:26px;height:14px;background:#000;border:2px solid var(--p);border-radius:0 0 10px 10px;box-shadow:0 0 12px var(--glow)}
-nav .links{display:flex;gap:22px;align-items:center;font-size:14px;color:var(--mut)}
+img{max-width:100%;display:block}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+.grad{background:linear-gradient(120deg,#f0e4ff,var(--p3) 30%,var(--p) 65%,var(--p2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--p3);letter-spacing:.02em;text-transform:uppercase}
+.eyebrow:before{content:"";width:18px;height:2px;background:var(--p);border-radius:2px}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(1.4) blur(16px);-webkit-backdrop-filter:saturate(1.4) blur(16px);background:rgba(7,4,13,.72);border-bottom:1px solid var(--line2)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.logo{font-weight:700;display:flex;gap:10px;align-items:center;font-size:17px;letter-spacing:-.01em}
+.logo img{width:28px;height:28px;border-radius:7px}
+nav .links{display:flex;gap:26px;align-items:center;font-size:14px;color:var(--mut)}
 nav .links a:hover{color:var(--tx)}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:12px;font-weight:600;background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;box-shadow:0 8px 30px var(--glow);transition:.2s;border:0;cursor:pointer;font-size:15px}
-.btn:hover{transform:translateY(-2px)}
-.btn.ghost{background:transparent;border:1px solid var(--line);box-shadow:none;color:var(--tx)}
-.btn.ghost:hover{border-color:var(--p)}
-nav .btn{padding:8px 16px;font-size:13px;color:#fff}
+.gh-star{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line2);border-radius:10px;padding:7px 12px;color:var(--tx);font-size:13px;font-weight:600;transition:.2s}
+.gh-star:hover{border-color:var(--p)}
+.gh-star svg{width:16px;height:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 24px;border-radius:14px;font-weight:600;font-size:15px;background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;box-shadow:0 10px 34px var(--glow),inset 0 1px 0 rgba(255,255,255,.25);transition:transform .2s,box-shadow .2s;border:0;cursor:pointer}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 44px var(--glow),inset 0 1px 0 rgba(255,255,255,.25)}
+.btn.ghost{background:rgba(255,255,255,.03);border:1px solid var(--line2);box-shadow:none;color:var(--tx)}
+.btn.ghost:hover{border-color:var(--p);background:rgba(168,85,247,.08)}
+.btn.sm{padding:9px 16px;font-size:13px;border-radius:10px}
+.btn svg{width:18px;height:18px}
+
 /* hero */
-.hero{text-align:center;padding:70px 0 40px;position:relative}
-.hero:before{content:"";position:absolute;left:50%;top:-100px;width:800px;height:500px;transform:translateX(-50%);background:radial-gradient(closest-side,var(--glow),transparent);pointer-events:none}
-.pill{display:inline-block;border:1px solid var(--line);background:var(--card);padding:5px 14px;border-radius:99px;font-size:13px;color:var(--mut);margin-bottom:22px}
-h1{font-size:clamp(38px,7vw,74px);line-height:1.05;letter-spacing:-.03em;font-weight:800;position:relative}
-h1 span,h2 span{background:linear-gradient(135deg,#d8b4fe,var(--p),var(--p2));-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p.sub{max-width:620px;margin:22px auto 30px;color:var(--mut);font-size:19px;position:relative}
-.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative}
-.meta{margin-top:18px;font-size:13px;color:var(--mut)}
-/* demo */
-.mac{margin:50px auto 0;max-width:900px;border-radius:18px 18px 8px 8px;border:1px solid var(--line);background:linear-gradient(160deg,#2b1250,#12081f 60%,#1d0d3a);box-shadow:0 40px 100px rgba(0,0,0,.6),0 0 80px rgba(124,58,237,.2);overflow:hidden;position:relative;height:480px}
-.menubar{height:28px;background:rgba(0,0,0,.35);display:flex;justify-content:space-between;align-items:center;padding:0 14px;font-size:12px;color:#ddd}
-.notch{position:absolute;top:0;left:50%;transform:translateX(-50%);background:#000;border-radius:0 0 22px 22px;width:170px;height:32px;transition:all .55s cubic-bezier(.2,.9,.25,1.1);overflow:hidden;cursor:pointer;z-index:5;box-shadow:0 0 0 1px rgba(168,85,247,.5),0 10px 40px var(--glow)}
-.notch.open{width:min(600px,94%);height:290px;border-radius:0 0 30px 30px}
-.notch .idle{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:11px;color:var(--p);transition:opacity .2s}
-.notch.open .idle{opacity:0;pointer-events:none}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--p);box-shadow:0 0 8px var(--p)}
-.panel{opacity:0;transition:opacity .3s .15s;padding:38px 20px 16px;height:100%;display:flex;flex-direction:column}
-.notch.open .panel{opacity:1}
-.tabs{display:flex;gap:6px;justify-content:center;margin-bottom:14px;flex-wrap:wrap}
-.tabs button{background:#150d24;color:var(--mut);border:1px solid var(--line);border-radius:99px;padding:4px 12px;font-size:12px;cursor:pointer}
-.tabs button.on{background:var(--p2);color:#fff;border-color:var(--p)}
-.view{display:none;flex:1;font-size:13px;animation:in .35s}
+.hero{position:relative;padding:84px 0 40px;text-align:center;overflow:hidden}
+.hero .bgglow{position:absolute;inset:-200px 0 auto;height:900px;background:
+  radial-gradient(600px 380px at 50% 18%,rgba(168,85,247,.35),transparent 70%),
+  radial-gradient(500px 300px at 15% 40%,rgba(124,58,237,.18),transparent 70%),
+  radial-gradient(500px 300px at 85% 45%,rgba(217,70,239,.14),transparent 70%);pointer-events:none}
+.hero .gridbg{position:absolute;inset:0;background-image:linear-gradient(var(--line2) 1px,transparent 1px),linear-gradient(90deg,var(--line2) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 70% 50% at 50% 20%,#000,transparent);-webkit-mask-image:radial-gradient(ellipse 70% 50% at 50% 20%,#000,transparent);pointer-events:none;opacity:.6}
+.badge{position:relative;display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);background:rgba(19,11,34,.8);padding:6px 8px 6px 6px;border-radius:99px;font-size:13px;color:var(--mut);margin-bottom:26px}
+.badge b{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;border-radius:99px;padding:2px 10px;font-size:12px}
+.badge:hover{border-color:var(--p)}
+h1{position:relative;font-size:clamp(40px,7.2vw,82px);line-height:1.02;letter-spacing:-.045em;font-weight:800}
+.sub{position:relative;max-width:660px;margin:24px auto 34px;color:var(--mut);font-size:clamp(17px,2vw,20px)}
+.cta{position:relative;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.meta{position:relative;margin-top:20px;font-size:13px;color:var(--dim);display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+.meta span:before{content:"✓ ";color:var(--green)}
+
+/* laptop + notch demo */
+.laptop{position:relative;margin:64px auto 0;max-width:980px}
+.screen{position:relative;border-radius:22px 22px 0 0;padding:12px 12px 0;background:#1b1a1f;border:1px solid #2c2a33;box-shadow:0 50px 120px rgba(0,0,0,.7),0 0 120px rgba(124,58,237,.25)}
+.display{position:relative;border-radius:12px 12px 0 0;overflow:hidden;height:540px;background:
+  radial-gradient(900px 500px at 20% 110%,#6d28d9 0%,transparent 60%),
+  radial-gradient(700px 500px at 90% -10%,#c026d3 0%,transparent 55%),
+  linear-gradient(160deg,#2a0f55,#12072a 55%,#1e0b45)}
+.base{height:18px;margin:0 -4%;background:linear-gradient(#cfcdd6,#8e8c97);border-radius:0 0 18px 18px;position:relative}
+.base:before{content:"";position:absolute;left:50%;top:0;transform:translateX(-50%);width:16%;height:7px;background:#a9a7b2;border-radius:0 0 10px 10px}
+.menubar{position:absolute;inset:0 0 auto;height:30px;background:rgba(0,0,0,.25);backdrop-filter:blur(10px);display:flex;justify-content:space-between;align-items:center;padding:0 16px;font-size:12.5px;color:#eee;z-index:2}
+.menubar .l{display:flex;gap:16px}.menubar .r{display:flex;gap:14px;opacity:.9}
+.win{position:absolute;border-radius:12px;background:rgba(20,12,36,.72);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(20px);box-shadow:0 20px 50px rgba(0,0,0,.4);transition:all .6s cubic-bezier(.2,.8,.2,1);overflow:hidden}
+.win .bar{height:24px;display:flex;gap:6px;align-items:center;padding:0 10px;border-bottom:1px solid rgba(255,255,255,.06)}
+.win .bar i{width:9px;height:9px;border-radius:50%;background:#ff5f57}.win .bar i:nth-child(2){background:#febc2e}.win .bar i:nth-child(3){background:#28c840}
+.win .bar span{margin-left:8px;font-size:11px;color:var(--mut)}
+.win .lines{padding:12px}.win .lines div{height:7px;border-radius:4px;background:rgba(255,255,255,.08);margin-bottom:8px}
+#w1{left:6%;top:21%;width:44%;height:62%}#w2{left:48%;top:30%;width:44%;height:58%}
+
+.notch{position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:10;background:#000;width:190px;height:32px;border-radius:0 0 20px 20px;cursor:pointer;overflow:hidden;transition:width .55s cubic-bezier(.22,1,.36,1),height .55s cubic-bezier(.22,1,.36,1),border-radius .55s,box-shadow .4s;box-shadow:0 0 0 1px rgba(168,85,247,.35),0 8px 30px rgba(168,85,247,.25)}
+.notch:hover{box-shadow:0 0 0 1px rgba(168,85,247,.7),0 10px 40px rgba(168,85,247,.45)}
+.notch.open{width:min(720px,96%);height:380px;border-radius:0 0 34px 34px;cursor:default;background:linear-gradient(180deg,#0b0615,#1a0d33 60%,#2a1150)}
+.ears{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:12px;color:var(--p3);transition:opacity .2s;font-variant-numeric:tabular-nums}
+.ears .eq{display:flex;gap:2px;align-items:flex-end;height:12px}.ears .eq i{width:3px;background:var(--p);border-radius:2px;animation:eq 1s infinite ease-in-out}
+.ears .eq i:nth-child(2){animation-delay:.2s}.ears .eq i:nth-child(3){animation-delay:.4s}
+@keyframes eq{0%,100%{height:4px}50%{height:12px}}
+.notch.open .ears{opacity:0;pointer-events:none}
+.panel{position:absolute;inset:0;padding:40px 18px 16px;display:flex;flex-direction:column;opacity:0;transition:opacity .25s;pointer-events:none}
+.notch.open .panel{opacity:1;transition-delay:.18s;pointer-events:auto}
+.phead{display:flex;align-items:center;gap:6px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:10px;margin-bottom:12px}
+.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:none;display:inline-flex;align-items:center;gap:6px;background:transparent;color:var(--mut);border:0;border-radius:99px;padding:6px 11px;font:600 12px Inter,sans-serif;cursor:pointer;transition:.2s;white-space:nowrap}
+.tabs button:hover{color:#fff;background:rgba(255,255,255,.06)}
+.tabs button.on{color:#fff;background:linear-gradient(135deg,#b67cff,var(--p2));box-shadow:0 4px 18px var(--glow)}
+.nb-gh{flex:none;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:99px;padding:6px 11px;transition:.2s}
+.nb-gh:hover{background:rgba(168,85,247,.3);border-color:var(--p)}
+.nb-gh svg{width:14px;height:14px}
+.nb-x{flex:none;width:28px;height:28px;border-radius:50%;border:0;background:transparent;color:var(--mut);cursor:pointer;font-size:14px}
+.nb-x:hover{background:rgba(255,255,255,.08);color:#fff}
+.views{flex:1;position:relative;min-height:0}
+.view{position:absolute;inset:0;display:none;font-size:13px;animation:vin .35s ease}
 .view.on{display:block}
-@keyframes in{from{opacity:0;transform:translateY(6px)}}
-.row{display:flex;gap:10px;margin-bottom:8px}
-.box{background:#150d24;border:1px solid var(--line);border-radius:12px;padding:10px 12px;flex:1}
-.box b{display:block;font-size:22px}.box small{color:var(--mut)}
-.msg{padding:8px 12px;border-radius:12px;margin-bottom:8px;max-width:80%}
-.msg.u{background:var(--p2);margin-left:auto}.msg.a{background:#1d1233}
-.clip{display:flex;justify-content:space-between;background:#150d24;padding:8px 12px;border-radius:10px;margin-bottom:6px;font-family:ui-monospace,monospace;font-size:12px}
-.clip em{color:var(--p);font-style:normal}
-.shelf{display:flex;gap:10px}
-.file{flex:1;border:1px dashed var(--p);border-radius:12px;padding:16px 6px;text-align:center;font-size:12px;background:#150d24}
-.file div{font-size:26px}
-.timer{text-align:center;font-size:56px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.timer small{display:block;font-size:12px;color:var(--mut);font-weight:400}
-.hint{position:absolute;bottom:14px;left:0;right:0;text-align:center;font-size:13px;color:var(--mut)}
-.snapdemo{position:absolute;left:8%;right:8%;bottom:50px;top:230px;display:grid;grid-template-columns:1fr 1fr;gap:8px;opacity:.9}
-.snapdemo div{border-radius:10px;border:1px solid var(--line);background:rgba(21,13,36,.8);padding:8px;font-size:11px;color:var(--mut)}
+@keyframes vin{from{opacity:0;transform:translateY(6px)}}
+.g{display:grid;gap:10px;height:100%}
+.box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:12px 14px;text-align:left}
+.box small{display:block;color:var(--mut);font-size:11px;margin-bottom:2px}
+.box .big{font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.ev{display:flex;gap:10px;align-items:flex-start;margin-top:10px}.ev i{width:3px;align-self:stretch;border-radius:2px;background:var(--p)}
+.ev b{display:block;font-size:13px}.ev span{color:var(--mut);font-size:11px}
+.now{margin-left:auto;font-size:10px;background:rgba(168,85,247,.3);color:#fff;padding:1px 8px;border-radius:99px}
+.msg{padding:9px 13px;border-radius:14px;margin-bottom:8px;max-width:78%;text-align:left;line-height:1.45}
+.msg.u{background:linear-gradient(135deg,#b67cff,var(--p2));margin-left:auto}.msg.a{background:rgba(255,255,255,.06)}
+.chip{display:inline-block;font-size:11px;color:var(--p3);margin-bottom:10px}
+.inp{display:flex;gap:8px;margin-top:auto;position:absolute;left:0;right:0;bottom:0}
+.inp div{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:8px 12px;color:var(--dim);text-align:left}
+.snapgrid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
+.sz{aspect-ratio:1.5;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);position:relative;cursor:pointer;transition:.2s}
+.sz:hover,.sz.hi{border-color:var(--p);background:rgba(168,85,247,.2);transform:scale(1.06)}
+.sz i{position:absolute;border-radius:3px;background:linear-gradient(135deg,#c9a3ff,var(--p))}
+.arr{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.arr button{flex:1;min-width:90px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#fff;border-radius:12px;padding:9px;font:600 12px Inter,sans-serif;cursor:pointer}
+.arr button:hover{border-color:var(--p)}
+.clip{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.04);padding:9px 12px;border-radius:12px;margin-bottom:6px;text-align:left}
+.clip .ic{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.07);display:grid;place-items:center;font-size:12px}
+.clip b{display:block;font-size:12.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:470px}.clip span{font-size:10.5px;color:var(--mut)}
+.filters{display:flex;gap:4px;margin-bottom:10px}.filters span{font-size:11px;padding:3px 10px;border-radius:8px;background:rgba(255,255,255,.05);color:var(--mut)}.filters span.on{background:var(--p2);color:#fff}
+.timer{font-size:64px;font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
+.ring{width:170px;height:170px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--p) var(--deg,0deg),rgba(255,255,255,.07) 0);margin:6px auto;position:relative}
+.ring:before{content:"";position:absolute;inset:8px;border-radius:50%;background:#150a2b}
+.ring>div{position:relative;text-align:center}.ring small{display:block;color:var(--mut);font-size:12px}
+.tool .big{font-size:26px}
+.swatches{display:flex;gap:6px;margin-top:10px}.swatches i{width:26px;height:26px;border-radius:7px;border:1px solid rgba(255,255,255,.2)}
+.mirror{height:100%;border-radius:16px;background:radial-gradient(circle at 50% 42%,#f2d1c4 0 17%,transparent 17.5%),radial-gradient(ellipse 30% 26% at 50% 88%,#6d28d9 0 99%,transparent 100%),linear-gradient(160deg,#39275e,#1c1033);position:relative;border:10px solid #fff;box-shadow:0 0 40px rgba(255,255,255,.35)}
+.mirror:after{content:"● Live · nothing is recorded";position:absolute;left:10px;bottom:8px;font-size:10px;color:#fff;background:rgba(0,0,0,.4);padding:2px 8px;border-radius:99px}
+.clock b{font-size:26px;font-variant-numeric:tabular-nums}
+.shelf{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;height:100%;border:1.5px dashed rgba(168,85,247,.5);border-radius:16px;padding:14px}
+.file{border-radius:12px;background:rgba(255,255,255,.04);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-size:11.5px}
+.file div{font-size:30px}
+.search{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:10px 12px;color:#fff;text-align:left;margin-bottom:8px}
+.res{display:flex;gap:10px;align-items:center;padding:7px 10px;border-radius:10px;text-align:left}.res.on{background:rgba(168,85,247,.25)}.res span{color:var(--mut);font-size:11px;margin-left:auto}
+.hint{position:absolute;left:0;right:0;bottom:16px;text-align:center;font-size:13px;color:rgba(255,255,255,.75);z-index:1;transition:opacity .3s}
+.hint kbd{font:600 11px Inter,sans-serif;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:1px 6px}
+
 /* sections */
-section{padding:90px 0}
-h2{font-size:clamp(30px,5vw,48px);letter-spacing:-.02em;line-height:1.1;text-align:center;font-weight:800}
-.lead{text-align:center;color:var(--mut);max-width:600px;margin:14px auto 46px;font-size:18px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;transition:.25s}
-.card:hover{border-color:var(--p);transform:translateY(-4px);box-shadow:0 12px 40px rgba(124,58,237,.2)}
-.card .ic{font-size:28px;margin-bottom:10px}
-.card h3{font-size:18px;margin-bottom:6px}
-.card p{color:var(--mut);font-size:14.5px}
-.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px}
-.why div{padding-left:18px;border-left:2px solid var(--p)}
-.why h3{margin-bottom:6px}.why p{color:var(--mut)}
-.compare{max-width:760px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.compare .card ul{list-style:none;padding:0;color:var(--mut);font-size:14.5px}
-.compare li{padding:5px 0}
-.compare .no li:before{content:"✕  ";color:#f87171}.compare .yes li:before{content:"✓  ";color:#4ade80}
-.compare .yes{border-color:var(--p)}
-.install{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:40px;max-width:820px;margin:0 auto;text-align:center;box-shadow:0 0 80px rgba(124,58,237,.15)}
-pre{background:#000;border:1px solid var(--line);border-radius:12px;padding:16px;text-align:left;overflow-x:auto;font-size:13px;margin:22px 0;position:relative;color:#d8b4fe}
-.copy{position:absolute;right:10px;top:10px;font-size:12px;background:var(--line);color:var(--tx);border:0;border-radius:8px;padding:4px 10px;cursor:pointer}
-.stack{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:20px}
-.stack span{border:1px solid var(--line);border-radius:99px;padding:4px 14px;font-size:13px;color:var(--mut)}
-footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:var(--mut);font-size:14px}
-@media(max-width:700px){nav .links a:not(.btn){display:none}.compare{grid-template-columns:1fr}.mac{height:430px}.notch.open{height:300px}.timer{font-size:44px}.install{padding:26px 18px}}
+section{padding:110px 0;position:relative}
+.head{text-align:center;max-width:720px;margin:0 auto 54px}
+h2{font-size:clamp(32px,5vw,54px);letter-spacing:-.035em;line-height:1.05;font-weight:800;margin:14px 0}
+.head p{color:var(--mut);font-size:18px}
+
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.tile{grid-column:span 2;background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line2);border-radius:var(--r);padding:26px;position:relative;overflow:hidden;transition:border-color .25s,transform .25s}
+.tile:hover{border-color:var(--line);transform:translateY(-3px)}
+.tile.w3{grid-column:span 3}.tile.w4{grid-column:span 4}
+.tile .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px;background:rgba(168,85,247,.14);border:1px solid var(--line);margin-bottom:16px}
+.tile h3{font-size:19px;letter-spacing:-.01em;margin-bottom:6px}
+.tile p{color:var(--mut);font-size:14.5px}
+.tile .tag{position:absolute;top:18px;right:18px;font-size:11px;font-weight:600;color:var(--p3);background:rgba(168,85,247,.14);border:1px solid var(--line);padding:2px 9px;border-radius:99px}
+.tile img{margin-top:18px;border-radius:14px;border:1px solid var(--line2)}
+
+/* gallery */
+.gtabs{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:26px}
+.gtabs button{background:var(--card);border:1px solid var(--line2);color:var(--mut);padding:8px 16px;border-radius:99px;font:600 13px Inter,sans-serif;cursor:pointer;transition:.2s}
+.gtabs button.on,.gtabs button:hover{color:#fff;border-color:var(--p)}
+.gtabs button.on{background:linear-gradient(135deg,var(--p),var(--p2))}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px}
+.shot{background:var(--card);border:1px solid var(--line2);border-radius:18px;overflow:hidden;cursor:zoom-in;transition:.25s}
+.shot:hover{border-color:var(--p);transform:translateY(-3px);box-shadow:0 20px 50px rgba(124,58,237,.18)}
+.shot img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;background:#0d0818}
+.shot figcaption{padding:12px 16px;font-size:14px}.shot figcaption span{display:block;color:var(--mut);font-size:12.5px}
+.lb{position:fixed;inset:0;background:rgba(5,2,10,.9);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;z-index:100;padding:30px;cursor:zoom-out}
+.lb.on{display:flex}.lb img{max-height:90vh;border-radius:16px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+
+/* new */
+.new{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
+.list{display:grid;gap:14px;margin-top:26px}
+.li{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line2);border-radius:16px;padding:16px}
+.li .ic{flex:none;width:38px;height:38px;border-radius:10px;background:rgba(168,85,247,.14);display:grid;place-items:center;font-size:18px}
+.li b{display:block}.li span{color:var(--mut);font-size:14px}
+.update-card{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:0 30px 80px rgba(124,58,237,.18)}
+.update-card .top{display:flex;align-items:center;gap:10px;color:var(--p3);font-weight:700}
+.update-card p{color:var(--mut);margin:8px 0 18px}
+.update-card .row{display:flex;gap:10px;justify-content:flex-end}
+.update-card .notes{border-top:1px solid var(--line2);margin-top:18px;padding-top:14px;font-size:14px;color:var(--mut)}
+.update-card .notes li{margin:4px 0 4px 18px}
+
+/* privacy */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.pcard{border-left:2px solid var(--p);padding:6px 0 6px 20px}
+.pcard h3{font-size:18px;margin-bottom:4px}.pcard p{color:var(--mut);font-size:15px}
+
+/* install */
+.install{position:relative;background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:28px;padding:56px 40px;max-width:900px;margin:0 auto;text-align:center;overflow:hidden}
+.install:before{content:"";position:absolute;left:50%;top:-160px;width:600px;height:320px;transform:translateX(-50%);background:radial-gradient(closest-side,var(--glow),transparent);pointer-events:none}
+.install>*{position:relative}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:30px 0;text-align:left}
+.step{background:rgba(0,0,0,.25);border:1px solid var(--line2);border-radius:16px;padding:18px}
+.step b{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--p2);font-size:13px;margin-bottom:8px}
+.step p{color:var(--mut);font-size:14px}
+pre{background:#000;border:1px solid var(--line2);border-radius:14px;padding:18px;text-align:left;overflow-x:auto;font:13px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace;margin:20px 0;position:relative;color:var(--p3)}
+pre .c{color:var(--dim)}
+.copy{position:absolute;right:10px;top:10px;font:600 12px Inter,sans-serif;background:rgba(255,255,255,.08);color:var(--tx);border:1px solid var(--line2);border-radius:8px;padding:5px 11px;cursor:pointer}
+.copy:hover{border-color:var(--p)}
+.note{color:var(--dim);font-size:13px;margin-top:16px}
+.stack{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:26px}
+.stack span{border:1px solid var(--line2);border-radius:99px;padding:5px 14px;font-size:13px;color:var(--mut)}
+
+/* faq */
+.faq{max-width:780px;margin:0 auto}
+details{border-bottom:1px solid var(--line2);padding:18px 4px}
+summary{cursor:pointer;font-weight:600;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:20px}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";color:var(--p);font-size:22px;line-height:1;transition:.2s}
+details[open] summary:after{transform:rotate(45deg)}
+details p{color:var(--mut);margin-top:10px}
+details code{background:rgba(255,255,255,.07);padding:1px 6px;border-radius:5px;font-size:13px}
+
+footer{border-top:1px solid var(--line2);padding:40px 0;color:var(--mut);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+footer a:hover{color:#fff}
+.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:900px){
+  .bento{grid-template-columns:1fr 1fr}.tile,.tile.w3,.tile.w4{grid-column:span 2}
+  .new{grid-template-columns:1fr}.steps{grid-template-columns:1fr}
+  .display{height:520px}.notch.open{height:400px}
+  .snapgrid{grid-template-columns:repeat(4,1fr)}
+}
+@media(max-width:640px){
+  nav .links a.hide{display:none}
+  .gh-star span{display:none}
+  .install{padding:36px 18px}
+  .display{height:560px}.notch.open{width:98%;height:440px;border-radius:0 0 24px 24px}
+  .nb-gh span{display:none}
+  #w1,#w2{display:none}
+  .gallery{grid-template-columns:1fr}
+  .timer{font-size:48px}.clip b{max-width:200px}
+  .g.c2,.g.c3{grid-template-columns:1fr!important}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
+
+<svg width="0" height="0" style="position:absolute"><symbol id="gh" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol>
+<symbol id="dl" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0l-5-5m5 5l5-5M4 19h16"/></symbol></svg>
+
 <nav><div class="wrap">
-  <a href="#" class="logo"><i></i> NotchApples</a>
-  <div class="links"><a href="#demo">Demo</a><a href="#features">Features</a><a href="#why">Why</a><a href="#install">Install</a>
-  <a class="btn" href="https://github.com/AdityaJainDXB/NotchApples/releases/latest">Download</a></div>
+  <a href="#" class="logo"><img src="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/icon.png" alt=""> Notch apple</a>
+  <div class="links">
+    <a class="hide" href="#features">Features</a>
+    <a class="hide" href="#gallery">Screenshots</a>
+    <a class="hide" href="#new">What's new</a>
+    <a class="hide" href="#install">Install</a>
+    <a class="gh-star" href="https://github.com/AdityaJainDXB/NotchApples" target="_blank" rel="noopener"><svg><use href="#gh"/></svg><span>GitHub</span></a>
+    <a class="btn sm" href="https://github.com/AdityaJainDXB/NotchApples/releases/latest">Download</a>
+  </div>
 </div></nav>
 
-<header class="hero"><div class="wrap">
-  <div class="pill">✦ Free · Open source · macOS 14+</div>
-  <h1>That notch isn't dead space.<br>Make it <span>work for you.</span></h1>
-  <p class="sub">NotchApples turns your MacBook's notch into a purple productivity hub — AI chat, window snapping, clipboard history, a file shelf, focus timer and more, one hover away.</p>
-  <div class="cta">
-    <a class="btn" href="https://github.com/AdityaJainDXB/NotchApples/releases/latest">⬇ Download for Mac</a>
-    <a class="btn ghost" href="https://github.com/AdityaJainDXB/NotchApples">★ View on GitHub</a>
-  </div>
-  <p class="meta">No account. No tracking. Everything runs locally.</p>
-
-  <div id="demo" class="mac" aria-label="Interactive demo of NotchApples">
-    <div class="menubar"><span> &nbsp;<b>Finder</b> &nbsp; File &nbsp; Edit &nbsp; View</span><span>🔋 92% &nbsp; Tue 9:41</span></div>
-    <div class="notch" id="notch">
-      <div class="idle"><span class="dot"></span><span>♪</span></div>
-      <div class="panel">
-        <div class="tabs" id="tabs"></div>
-        <div class="view on" data-t="Today">
-          <div class="row"><div class="box"><small>Weather</small><b>☀️ 24°</b></div><div class="box"><small>Battery</small><b>🔋 92%</b></div></div>
-          <div class="box"><small>Up next</small><br>10:00 · Design review<br><small>13:30 · Lunch with Sam</small></div>
-        </div>
-        <div class="view" data-t="AI Chat">
-          <div class="msg u">Summarize what's on my screen</div>
-          <div class="msg a">It's a pull request adding dark mode. 3 files changed, tests passing ✅</div>
-          <div class="box" style="color:var(--mut)">Gemini · Groq · Ollama · Claude · ChatGPT…</div>
-        </div>
-        <div class="view" data-t="Clipboard">
-          <div class="clip"><span>brew install --cask notch-apple</span><em>📌</em></div>
-          <div class="clip"><span>https://github.com/…/NotchApples</span></div>
-          <div class="clip"><span>#a855f7</span></div>
-        </div>
-        <div class="view" data-t="Shelf">
-          <div class="shelf"><div class="file"><div>📄</div>report.pdf</div><div class="file"><div>🖼️</div>hero.png</div><div class="file"><div>📦</div>build.zip</div></div>
-        </div>
-        <div class="view" data-t="Focus">
-          <div class="timer" id="timer">25:00<small>Pomodoro · deep work</small></div>
-        </div>
-      </div>
+<header class="hero">
+  <div class="bgglow"></div><div class="gridbg"></div>
+  <div class="wrap">
+    <a class="badge" href="#new"><b>New</b> Built-in updates, Tools, Mirror &amp; World Clock →</a>
+    <h1>Your MacBook notch,<br><span class="grad">finally useful.</span></h1>
+    <p class="sub">Notch apple turns the black cutout at the top of your screen into a purple productivity hub: AI chat, window snapping, clipboard history, a file shelf, focus timer and more. Click it, or press <b>⌘E</b> from anywhere.</p>
+    <div class="cta">
+      <a class="btn" href="https://github.com/AdityaJainDXB/NotchApples/releases/latest"><svg><use href="#dl"/></svg> Download for Mac</a>
+      <a class="btn ghost" href="https://github.com/AdityaJainDXB/NotchApples" target="_blank" rel="noopener"><svg><use href="#gh"/></svg> Star on GitHub</a>
     </div>
-    <div class="snapdemo"><div>Window A</div><div>Window B</div></div>
-    <div class="hint" id="hint">👆 Hover or click the notch — it's live</div>
+    <div class="meta"><span>Free &amp; open source</span><span>No account</span><span>No tracking</span><span>macOS 14+</span></div>
+
+    <div class="laptop reveal in" id="demo">
+      <div class="screen"><div class="display" id="display">
+        <div class="menubar"><div class="l"><b></b><b>Finder</b><span>File</span><span>Edit</span><span>View</span><span>Go</span></div><div class="r"><span>⌁ 92%</span><span id="clock">Tue 9:41</span></div></div>
+        <div class="win" id="w1"><div class="bar"><i></i><i></i><i></i><span>Safari</span></div><div class="lines"><div style="width:80%"></div><div style="width:60%"></div><div style="width:70%"></div><div style="width:40%"></div></div></div>
+        <div class="win" id="w2"><div class="bar"><i></i><i></i><i></i><span>Notes</span></div><div class="lines"><div style="width:70%"></div><div style="width:85%"></div><div style="width:50%"></div></div></div>
+
+        <div class="notch" id="notch" role="button" tabindex="0" aria-label="Notch apple demo — click to open">
+          <div class="ears"><span class="eq"><i></i><i></i><i></i></span><span id="earTimer">24:59</span></div>
+          <div class="panel">
+            <div class="phead">
+              <div class="tabs" id="tabs"></div>
+              <a class="nb-gh" href="https://github.com/AdityaJainDXB/NotchApples" target="_blank" rel="noopener" title="Notch apple on GitHub"><svg><use href="#gh"/></svg><span>GitHub</span></a>
+              <button class="nb-x" id="closeBtn" aria-label="Close">⌃</button>
+            </div>
+            <div class="views">
+              <div class="view" data-t="Today" data-i="☀️">
+                <div class="g c2" style="grid-template-columns:1fr 1.5fr">
+                  <div class="box"><small>Tuesday</small><div class="big">29 September</div><div style="margin-top:10px;font-size:22px">☀️ 24° <small style="display:inline;font-size:12px">Clear · Cupertino</small></div><small style="margin-top:auto;padding-top:40px">🔋 92%</small></div>
+                  <div class="box"><small>Up next</small>
+                    <div class="ev"><i></i><div><b>Design review</b><span>Now · 11:00 – 11:45</span></div><em class="now">Now</em></div>
+                    <div class="ev"><i style="background:#fb923c"></i><div><b>Lunch with Sam</b><span>12:45 – 13:45</span></div></div>
+                    <div class="ev"><i style="background:#4ade80"></i><div><b>Gym</b><span>16:15 – 17:15</span></div></div>
+                  </div>
+                </div>
+              </div>
+              <div class="view" data-t="AI" data-i="✨">
+                <div class="chip">✨ Google Gemini · gemini-2.5-flash · <span style="color:var(--green)">Free</span></div>
+                <div class="msg u">What's on my screen?</div>
+                <div class="msg a">📸 Screenshot attached. You're comparing two windows: a Safari page about notch apps and a note with your to-do list for today.</div>
+                <div class="msg u">Summarise my note in one line</div>
+                <div class="inp"><div>Message AI…</div></div>
+              </div>
+              <div class="view" data-t="Windows" data-i="🪟">
+                <small style="color:var(--mut)">Snap the front window · hover a zone to try it</small>
+                <div class="snapgrid" id="snaps" style="margin-top:8px"></div>
+                <div class="arr"><button data-tile="split">⬌ Split screen</button><button data-tile="grid">⊞ 4-window grid</button><button data-tile="cols">⫴ 3 columns</button><button data-tile="reset">↺ Reset</button></div>
+              </div>
+              <div class="view" data-t="Clipboard" data-i="📋">
+                <div class="filters"><span class="on">All</span><span>Pinned</span><span>Text</span><span>Links</span><span>Images</span><span>Files</span></div>
+                <div class="clip"><div class="ic">🔗</div><div><b>https://github.com/AdityaJainDXB/NotchApples</b><span>📌 Safari · 1 min ago</span></div></div>
+                <div class="clip"><div class="ic">≡</div><div><b>brew install --cask notch-apple</b><span>Terminal · 9 min ago</span></div></div>
+                <div class="clip"><div class="ic">≡</div><div><b>Meeting moved to 3:30 — same room.</b><span>Messages · 14 min ago</span></div></div>
+                <div class="clip"><div class="ic">📄</div><div><b>Slides.key</b><span>Finder · 22 min ago</span></div></div>
+              </div>
+              <div class="view" data-t="Focus" data-i="⏱">
+                <div class="ring" id="ring"><div><div class="timer" id="timer">25:00</div><small>Focus · session 2 of 4</small></div></div>
+              </div>
+              <div class="view" data-t="Tools" data-i="🧰">
+                <div class="g c3" style="grid-template-columns:1fr 1fr 1fr">
+                  <div class="box tool"><small>☕ Keep Awake</small><div class="big">1 hour</div><small>Awake until 10:41</small></div>
+                  <div class="box tool"><small>🎨 Color Picker</small><div class="big">#A855F7</div><div class="swatches"><i style="background:#a855f7"></i><i style="background:#f472b6"></i><i style="background:#38bdf8"></i><i style="background:#facc15"></i></div></div>
+                  <div class="box tool"><small>🧮 Calculator</small><div style="font-family:ui-monospace,monospace;color:var(--mut)">(12.5 + 7) × 3</div><div class="big">= 58.5</div></div>
+                </div>
+              </div>
+              <div class="view" data-t="Mirror" data-i="🪞"><div class="mirror"></div></div>
+              <div class="view" data-t="World" data-i="🌍">
+                <div class="g c3" style="grid-template-columns:1fr 1fr 1fr" id="clocks"></div>
+              </div>
+              <div class="view" data-t="Shelf" data-i="🗂">
+                <div class="shelf"><div class="file"><div>📄</div>report.pdf</div><div class="file"><div>🖼️</div>hero.png</div><div class="file"><div>📦</div>build.zip</div><div class="file" style="border:1px dashed rgba(255,255,255,.2);color:var(--mut)"><div>＋</div>Drop here</div></div>
+              </div>
+              <div class="view" data-t="Search" data-i="🔍">
+                <div class="search">🔍 invoice</div>
+                <div class="res on">📄 <b>Invoice-September.pdf</b><span>Documents</span></div>
+                <div class="res">📊 <b>Invoices 2026.numbers</b><span>Desktop</span></div>
+                <div class="res">📁 <b>Invoices</b><span>iCloud Drive</span></div>
+              </div>
+              <div class="view" data-t="Messenger" data-i="💬">
+                <div class="chip"># cafe-study · 🔒 end-to-end encrypted · 3 online</div>
+                <div class="msg a"><b style="color:#6ee7b7;font-size:11px">FriendKoala#314</b><br>anyone up for the study session at 5?</div>
+                <div class="msg u">I'm in 🙌</div>
+                <div class="inp"><div>👋 😂 👍 ❤️ 🔥 &nbsp; Message</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hint" id="hint">👆 Click the notch, or press <kbd>⌘</kbd> <kbd>E</kbd> — this demo is live</div>
+      </div></div>
+      <div class="base"></div>
+    </div>
   </div>
-</div></header>
+</header>
 
 <section id="features"><div class="wrap">
-  <h2>One notch. <span>Every tool.</span></h2>
-  <p class="lead">Fourteen modules, all optional. Turn on what you need in Settings → Modules.</p>
-  <div class="grid">
-    <div class="card"><div class="ic">🤖</div><h3>AI Chat</h3><p>Free providers (Gemini, Groq, OpenRouter, Ollama) or paid (Claude, ChatGPT, DeepSeek) — with screen sharing.</p></div>
-    <div class="card"><div class="ic">🪟</div><h3>Window Management</h3><p>Drag windows to snap zones, tile layouts and save arrangements with keyboard shortcuts.</p></div>
-    <div class="card"><div class="ic">💬</div><h3>Messenger</h3><p>Anonymous, encrypted chat on your Wi-Fi or in private rooms.</p></div>
-    <div class="card"><div class="ic">📋</div><h3>Clipboard History</h3><p>Searchable history with pinning and filtering. Never lose a copy again.</p></div>
-    <div class="card"><div class="ic">🗂️</div><h3>File Shelf</h3><p>Drop files in the notch, grab them where you need them. Persistent via security-scoped bookmarks.</p></div>
-    <div class="card"><div class="ic">📅</div><h3>Today Tab</h3><p>Weather, calendar events and battery status at a glance.</p></div>
-    <div class="card"><div class="ic">🍅</div><h3>Focus Timer</h3><p>Built-in Pomodoro with notifications to keep you in flow.</p></div>
-    <div class="card"><div class="ic">🎚️</div><h3>Audio Control</h3><p>Per-app volume and a 10-band equalizer.</p></div>
-    <div class="card"><div class="ic">🛡️</div><h3>VPN</h3><p>Free OpenVPN servers or import your own profile.</p></div>
-    <div class="card"><div class="ic">🔍</div><h3>Search</h3><p>Spotlight-powered file search right from the notch.</p></div>
-    <div class="card"><div class="ic">🔐</div><h3>Biometric Lock</h3><p>Touch ID, or face unlock through your webcam. Templates stay on-device.</p></div>
-    <div class="card"><div class="ic">📝</div><h3>Notes & Widgets</h3><p>Quick notes and desktop widgets, instantly available.</p></div>
-    <div class="card"><div class="ic">📡</div><h3>Share</h3><p>AirDrop and PairDrop support for fast sharing.</p></div>
-    <div class="card"><div class="ic">🎵</div><h3>Now Playing</h3><p>See the current track without switching apps.</p></div>
+  <div class="head reveal"><span class="eyebrow">Everything in one place</span><h2>One notch. <span class="grad">Every tool.</span></h2><p>Twenty modules and add-ons, each optional. Turn on what you use in Settings → Modules, and the rest stays out of your way.</p></div>
+  <div class="bento">
+    <div class="tile w4 reveal"><div class="ic">✨</div><h3>AI that can see your screen</h3><p>Chat with free AI (Gemini, Groq, OpenRouter, Ollama on your Mac) or bring a key for Claude, ChatGPT or DeepSeek. Ask "what's on my screen?" and it takes a screenshot for you. One-click summarise, translate and fix, plus a full chat history.</p><img loading="lazy" src="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/screenshots/claude.png" alt="AI tab in the notch"></div>
+    <div class="tile reveal"><div class="ic">🪟</div><h3>Window snapping</h3><p>Drag a window up to the notch and drop it on a zone: halves, quarters, thirds. Tile everything at once, save layouts, or use ⌃⌥ + arrows.</p><img loading="lazy" src="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/screenshots/window-snap-zones.png" alt="Snap zones"></div>
+    <div class="tile reveal"><div class="ic">📋</div><h3>Clipboard history</h3><p>Everything you copy, searchable, pinnable and filterable. Password-manager secrets are never saved.</p></div>
+    <div class="tile reveal"><div class="ic">☀️</div><h3>Today</h3><p>Date, local weather, your next calendar events with a "Now" badge, and battery at a glance.</p></div>
+    <div class="tile reveal"><div class="ic">⏱</div><h3>Focus timer</h3><p>Pomodoro sessions with the countdown right beside the closed notch, like a Dynamic Island.</p></div>
+    <div class="tile w3 reveal"><span class="tag">New</span><div class="ic">🧰</div><h3>Tools</h3><p>Keep your Mac awake for a while, pick any colour on screen and copy its hex code, and a calculator that answers as you type.</p><img loading="lazy" src="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/screenshots/tools.png" alt="Tools tab"></div>
+    <div class="tile w3 reveal"><div class="ic">💬</div><h3>Anonymous Messenger</h3><p>Chat with people on the same Wi-Fi, or create an end-to-end-encrypted room joined with a code. Random handles, no accounts, nothing stored.</p><img loading="lazy" src="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/screenshots/messenger.png" alt="Messenger"></div>
+    <div class="tile reveal"><span class="tag">Add-on</span><div class="ic">🪞</div><h3>Mirror</h3><p>Check your hair before a call. Flip, zoom and a ring light. The camera stops when you leave the tab.</p></div>
+    <div class="tile reveal"><span class="tag">Add-on</span><div class="ic">🌍</div><h3>World Clock</h3><p>The time in the cities you care about, with day or night and the difference from yours.</p></div>
+    <div class="tile reveal"><div class="ic">🔍</div><h3>File Search</h3><p>Spotlight-powered search for files, apps and folders. Return opens, ⌘R reveals, drag results out.</p></div>
+    <div class="tile reveal"><div class="ic">📝</div><h3>Notes</h3><p>Quick notes with search, saved automatically on your Mac.</p></div>
+    <div class="tile reveal"><div class="ic">🗂</div><h3>File Shelf</h3><p>Drag a file onto the notch to park it. It stays there across restarts. Drag it out wherever you need it.</p></div>
+    <div class="tile reveal"><div class="ic">📡</div><h3>AirDrop &amp; PairDrop</h3><p>Send files with AirDrop, or between devices on the same Wi-Fi with a 6-digit code. No server involved.</p></div>
+    <div class="tile reveal"><div class="ic">🔊</div><h3>Per-app audio</h3><p>Volume from 0 to 150% and a 10-band EQ for each app, built in on macOS 14.2+.</p></div>
+    <div class="tile reveal"><div class="ic">🛡</div><h3>Free VPN</h3><p>A built-in list of free OpenVPN servers, or import your own profiles.</p></div>
+    <div class="tile reveal"><div class="ic">🔐</div><h3>Face ID-style lock</h3><p>Lock the notch behind Touch ID, your password, or face unlock with your webcam. Templates stay on your Mac.</p></div>
+    <div class="tile reveal"><div class="ic">🎵</div><h3>Now Playing</h3><p>The current track from Music or Spotify, with a tiny equaliser beside the notch.</p></div>
+    <div class="tile reveal"><div class="ic">🧩</div><h3>Desktop widget</h3><p>Small, medium and large widgets with weather, music and your next events.</p></div>
   </div>
 </div></section>
 
-<section id="why" style="background:linear-gradient(#0a0612,#100820,#0a0612)"><div class="wrap">
-  <h2>Why it's <span>useful</span></h2>
-  <p class="lead">The notch is prime real estate at the top of your screen. Most apps ignore it. We use it.</p>
-  <div class="why">
-    <div><h3>Replace a pile of apps</h3><p>Clipboard manager, window snapper, shelf, timer, AI client, VPN — one lightweight app instead of six menu-bar icons.</p></div>
-    <div><h3>Zero context switching</h3><p>Everything is one hover away from anywhere. No Dock hunting, no Cmd-Tab, no lost focus.</p></div>
-    <div><h3>Private by design</h3><p>No accounts, servers or tracking. Network calls only go to the AI provider you choose, GitHub, and Open-Meteo for weather.</p></div>
-    <div><h3>Yours to shape</h3><p>Every module is optional. Enable only what you use and keep the rest out of your way.</p></div>
-    <div><h3>Free forever</h3><p>MIT-licensed and open source. Built with Swift and SwiftUI — read it, fork it, improve it.</p></div>
-    <div><h3>Makes the notch feel intentional</h3><p>Turn the one part of your MacBook people complain about into the part you use most.</p></div>
+<section id="gallery" style="background:linear-gradient(var(--bg),var(--bg2) 20%,var(--bg2) 80%,var(--bg))"><div class="wrap">
+  <div class="head reveal"><span class="eyebrow">See it for real</span><h2>Screenshots from <span class="grad">the actual app</span></h2><p>Every picture here is the real Notch apple, using sample data. Click any one to enlarge it.</p></div>
+  <div class="gtabs" id="gtabs"></div>
+  <div class="gallery" id="gal"></div>
+</div></section>
+
+<section id="new"><div class="wrap new">
+  <div class="reveal">
+    <span class="eyebrow">What's new in 1.12</span>
+    <h2 style="text-align:left">Updates itself.<br><span class="grad">When you say so.</span></h2>
+    <p style="color:var(--mut);font-size:18px">When a new version is published on GitHub, Notch apple lets you know. Update in one click, or choose Not now. Don't want it checking at all? Turn it off.</p>
+    <div class="list">
+      <div class="li"><div class="ic">⬇️</div><div><b>Built-in updates</b><span>A notification, a badge in Settings and an Update button in the notch. It checks the download is genuine before installing.</span></div></div>
+      <div class="li"><div class="ic">🧰</div><div><b>Tools tab</b><span>Keep Awake, a screen colour picker and a quick calculator.</span></div></div>
+      <div class="li"><div class="ic">🪞</div><div><b>Mirror &amp; World Clock add-ons</b><span>Switch them on in Settings → Modules.</span></div></div>
+      <div class="li"><div class="ic">🔍</div><div><b>File Search &amp; hide shortcut</b><span>Spotlight search in the notch; ⌃⌥O hides the notch completely.</span></div></div>
+    </div>
   </div>
-  <div class="compare" style="margin-top:60px">
-    <div class="card no"><h3>Without NotchApples</h3><ul><li>A dead black cutout</li><li>6 separate utility apps</li><li>Lost clipboard items</li><li>Manual window dragging</li></ul></div>
-    <div class="card yes"><h3>With NotchApples</h3><ul><li>A live, useful control center</li><li>One app, modular</li><li>Searchable, pinned history</li><li>Snap zones & saved layouts</li></ul></div>
+  <div class="update-card reveal">
+    <div class="top">⬇️ Update available</div>
+    <p>Notch apple 1.13.0 is ready. Would you like to update?</p>
+    <div class="row"><button class="btn ghost sm" onclick="this.closest('.update-card').querySelector('.top').textContent='👍 Skipped this version'">Not now</button><button class="btn sm" id="updBtn">Update</button></div>
+    <div class="notes"><b style="color:var(--tx)">Release notes</b><ul><li>Downloaded from GitHub releases</li><li>Settings and data are kept</li><li>Turn off automatic checks any time</li></ul></div>
+  </div>
+</div></section>
+
+<section id="privacy" style="background:linear-gradient(var(--bg),var(--bg2),var(--bg))"><div class="wrap">
+  <div class="head reveal"><span class="eyebrow">Private by design</span><h2>Nothing leaves your Mac<br><span class="grad">unless you ask.</span></h2></div>
+  <div class="pgrid">
+    <div class="pcard reveal"><h3>No account, no tracking</h3><p>There's nothing to sign up for and no analytics. Your notes, clipboard and chats stay on your Mac.</p></div>
+    <div class="pcard reveal"><h3>Your AI, your key</h3><p>Chats go only to the provider you pick, with your own free or paid key. Ollama keeps everything offline.</p></div>
+    <div class="pcard reveal"><h3>Encrypted by default</h3><p>Messenger rooms are end-to-end encrypted. Keys and face templates live in the macOS Keychain.</p></div>
+    <div class="pcard reveal"><h3>Every module optional</h3><p>Turn off what you don't use and it stops running. Permissions are only asked for when a feature needs them.</p></div>
   </div>
 </div></section>
 
 <section id="install"><div class="wrap">
-  <div class="install">
-    <h2>Get <span>NotchApples</span></h2>
-    <p class="lead" style="margin-bottom:0">Requires macOS 14 Sonoma or newer.</p>
-    <pre><button class="copy" onclick="cp(this)">Copy</button><code id="brew">brew tap adityajaindxb/notchapples https://github.com/AdityaJainDXB/NotchApples
+  <div class="install reveal">
+    <span class="eyebrow">Get started</span>
+    <h2>Install <span class="grad">Notch apple</span></h2>
+    <p style="color:var(--mut)">Free for macOS 14 Sonoma or newer, on any Mac (notch or not).</p>
+    <div class="steps">
+      <div class="step"><b>1</b><p><strong style="color:var(--tx)">Download the DMG</strong> from the latest GitHub release, or use Homebrew below.</p></div>
+      <div class="step"><b>2</b><p><strong style="color:var(--tx)">Drag it to Applications</strong> and open it. macOS may ask you to confirm the first launch.</p></div>
+      <div class="step"><b>3</b><p><strong style="color:var(--tx)">Click the notch</strong> or press ⌘E. Pick your modules in Settings.</p></div>
+    </div>
+    <pre><button class="copy" onclick="cp(this)">Copy</button><code id="brew"><span class="c"># with Homebrew</span>
+brew tap adityajaindxb/notchapples https://github.com/AdityaJainDXB/NotchApples
 brew install --cask notch-apple</code></pre>
-    <p style="color:var(--mut);margin-bottom:18px">or grab the DMG and drag it to Applications.</p>
-    <a class="btn" href="https://github.com/AdityaJainDXB/NotchApples/releases/latest">⬇ Download latest DMG</a>
-    <p class="meta">The app is ad-hoc signed (not notarized), so macOS may ask you to approve it on first launch.</p>
-    <div class="stack"><span>Swift</span><span>SwiftUI</span><span>AppKit</span><span>ScreenCaptureKit</span><span>Vision</span><span>CryptoKit</span><span>Core Audio</span><span>MIT</span></div>
+    <div class="cta">
+      <a class="btn" href="https://github.com/AdityaJainDXB/NotchApples/releases/latest"><svg><use href="#dl"/></svg> Download latest DMG</a>
+      <a class="btn ghost" href="https://github.com/AdityaJainDXB/NotchApples#want-a-lighter-version" target="_blank" rel="noopener">Want a lighter version?</a>
+    </div>
+    <p class="note">Notch apple is ad-hoc signed (not notarized by Apple), so the first time you open it you may need to right-click → Open.</p>
+    <div class="stack"><span>Swift</span><span>SwiftUI</span><span>AppKit</span><span>ScreenCaptureKit</span><span>Vision</span><span>CryptoKit</span><span>Core Audio</span><span>MIT licence</span></div>
   </div>
 </div></section>
 
-<footer><div class="wrap">Made with 💜 · <a href="https://github.com/AdityaJainDXB/NotchApples" style="color:var(--p)">github.com/AdityaJainDXB/NotchApples</a> · MIT License</div></footer>
+<section id="faq" style="padding-top:40px"><div class="wrap">
+  <div class="head reveal"><span class="eyebrow">FAQ</span><h2>Questions</h2></div>
+  <div class="faq reveal">
+    <details><summary>Does it work on Macs without a notch?</summary><p>Yes. On Macs without a notch, Notch apple shows a small pill at the top centre of the screen that works exactly the same way.</p></details>
+    <details><summary>Is it really free?</summary><p>Yes, and open source under the MIT licence. The AI features use free providers by default (Gemini, Groq, OpenRouter's free models, or Ollama on your Mac). Paid providers are optional and use your own key.</p></details>
+    <details><summary>How do I open and close it?</summary><p>Click the notch, press <code>⌘E</code> in any app, or drag a file onto it. Press <code>Esc</code> or click elsewhere to close. You can also turn on "open on hover" in Settings → General.</p></details>
+    <details><summary>Why does window snapping need Accessibility?</summary><p>Moving other apps' windows is only possible through macOS Accessibility. Notch apple uses it just to read and set window positions. Turn it on in System Settings → Privacy &amp; Security → Accessibility.</p></details>
+    <details><summary>How do updates work?</summary><p>Notch apple asks GitHub for the latest release. If there's a newer one you'll see "Update available". Choose Update or Not now, or turn off automatic checks in Settings → Updates.</p></details>
+    <details><summary>Can I make it smaller?</summary><p>Turn off modules you don't need in Settings → Modules. Older, smaller builds are listed in the <a style="color:var(--p3)" href="https://github.com/AdityaJainDXB/NotchApples#want-a-lighter-version">README</a>.</p></details>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <a href="#" class="logo"><img src="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/icon.png" alt=""> Notch apple</a>
+  <div style="display:flex;gap:22px;flex-wrap:wrap">
+    <a href="https://github.com/AdityaJainDXB/NotchApples" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://github.com/AdityaJainDXB/NotchApples/releases" target="_blank" rel="noopener">Releases</a>
+    <a href="https://github.com/AdityaJainDXB/NotchApples/issues" target="_blank" rel="noopener">Report an issue</a>
+    <span>MIT licence · Made with 💜</span>
+  </div>
+</div></footer>
+
+<div class="lb" id="lb"><img alt=""></div>
 
 <script>
-const notch=document.getElementById('notch'),tabsEl=document.getElementById('tabs'),views=[...document.querySelectorAll('.view')],hint=document.getElementById('hint');
-let cur=0,auto=true,timerId;
-views.forEach((v,i)=>{const b=document.createElement('button');b.textContent=v.dataset.t;b.onclick=e=>{e.stopPropagation();auto=false;show(i)};tabsEl.appendChild(b)});
-function show(i){cur=i;views.forEach((v,j)=>v.classList.toggle('on',i===j));[...tabsEl.children].forEach((b,j)=>b.classList.toggle('on',i===j))}
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const notch=$('#notch'),tabsEl=$('#tabs'),views=$$('.view'),hint=$('#hint');
+let cur=0,auto=true;
+
+/* tabs */
+views.forEach((v,i)=>{const b=document.createElement('button');b.innerHTML=`<span>${v.dataset.i}</span>${v.dataset.t}`;b.onclick=e=>{e.stopPropagation();stopAuto();show(i)};tabsEl.appendChild(b)});
+function show(i){cur=i;views.forEach((v,j)=>v.classList.toggle('on',i===j));[...tabsEl.children].forEach((b,j)=>{b.classList.toggle('on',i===j);if(i===j)b.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'})})}
 show(0);
-function open(){notch.classList.add('open');hint.textContent='Pick a tab — every module lives here'}
-function close(){notch.classList.remove('open');hint.textContent='👆 Hover or click the notch — it\'s live'}
-notch.addEventListener('mouseenter',()=>{auto=false;open()});
-notch.addEventListener('mouseleave',close);
-notch.addEventListener('click',()=>notch.classList.contains('open')?close():open());
-// auto-play until user interacts
-setTimeout(function loop(){if(!auto)return;open();let n=0;const t=setInterval(()=>{if(!auto){clearInterval(t);return}n++;if(n>=views.length){clearInterval(t);close();setTimeout(loop,2500);return}show(n)},1800)},1500);
-// timer
-let s=1500;setInterval(()=>{s=s>0?s-1:1500;document.getElementById('timer').firstChild.textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')},1000);
-function cp(b){navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('brew').textContent);b.textContent='Copied!';setTimeout(()=>b.textContent='Copy',1500)}
+function openN(){notch.classList.add('open');hint.style.opacity=0}
+function closeN(){notch.classList.remove('open');hint.style.opacity=1}
+function stopAuto(){auto=false}
+notch.addEventListener('click',e=>{if(!notch.classList.contains('open')){stopAuto();openN()}});
+$('#closeBtn').onclick=e=>{e.stopPropagation();stopAuto();closeN()};
+document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='e'){e.preventDefault();stopAuto();notch.classList.contains('open')?closeN():openN()}if(e.key==='Escape'){stopAuto();closeN()}});
+document.addEventListener('click',e=>{if(!notch.contains(e.target)&&notch.classList.contains('open')&&!auto)closeN()});
+/* autoplay tour until the visitor interacts */
+setTimeout(function tour(){if(!auto)return;openN();let n=0;show(0);const t=setInterval(()=>{if(!auto){clearInterval(t);return}n++;if(n>=views.length){clearInterval(t);closeN();setTimeout(tour,3500);return}show(n)},2300)},1400);
+
+/* snap zones */
+const zones=[[0,0,.5,1],[.5,0,.5,1],[0,0,1,.5],[0,.5,1,.5],[0,0,.667,1],[.333,0,.667,1],[0,0,1,1],[.2,.15,.6,.7],[0,0,.5,.5],[.5,0,.5,.5],[0,.5,.5,.5],[.5,.5,.5,.5],[0,0,.333,1],[.333,0,.333,1],[.667,0,.333,1],[.05,.05,.9,.9]];
+const W1=$('#w1'),W2=$('#w2'),area={x:.02,y:.07,w:.96,h:.9};
+function place(el,[x,y,w,h]){Object.assign(el.style,{left:(area.x+x*area.w)*100+'%',top:(area.y+y*area.h)*100+'%',width:w*area.w*100+'%',height:h*area.h*100+'%'})}
+zones.forEach(z=>{const d=document.createElement('div');d.className='sz';const i=document.createElement('i');Object.assign(i.style,{left:4+z[0]*84+'%',top:6+z[1]*80+'%',width:z[2]*84+'%',height:z[3]*80+'%'});d.appendChild(i);d.onmouseenter=()=>place(W1,z);d.onclick=e=>{e.stopPropagation();place(W1,z)};$('#snaps').appendChild(d)});
+$$('.arr button').forEach(b=>b.onclick=e=>{e.stopPropagation();const t=b.dataset.tile;
+  if(t==='split'){place(W1,[0,0,.5,1]);place(W2,[.5,0,.5,1])}
+  if(t==='grid'){place(W1,[0,0,.5,.5]);place(W2,[.5,.5,.5,.5])}
+  if(t==='cols'){place(W1,[0,0,.333,1]);place(W2,[.333,0,.333,1])}
+  if(t==='reset'){W1.removeAttribute('style');W2.removeAttribute('style')}});
+
+/* focus timer + ear countdown */
+let s=1499;setInterval(()=>{s=s>0?s-1:1499;const t=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');$('#timer').textContent=t;$('#earTimer').textContent=t;$('#ring').style.setProperty('--deg',(1-s/1500)*360+'deg')},1000);
+
+/* world clocks + menu bar clock */
+const cities=[['London','Europe/London'],['New York','America/New_York'],['Tokyo','Asia/Tokyo']];
+function tick(){const now=new Date();$('#clocks').innerHTML=cities.map(([n,z])=>{const h=+now.toLocaleString('en-GB',{hour:'2-digit',hour12:false,timeZone:z});return `<div class="box clock"><small>${h>=7&&h<19?'☀️':'🌙'} ${n}</small><b>${now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',timeZone:z})}</b></div>`}).join('');
+  $('#clock').textContent=now.toLocaleDateString([],{weekday:'short'})+' '+now.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}
+tick();setInterval(tick,10000);
+
+/* gallery */
+const R='https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/screenshots/';
+const shots=[
+ ['Notch','today','Today','Weather, events and battery'],['Notch','claude','AI','Free providers, screen-aware'],['Notch','windows','Windows','Snap, tile and save layouts'],
+ ['Notch','window-snap-zones','Snap zones','Drag a window to the notch'],['Notch','tools','Tools','Keep Awake, colours, calculator'],['Notch','clipboard','Clipboard','Search, pin and filter'],
+ ['Notch','notes','Notes','Saved automatically'],['Notch','messenger','Messenger','Anonymous encrypted rooms'],['Notch','focus','Focus','Pomodoro timer'],
+ ['Notch','share','Share','AirDrop and PairDrop'],['Notch','shelf','File Shelf','Drop files into the notch'],['Notch','audio','Audio','Per-app volume and EQ'],
+ ['Notch','vpn','VPN','Free servers'],['Notch','nowplaying','Now Playing','Music or Spotify'],
+ ['Settings','settings-general','General','Like System Settings'],['Settings','settings-modules','Modules','Every feature is optional'],['Settings','settings-updates','Updates','Update or Not now'],
+ ['Settings','settings-ai','AI','Provider, model and keys'],['Settings','settings-ai-history','AI History','Every chat, with its model'],['Settings','settings-windows','Windows','Zones, shortcuts, gaps'],
+ ['Settings','settings-permissions','Permissions','Everything in one place'],['Settings','settings-authentication','Face unlock','Face ID-style'],['Settings','settings-clipboard','Clipboard','History settings'],
+ ['Settings','settings-messenger','Messenger','Handle and notifications'],['Settings','settings-audio','Audio','Built-in engine'],['Settings','settings-vpn','VPN','Profiles and servers'],['Settings','settings-widget','Widget','Location or a city'],['Settings','settings-focus','Focus','Session lengths'],
+];
+const cats=['All','Notch','Settings'];
+cats.forEach((c,i)=>{const b=document.createElement('button');b.textContent=c;b.onclick=()=>{$$('#gtabs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');render(c)};if(!i)b.classList.add('on');$('#gtabs').appendChild(b)});
+function render(c){$('#gal').innerHTML=shots.filter(s=>c==='All'||s[0]===c).map(s=>`<figure class="shot" data-src="${R+s[1]}.png"><img loading="lazy" src="${R+s[1]}.png" alt="${s[2]}"><figcaption>${s[2]}<span>${s[3]}</span></figcaption></figure>`).join('');
+  $$('.shot').forEach(f=>f.onclick=()=>{$('#lb img').src=f.dataset.src;$('#lb').classList.add('on')})}
+render('All');
+$('#lb').onclick=()=>$('#lb').classList.remove('on');
+
+/* update card demo */
+$('#updBtn').onclick=function(){const top=this.closest('.update-card').querySelector('.top');let p=0;this.disabled=true;const t=setInterval(()=>{p+=7;top.textContent=p<100?`⬇️ Downloading… ${p}%`:'✅ Updated — Notch apple reopened';if(p>=100){clearInterval(t)}},90)};
+
+/* reveal on scroll */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+$$('.reveal').forEach(el=>io.observe(el));
+setTimeout(()=>$$('.reveal').forEach(el=>el.classList.add('in')),2500); // never leave content hidden
+
+function cp(b){navigator.clipboard&&navigator.clipboard.writeText('brew tap adityajaindxb/notchapples https://github.com/AdityaJainDXB/NotchApples\nbrew install --cask notch-apple');b.textContent='Copied!';setTimeout(()=>b.textContent='Copy',1500)}
 </script>
 </body>
 </html>

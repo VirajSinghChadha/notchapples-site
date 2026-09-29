@@ -243,6 +243,30 @@ footer a:hover{color:#fff}
   .g.c2,.g.c3{grid-template-columns:1fr!important}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.tile .tag.gn,.tag.gn{color:#4ade80;background:rgba(34,197,94,.16);border-color:#22c55e;font-weight:700;letter-spacing:.06em}
+.tabs button .nw{font-style:normal;font-size:8.5px;font-weight:800;letter-spacing:.05em;color:#052e12;background:#4ade80;border-radius:99px;padding:1px 5px}
+#demo[data-theme=ocean]{--p:#38bdf8;--p2:#0284c7;--p3:#bae6fd;--glow:rgba(56,189,248,.38)}
+#demo[data-theme=sunset]{--p:#fb923c;--p2:#e11d48;--p3:#fed7aa;--glow:rgba(251,146,60,.38)}
+#demo[data-theme=forest]{--p:#4ade80;--p2:#15803d;--p3:#bbf7d0;--glow:rgba(74,222,128,.34)}
+#demo[data-theme=rose]{--p:#f472b6;--p2:#be185d;--p3:#fbcfe8;--glow:rgba(244,114,182,.38)}
+#demo[data-theme] .tabs button.on{background:linear-gradient(135deg,var(--p),var(--p2))}
+#demo[data-theme] .notch{box-shadow:0 0 0 1px var(--p),0 8px 30px var(--glow)}
+.tr{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tr .box{min-height:92px}.tr .box b{display:block;font-size:17px;font-weight:600;line-height:1.35}
+.langs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
+.langs button{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--mut);border-radius:99px;padding:4px 11px;font:600 11.5px Inter,sans-serif;cursor:pointer}
+.langs button.on{background:var(--p2);color:#fff;border-color:var(--p)}
+.speak{margin-top:8px;background:rgba(255,255,255,.08);border:0;color:#fff;border-radius:99px;padding:4px 12px;font:600 11.5px Inter,sans-serif;cursor:pointer}
+.meter{height:6px;border-radius:4px;background:rgba(255,255,255,.1);margin-top:8px;overflow:hidden}.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--p),var(--p3));transition:width .8s}
+.themes{display:flex;gap:10px;flex-wrap:wrap}.themes button{width:78px;border:2px solid transparent;background:rgba(255,255,255,.05);border-radius:14px;padding:10px 6px;color:#fff;font:600 11.5px Inter,sans-serif;cursor:pointer}
+.themes button i{display:block;height:34px;border-radius:9px;margin-bottom:6px}.themes button.on{border-color:#fff}
+.prev{aspect-ratio:16/10;background:linear-gradient(160deg,#1a0d33,#0b0615);padding:18px;display:flex;flex-direction:column;justify-content:center;gap:10px;font-size:13px;color:var(--tx);overflow:hidden}
+.prev .pn{background:#000;border-radius:0 0 22px 22px;padding:14px;border:1px solid rgba(168,85,247,.3)}
+.prev .row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.prev .row2>div,.prev .st{background:rgba(255,255,255,.05);border-radius:10px;padding:8px 10px}
+.prev small{display:block;color:var(--mut);font-size:10.5px}
+.prev .sw{display:flex;gap:8px}.prev .sw i{flex:1;height:52px;border-radius:12px}
+.shot.pv{cursor:default}
 .tag-new{display:inline-block;vertical-align:middle;margin-left:8px;background:rgba(34,197,94,.16);color:#4ade80;border:1px solid #22c55e;border-radius:99px;padding:1px 9px;font-size:10.5px;font-weight:700;letter-spacing:.06em}
 </style>
 </head>
@@ -333,6 +357,34 @@ footer a:hover{color:#fff}
               <div class="view" data-t="World" data-i="🌍">
                 <div class="g c3" style="grid-template-columns:1fr 1fr 1fr" id="clocks"></div>
               </div>
+              <div class="view" data-t="Translate" data-i="🌐" data-new="1">
+                <div class="langs" id="langs"></div>
+                <div class="tr">
+                  <div class="box"><small>English</small><b>Hello, how are you?</b></div>
+                  <div class="box"><small id="trLang">Spanish</small><b id="trOut">Hola, ¿cómo estás?</b><button class="speak" id="speak">🔊 Read aloud</button></div>
+                </div>
+              </div>
+              <div class="view" data-t="Stats" data-i="📊" data-new="1">
+                <div class="g c3" style="grid-template-columns:1fr 1fr 1fr;height:auto">
+                  <div class="box"><small>🧠 RAM</small><div class="big" id="stRam">8.4 GB</div><div class="meter"><i id="mRam" style="width:52%"></i></div></div>
+                  <div class="box"><small>⚙️ CPU</small><div class="big" id="stCpu">23%</div><div class="meter"><i id="mCpu" style="width:23%"></i></div></div>
+                  <div class="box"><small>🌐 Network</small><div class="big" id="stNet" style="font-size:22px">↓ 4.2 MB/s</div><small id="stUp">↑ 0.6 MB/s</small></div>
+                  <div class="box"><small>🔋 Battery</small><div class="big">92%</div><div class="meter"><i style="width:92%"></i></div></div>
+                  <div class="box"><small>💾 Disk free</small><div class="big">312 GB</div><div class="meter"><i style="width:34%"></i></div></div>
+                  <div class="box"><small>🧩 Widget</small><div style="font-size:12px;margin-top:6px;color:var(--mut)">MacBook Center · Small &amp; Medium in Notification Center</div></div>
+                </div>
+              </div>
+              <div class="view" data-t="Themes" data-i="🎨" data-new="1">
+                <small style="color:var(--mut);display:block;margin-bottom:10px">Settings → Appearance · pick a colour theme (try it, this demo restyles)</small>
+                <div class="themes" id="themes">
+                  <button class="on" data-th=""><i style="background:linear-gradient(135deg,#b67cff,#7c3aed)"></i>Purple</button>
+                  <button data-th="ocean"><i style="background:linear-gradient(135deg,#38bdf8,#0284c7)"></i>Ocean</button>
+                  <button data-th="sunset"><i style="background:linear-gradient(135deg,#fb923c,#e11d48)"></i>Sunset</button>
+                  <button data-th="forest"><i style="background:linear-gradient(135deg,#4ade80,#15803d)"></i>Forest</button>
+                  <button data-th="rose"><i style="background:linear-gradient(135deg,#f472b6,#be185d)"></i>Rose</button>
+                </div>
+                <div style="display:flex;gap:10px;margin-top:14px;color:var(--mut);font-size:12px"><span>🔊 Volume &amp; brightness gauge</span><span>·</span><span>🔴 Recording indicator</span></div>
+              </div>
               <div class="view" data-t="Shelf" data-i="🗂">
                 <div class="shelf"><div class="file"><div>📄</div>report.pdf</div><div class="file"><div>🖼️</div>hero.png</div><div class="file"><div>📦</div>build.zip</div><div class="file" style="border:1px dashed rgba(255,255,255,.2);color:var(--mut)"><div>＋</div>Drop here</div></div>
               </div>
@@ -359,7 +411,7 @@ footer a:hover{color:#fff}
 </header>
 
 <section id="features"><div class="wrap">
-  <div class="head reveal"><span class="eyebrow">Everything in one place</span><h2>One notch. <span class="grad">Every tool.</span></h2><p>Twenty modules and add-ons, each optional. Turn on what you use in Settings → Modules, and the rest stays out of your way.</p></div>
+  <div class="head reveal"><span class="eyebrow">Everything in one place</span><h2>One notch. <span class="grad">Every tool.</span></h2><p>Twenty-three modules and add-ons, each optional. Turn on what you use in Settings → Modules, and the rest stays out of your way.</p></div>
   <div class="bento">
     <div class="tile w4 reveal"><div class="ic">✨</div><h3>AI that can see your screen</h3><p>Chat with free AI (Gemini, Groq, OpenRouter, Ollama on your Mac) or bring a key for Claude, ChatGPT or DeepSeek. Ask "what's on my screen?" and it takes a screenshot for you. One-click summarise, translate and fix, plus a full chat history.</p><img loading="lazy" src="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/screenshots/claude.png" alt="AI tab in the notch"></div>
     <div class="tile reveal"><div class="ic">🪟</div><h3>Window snapping</h3><p>Drag a window up to the notch and drop it on a zone: halves, quarters, thirds. Tile everything at once, save layouts, or use ⌃⌥ + arrows.</p><img loading="lazy" src="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/screenshots/window-snap-zones.png" alt="Snap zones"></div>
@@ -378,12 +430,16 @@ footer a:hover{color:#fff}
     <div class="tile reveal"><div class="ic">🛡</div><h3>Free VPN</h3><p>A built-in list of free OpenVPN servers, or import your own profiles.</p></div>
     <div class="tile reveal"><div class="ic">🔐</div><h3>Face ID-style lock</h3><p>Lock the notch behind Touch ID, your password, or face unlock with your webcam. Templates stay on your Mac.</p></div>
     <div class="tile reveal"><div class="ic">🎵</div><h3>Now Playing</h3><p>The current track from Music or Spotify, with a tiny equaliser beside the notch.</p></div>
-    <div class="tile reveal"><div class="ic">🧩</div><h3>Desktop widget</h3><p>Small, medium and large widgets with weather, music and your next events.</p></div>
+    <div class="tile reveal"><span class="tag gn">NEWLY ADDED</span><div class="ic">🧩</div><h3>Desktop widgets</h3><p>Small, medium and large widgets with weather, music and your next events, plus the new MacBook Center widget (Small and Medium) for your Mac's stats.</p></div>
+    <div class="tile reveal"><span class="tag gn">NEWLY ADDED</span><div class="ic">🌐</div><h3>Translator</h3><p>Translate between Arabic, English, French, Spanish, Hindi, Mandarin and German, with pronunciation and read-aloud. An add-on: switch it on in Settings → Modules.</p></div>
+    <div class="tile reveal"><span class="tag gn">NEWLY ADDED</span><div class="ic">📊</div><h3>Mac Stats</h3><p>Live RAM, CPU, network speed, battery and disk space, right in the notch. Also available as a widget in Notification Center.</p></div>
+    <div class="tile reveal"><span class="tag gn">NEWLY ADDED</span><div class="ic">🎨</div><h3>Color themes</h3><p>Restyle the notch in Settings → Appearance. Plus a volume and brightness gauge, a recording indicator, and Screenshot and Record buttons in Today.</p></div>
+    <div class="tile reveal"><span class="tag gn">NEWLY ADDED</span><div class="ic">🔑</div><h3>Access code &amp; shortcuts</h3><p>One access code unlocks AI, Messenger, Audio, Now Playing and VPN. Reassign any hotkey: ⌘O hides the notch, ⌃⌥N opens it.</p></div>
   </div>
 </div></section>
 
 <section id="gallery" style="background:linear-gradient(var(--bg),var(--bg2) 20%,var(--bg2) 80%,var(--bg))"><div class="wrap">
-  <div class="head reveal"><span class="eyebrow">See it for real</span><h2>Screenshots from <span class="grad">the actual app</span></h2><p>Every picture here is the real Notch apple, using sample data. Click any one to enlarge it.</p></div>
+  <div class="head reveal"><span class="eyebrow">See it for real</span><h2>Screenshots from <span class="grad">the actual app</span></h2><p>Every picture here is the real Notch apple, using sample data. Click any one to enlarge it. Cards tagged NEWLY ADDED without a photo are illustrations of 1.13 features until real screenshots are added.</p></div>
   <div class="gtabs" id="gtabs"></div>
   <div class="gallery" id="gal"></div>
 </div></section>
@@ -482,7 +538,7 @@ const notch=$('#notch'),tabsEl=$('#tabs'),views=$$('.view'),hint=$('#hint');
 let cur=0,auto=true;
 
 /* tabs */
-views.forEach((v,i)=>{const b=document.createElement('button');b.innerHTML=`<span>${v.dataset.i}</span>${v.dataset.t}`;b.onclick=e=>{e.stopPropagation();stopAuto();show(i)};tabsEl.appendChild(b)});
+views.forEach((v,i)=>{const b=document.createElement('button');b.innerHTML=`<span>${v.dataset.i}</span>${v.dataset.t}${v.dataset.new?' <em class="nw">NEW</em>':''}`;b.onclick=e=>{e.stopPropagation();stopAuto();show(i)};tabsEl.appendChild(b)});
 function show(i){cur=i;views.forEach((v,j)=>v.classList.toggle('on',i===j));[...tabsEl.children].forEach((b,j)=>{b.classList.toggle('on',i===j);if(i===j)b.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'})})}
 show(0);
 function openN(){notch.classList.add('open');hint.style.opacity=0}
@@ -509,6 +565,17 @@ $$('.arr button').forEach(b=>b.onclick=e=>{e.stopPropagation();const t=b.dataset
 /* focus timer + ear countdown */
 let s=1499;setInterval(()=>{s=s>0?s-1:1499;const t=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');$('#timer').textContent=t;$('#earTimer').textContent=t;$('#ring').style.setProperty('--deg',(1-s/1500)*360+'deg')},1000);
 
+/* translator */
+const TR={Spanish:['Hola, ¿cómo estás?','es-ES'],French:['Bonjour, comment allez-vous ?','fr-FR'],German:['Hallo, wie geht es dir?','de-DE'],Hindi:['नमस्ते, आप कैसे हैं?','hi-IN'],Arabic:['مرحبا، كيف حالك؟','ar-SA'],Mandarin:['你好，你好吗？','zh-CN'],English:['Hello, how are you?','en-US']};
+let trCur='Spanish';
+function setLang(l){trCur=l;$('#trLang').textContent=l;$('#trOut').textContent=TR[l][0];$$('#langs button').forEach(b=>b.classList.toggle('on',b.textContent===l))}
+Object.keys(TR).forEach(l=>{const b=document.createElement('button');b.textContent=l;b.onclick=e=>{e.stopPropagation();stopAuto();setLang(l)};$('#langs').appendChild(b)});setLang('Spanish');
+$('#speak').onclick=e=>{e.stopPropagation();stopAuto();if('speechSynthesis' in window){const u=new SpeechSynthesisUtterance(TR[trCur][0]);u.lang=TR[trCur][1];speechSynthesis.cancel();speechSynthesis.speak(u)}};
+/* themes */
+$$('#themes button').forEach(b=>b.onclick=e=>{e.stopPropagation();stopAuto();$$('#themes button').forEach(x=>x.classList.remove('on'));b.classList.add('on');const d=$('#demo');b.dataset.th?d.dataset.theme=b.dataset.th:d.removeAttribute('data-theme')});
+/* live-ish stats */
+setInterval(()=>{const r=7.6+Math.random()*1.6,c=12+Math.random()*30;$('#stRam').textContent=r.toFixed(1)+' GB';$('#mRam').style.width=r/16*100+'%';$('#stCpu').textContent=Math.round(c)+'%';$('#mCpu').style.width=c+'%';$('#stNet').textContent='↓ '+(2+Math.random()*6).toFixed(1)+' MB/s';$('#stUp').textContent='↑ '+(0.2+Math.random()*1.2).toFixed(1)+' MB/s'},1500);
+
 /* world clocks + menu bar clock */
 const cities=[['London','Europe/London'],['New York','America/New_York'],['Tokyo','Asia/Tokyo']];
 function tick(){const now=new Date();$('#clocks').innerHTML=cities.map(([n,z])=>{const h=+now.toLocaleString('en-GB',{hour:'2-digit',hour12:false,timeZone:z});return `<div class="box clock"><small>${h>=7&&h<19?'☀️':'🌙'} ${n}</small><b>${now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',timeZone:z})}</b></div>`}).join('');
@@ -518,6 +585,7 @@ tick();setInterval(tick,10000);
 /* gallery */
 const R='https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/screenshots/';
 const shots=[
+ ['Notch','__translator','Translator','Add-on · 7 languages, read-aloud'],['Notch','__stats','Mac Stats','Add-on · RAM, CPU, network, battery, disk'],['Notch','__themes','Color themes','Settings → Appearance'],
  ['Notch','today','Today','Weather, events and battery'],['Notch','claude','AI','Free providers, screen-aware'],['Notch','windows','Windows','Snap, tile and save layouts'],
  ['Notch','window-snap-zones','Snap zones','Drag a window to the notch'],['Notch','tools','Tools','Keep Awake, colours, calculator'],['Notch','mirror','Mirror','Add-on · camera placeholder shown'],['Notch','world-clock','World Clock','Add-on · cities and time difference'],['Notch','clipboard','Clipboard','Search, pin and filter'],
  ['Notch','notes','Notes','Saved automatically'],['Notch','messenger','Messenger','Anonymous encrypted rooms'],['Notch','focus','Focus','Pomodoro timer'],
@@ -530,8 +598,14 @@ const shots=[
 ];
 const cats=['All','Notch','Settings'];
 cats.forEach((c,i)=>{const b=document.createElement('button');b.textContent=c;b.onclick=()=>{$$('#gtabs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');render(c)};if(!i)b.classList.add('on');$('#gtabs').appendChild(b)});
-function render(c){$('#gal').innerHTML=shots.filter(s=>c==='All'||s[0]===c).map(s=>`<figure class="shot" data-src="${R+s[1]}.png"><img loading="lazy" src="${R+s[1]}.png" alt="${s[2]}"><figcaption>${s[2]}<span>${s[3]}</span></figcaption></figure>`).join('');
-  $$('.shot').forEach(f=>f.onclick=()=>{$('#lb img').src=f.dataset.src;$('#lb').classList.add('on')})}
+const PV={
+ __translator:`<div class="pn"><div class="langs" style="margin-bottom:8px"><button>English</button><button class="on">Spanish</button><button>Hindi</button><button>Arabic</button></div><div class="row2"><div><small>English</small><b>Hello, how are you?</b></div><div><small>Spanish</small><b>Hola, ¿cómo estás?</b><br><span style="font-size:11px;color:var(--p3)">🔊 Read aloud</span></div></div></div>`,
+ __stats:`<div class="pn"><div class="row2"><div><small>🧠 RAM</small><b>8.4 GB</b><div class="meter"><i style="width:52%"></i></div></div><div><small>⚙️ CPU</small><b>23%</b><div class="meter"><i style="width:23%"></i></div></div><div><small>🌐 Network</small><b>↓ 4.2 MB/s</b></div><div><small>💾 Disk free</small><b>312 GB</b><div class="meter"><i style="width:34%"></i></div></div></div></div>`,
+ __themes:`<div class="pn"><small style="margin-bottom:8px">Settings → Appearance</small><div class="sw"><i style="background:linear-gradient(135deg,#b67cff,#7c3aed)"></i><i style="background:linear-gradient(135deg,#38bdf8,#0284c7)"></i><i style="background:linear-gradient(135deg,#fb923c,#e11d48)"></i><i style="background:linear-gradient(135deg,#4ade80,#15803d)"></i><i style="background:linear-gradient(135deg,#f472b6,#be185d)"></i></div></div>`};
+function render(c){$('#gal').innerHTML=shots.filter(s=>c==='All'||s[0]===c).map(s=>s[1].startsWith('__')
+  ?`<figure class="shot pv"><div class="prev">${PV[s[1]]}</div><figcaption>${s[2]} <span class="tag gn" style="display:inline-block;font-size:10.5px;padding:1px 9px;border-radius:99px;border:1px solid #22c55e;margin-left:6px">NEWLY ADDED</span><span>${s[3]} · illustration</span></figcaption></figure>`
+  :`<figure class="shot" data-src="${R+s[1]}.png"><img loading="lazy" src="${R+s[1]}.png" alt="${s[2]}"><figcaption>${s[2]}<span>${s[3]}</span></figcaption></figure>`).join('');
+  $$('.shot[data-src]').forEach(f=>f.onclick=()=>{$('#lb img').src=f.dataset.src;$('#lb').classList.add('on')})}
 render('All');
 $('#lb').onclick=()=>$('#lb').classList.remove('on');
 

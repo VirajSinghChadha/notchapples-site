@@ -102,6 +102,13 @@ h1{position:relative;font-size:clamp(40px,7.2vw,82px);line-height:1.02;letter-sp
 .nb-gh svg{width:14px;height:14px}
 .nb-x{flex:none;width:28px;height:28px;border-radius:50%;border:0;background:transparent;color:var(--mut);cursor:pointer;font-size:14px}
 .nb-x:hover{background:rgba(255,255,255,.08);color:#fff}
+.pwr{position:relative;flex:none}
+.pmenu{position:absolute;right:0;top:34px;width:200px;background:#1b1030;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:8px;display:none;z-index:5;box-shadow:0 20px 50px rgba(0,0,0,.5);text-align:left}
+.pmenu.on{display:block;animation:vin .2s ease}
+.pmenu b{display:block;font-size:11px;color:var(--mut);padding:2px 6px 6px}
+.pmenu button{display:flex;align-items:center;gap:10px;width:100%;background:none;border:0;color:#fff;font:500 13px Inter,sans-serif;padding:6px;border-radius:9px;cursor:pointer}
+.pmenu button:hover{background:rgba(255,255,255,.07)}
+.pmenu i{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-style:normal;font-size:12px}
 .views{flex:1;position:relative;min-height:0}
 .view{position:absolute;inset:0;display:none;font-size:13px;animation:vin .35s ease}
 .view.on{display:block}
@@ -290,7 +297,7 @@ footer a:hover{color:#fff}
 <header class="hero">
   <div class="bgglow"></div><div class="gridbg"></div>
   <div class="wrap">
-    <a class="badge" href="#new"><b>New</b> 1.13: Translator, Mac Stats, Themes &amp; more →</a>
+    <a class="badge" href="#new"><b>New</b> 1.13.1: smoother gauges, tab reordering, Text Grab &amp; more →</a>
     <h1>Your MacBook notch,<br><span class="grad">finally useful.</span></h1>
     <p class="sub">Notch apple turns the black cutout at the top of your screen into a purple productivity hub: AI chat, window snapping, clipboard history, a file shelf, focus timer and more. Click it, or press <b>⌘E</b> from anywhere.</p>
     <div class="cta">
@@ -311,6 +318,12 @@ footer a:hover{color:#fff}
             <div class="phead">
               <div class="tabs" id="tabs"></div>
               <a class="nb-gh" href="https://github.com/AdityaJainDXB/NotchApples" target="_blank" rel="noopener" title="Notch apple on GitHub"><svg><use href="#gh"/></svg><span>GitHub</span></a>
+              <div class="pwr"><button class="nb-x" id="pwrBtn" aria-label="Settings, relaunch or quit" title="Settings, relaunch or quit">⏻</button>
+                <div class="pmenu" id="pmenu"><b>Notch apple</b>
+                  <button><i style="background:#9d66ff">⚙</i>Open Settings</button>
+                  <button><i style="background:#f59e0b">↻</i>Relaunch</button>
+                  <button><i style="background:#ef4444">✕</i>Quit Notch apple</button>
+                </div></div>
               <button class="nb-x" id="closeBtn" aria-label="Close">⌃</button>
             </div>
             <div class="views">
@@ -347,7 +360,8 @@ footer a:hover{color:#fff}
                 <div class="ring" id="ring"><div><div class="timer" id="timer">25:00</div><small>Focus · session 2 of 4</small></div></div>
               </div>
               <div class="view" data-t="Tools" data-i="🧰">
-                <div class="g c3" style="grid-template-columns:1fr 1fr 1fr">
+                <div class="g c2" style="grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr">
+                  <div class="box tool"><small>🔤 Text Grab</small><div class="big" style="font-size:18px">Copy text from screen</div><small>Copied 142 characters</small></div>
                   <div class="box tool"><small>☕ Keep Awake</small><div class="big">1 hour</div><small>Awake until 10:41</small></div>
                   <div class="box tool"><small>🎨 Color Picker</small><div class="big">#A855F7</div><div class="swatches"><i style="background:#a855f7"></i><i style="background:#f472b6"></i><i style="background:#38bdf8"></i><i style="background:#facc15"></i></div></div>
                   <div class="box tool"><small>🧮 Calculator</small><div style="font-family:ui-monospace,monospace;color:var(--mut)">(12.5 + 7) × 3</div><div class="big">= 58.5</div></div>
@@ -418,7 +432,7 @@ footer a:hover{color:#fff}
     <div class="tile reveal"><div class="ic">📋</div><h3>Clipboard history</h3><p>Everything you copy, searchable, pinnable and filterable. Password-manager secrets are never saved.</p></div>
     <div class="tile reveal"><div class="ic">☀️</div><h3>Today</h3><p>Date, local weather, your next calendar events with a "Now" badge, and battery at a glance.</p></div>
     <div class="tile reveal"><div class="ic">⏱</div><h3>Focus timer</h3><p>Pomodoro sessions with the countdown right beside the closed notch, like a Dynamic Island.</p></div>
-    <div class="tile w3 reveal"><span class="tag">New</span><div class="ic">🧰</div><h3>Tools</h3><p>Keep your Mac awake for a while, pick any colour on screen and copy its hex code, and a calculator that answers as you type.</p><img loading="lazy" src="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/screenshots/tools.png" alt="Tools tab"></div>
+    <div class="tile w3 reveal"><span class="tag">New</span><div class="ic">🧰</div><h3>Tools</h3><p><b>Text Grab</b> copies the text from any part of the screen. Keep your Mac awake for a while, pick any colour on screen and copy its hex code, and a calculator that answers as you type.</p><img loading="lazy" src="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/screenshots/tools.png" alt="Tools tab"></div>
     <div class="tile w3 reveal"><div class="ic">💬</div><h3>Anonymous Messenger</h3><p>Chat with people on the same Wi-Fi, or create an end-to-end-encrypted room joined with a code. Random handles, no accounts, nothing stored.</p><img loading="lazy" src="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/screenshots/messenger.png" alt="Messenger"></div>
     <div class="tile reveal"><span class="tag">Add-on</span><div class="ic">🪞</div><h3>Mirror</h3><p>Check your hair before a call. Flip, zoom and a ring light. The camera stops when you leave the tab.</p></div>
     <div class="tile reveal"><span class="tag">Add-on</span><div class="ic">🌍</div><h3>World Clock</h3><p>The time in the cities you care about, with day or night and the difference from yours.</p></div>
@@ -446,6 +460,15 @@ footer a:hover{color:#fff}
 
 <section id="new"><div class="wrap new">
   <div class="reveal">
+    <span class="eyebrow">What's new in 1.13.1</span>
+    <div class="list" style="margin-top:0;margin-bottom:22px">
+      <div class="li"><div class="ic">👀</div><div><b>Screen-aware AI fixed <span class="tag-new">NEWLY ADDED</span></b><span>Ask about your screen and Notch apple requests Screen Recording properly, then offers a one-click Relaunch so macOS applies it.</span></div></div>
+      <div class="li"><div class="ic">↕️</div><div><b>Reorder your tabs <span class="tag-new">NEWLY ADDED</span></b><span>Settings → Appearance → Notch tab order. Drag tabs and add-ons up or down.</span></div></div>
+      <div class="li"><div class="ic">🎚️</div><div><b>Only the notch gauge <span class="tag-new">NEWLY ADDED</span></b><span>Volume and brightness keys show just the notch gauge, not macOS's pop-up too, and it now glides smoothly at up to 120 Hz.</span></div></div>
+      <div class="li"><div class="ic">⏻</div><div><b>Colour-coded app menu <span class="tag-new">NEWLY ADDED</span></b><span>The power button offers Settings (purple), Relaunch (orange) and Quit (red).</span></div></div>
+      <div class="li"><div class="ic">🔤</div><div><b>Text Grab <span class="tag-new">NEWLY ADDED</span></b><span>In Tools: drag over any part of the screen, even an image or video, and its text is copied. Recognised on your Mac.</span></div></div>
+      <div class="li"><div class="ic">🔐</div><div><b>Permissions that stick <span class="tag-new">NEWLY ADDED</span></b><span>Accessibility and Screen Recording keep working after you update.</span></div></div>
+    </div>
     <span class="eyebrow">What's new in 1.13</span>
     <div class="list" style="margin-top:0;margin-bottom:22px">
       <div class="li"><div class="ic">🔑</div><div><b>Access Code <span class="tag-new">NEWLY ADDED</span></b><span>Unlocks AI, Messenger, Audio, Now Playing and VPN.</span></div></div>
@@ -470,7 +493,7 @@ footer a:hover{color:#fff}
   </div>
   <div class="update-card reveal">
     <div class="top">⬇️ Update available</div>
-    <p>Notch apple 1.13.0 is ready. Would you like to update?</p>
+    <p>Notch apple 1.13.1 is ready. Would you like to update?</p>
     <div class="row"><button class="btn ghost sm" onclick="this.closest('.update-card').querySelector('.top').textContent='👍 Skipped this version'">Not now</button><button class="btn sm" id="updBtn">Update</button></div>
     <div class="notes"><b style="color:var(--tx)">Release notes</b><ul><li>Downloaded from GitHub releases</li><li>Settings and data are kept</li><li>Turn off automatic checks any time</li></ul></div>
   </div>
@@ -545,6 +568,8 @@ function openN(){notch.classList.add('open');hint.style.opacity=0}
 function closeN(){notch.classList.remove('open');hint.style.opacity=1}
 function stopAuto(){auto=false}
 notch.addEventListener('click',e=>{if(!notch.classList.contains('open')){stopAuto();openN()}});
+$('#pwrBtn').onclick=e=>{e.stopPropagation();stopAuto();$('#pmenu').classList.toggle('on')};
+$$('#pmenu button').forEach(b=>b.onclick=e=>{e.stopPropagation();$('#pmenu').classList.remove('on')});
 $('#closeBtn').onclick=e=>{e.stopPropagation();stopAuto();closeN()};
 document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='e'){e.preventDefault();stopAuto();notch.classList.contains('open')?closeN():openN()}if(e.key==='Escape'){stopAuto();closeN()}});
 document.addEventListener('click',e=>{if(!notch.contains(e.target)&&notch.classList.contains('open')&&!auto)closeN()});

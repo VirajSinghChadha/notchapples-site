@@ -453,12 +453,16 @@ footer a:hover{color:#fff}
     <div class="tile reveal"><div class="ic">🔊</div><h3>Per-app audio</h3><p>Volume from 0 to 150% and a 10-band EQ for each app, built in on macOS 14.2+.</p></div>
     <div class="tile reveal"><div class="ic">🛡</div><h3>Free VPN</h3><p>A built-in list of free OpenVPN servers, or import your own profiles.</p></div>
     <div class="tile reveal"><div class="ic">🔐</div><h3>Face ID-style lock</h3><p>Lock the notch behind Touch ID, your password, or face unlock with your webcam. Templates stay on your Mac.</p></div>
-    <div class="tile reveal"><div class="ic">🎵</div><h3>Now Playing</h3><p>The current track from Music or Spotify, with a tiny equaliser beside the notch.</p></div>
+    <div class="tile w3 reveal"><span class="tag">New</span><div class="ic">🎵</div><h3>Now Playing, like the iPhone</h3><p>Free for everyone. Anything playing on your Mac (Apple Music, Spotify, Anghami, browsers, podcasts) with the album cover beside the notch and bars that move with the song. Progress, controls, synced lyrics, and your choice of default music app.</p></div>
+    <div class="tile reveal"><span class="tag">New</span><div class="ic">🔌</div><h3>Charging, in words</h3><p>Plug in and the notch says "Charging · 88% · 51m to full". Unplug and it shows the time left.</p></div>
+    <div class="tile reveal"><span class="tag">Pro</span><div class="ic">🎙</div><h3>Voice Notes</h3><p>Record from the notch. Transcribed on your Mac, then a one-click AI summary with action items.</p></div>
+    <div class="tile reveal"><span class="tag">Pro</span><div class="ic">⏳</div><h3>Screen Time &amp; Focus Blocker</h3><p>See where your time goes, set daily app limits, and hide distracting apps during Focus sessions.</p></div>
+    <div class="tile reveal"><span class="tag">Pro</span><div class="ic">📅</div><h3>Quick Add</h3><p>Type "Dentist tomorrow 3pm" or "remind me to pay rent on the 1st" and it goes into Calendar or Reminders.</p></div>
     <div class="tile reveal"><span class="tag gn">NEWLY ADDED</span><div class="ic">🧩</div><h3>Desktop widgets</h3><p>Small, medium and large widgets with weather, music and your next events, plus the new MacBook Center widget (Small and Medium) for your Mac's stats.</p></div>
     <div class="tile reveal"><span class="tag gn">NEWLY ADDED</span><div class="ic">🌐</div><h3>Translator</h3><p>Translate between Arabic, English, French, Spanish, Hindi, Mandarin and German, with pronunciation and read-aloud. An add-on: switch it on in Settings → Modules.</p></div>
     <div class="tile reveal"><span class="tag gn">NEWLY ADDED</span><div class="ic">📊</div><h3>Mac Stats</h3><p>Live RAM, CPU, network speed, battery and disk space, right in the notch. Also available as a widget in Notification Center.</p></div>
     <div class="tile reveal"><span class="tag gn">NEWLY ADDED</span><div class="ic">🎨</div><h3>Color themes</h3><p>Restyle the notch in Settings → Appearance. Plus a volume and brightness gauge, a recording indicator, and Screenshot and Record buttons in Today.</p></div>
-    <div class="tile reveal"><span class="tag gn">NEWLY ADDED</span><div class="ic">🔑</div><h3>Access code &amp; shortcuts</h3><p>One access code unlocks AI, Messenger, Audio, Now Playing and VPN. Reassign any hotkey: ⌃⌥O hides the notch, ⌃⌥N opens it.</p></div>
+    <div class="tile reveal"><span class="tag gn">NEWLY ADDED</span><div class="ic">🔑</div><h3>Access code &amp; shortcuts</h3><p>One access code unlocks Pro: AI, Messenger, Audio, VPN, Voice Notes, Screen Time and Quick Add. Reassign any hotkey: ⌃⌥O hides the notch, ⌃⌥N opens it.</p></div>
   </div>
 </div></section>
 
@@ -650,7 +654,7 @@ const shots=[
  ['Notch','window-snap-zones','Snap zones','Drag a window to the notch'],['Notch','tools','Tools','Keep Awake, colours, calculator'],['Notch','mirror','Mirror','Add-on · camera placeholder shown'],['Notch','world-clock','World Clock','Add-on · cities and time difference'],['Notch','clipboard','Clipboard','Search, pin and filter'],
  ['Notch','notes','Notes','Saved automatically'],['Notch','messenger','Messenger','Anonymous encrypted rooms'],['Notch','focus','Focus','Pomodoro timer'],
  ['Notch','share','Share','AirDrop and PairDrop'],['Notch','shelf','File Shelf','Drop files into the notch'],['Notch','audio','Audio','Per-app volume and EQ'],
- ['Notch','vpn','VPN','Free servers'],['Notch','nowplaying','Now Playing','Music or Spotify'],
+ ['Notch','vpn','VPN','Free servers'],['Notch','nowplaying','Now Playing','Any music app'],
  ['Settings','settings-general','General','Like System Settings'],['Settings','settings-modules','Modules','Every feature is optional'],['Settings','settings-updates','Updates','Update or Not now'],
  ['Settings','settings-ai','AI','Provider, model and keys'],['Settings','settings-ai-history','AI History','Every chat, with its model'],['Settings','settings-windows','Windows','Zones, shortcuts, gaps'],
  ['Settings','settings-permissions','Permissions','Everything in one place'],['Settings','settings-authentication','Face unlock','Face ID-style'],['Settings','settings-clipboard','Clipboard','History settings'],

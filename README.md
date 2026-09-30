@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://notch.cc.cd"><b>🌐 notch.cc.cd</b></a>
+  <a href="https://virajsinghchadha.github.io/notchapples-site/"><b>🌐 Live site</b></a>
   &nbsp;·&nbsp;
   <a href="https://github.com/AdityaJainDXB/NotchApples"><b>App repository</b></a>
   &nbsp;·&nbsp;
@@ -34,7 +34,6 @@ The screenshots and the app icon are loaded straight from the main repo's [`docs
 
 ```
 index.html   the whole site
-CNAME        custom domain for GitHub Pages (notch.cc.cd)
 README.md    this file
 ```
 
@@ -52,7 +51,7 @@ Then open <http://localhost:8000>. Opening `index.html` directly also works.
 
 The site is hosted on **GitHub Pages** from the `main` branch. Every push to `main` goes live within a minute or two.
 
-The custom domain **notch.cc.cd** (a free domain from [DNSHE](https://www.dnshe.com)) is set by the `CNAME` file. Its DNS has four `A` records for GitHub Pages (`185.199.108.153` to `185.199.111.153`) and a `www` CNAME to `virajsinghchadha.github.io`. **Don't delete the `CNAME` file**, or the custom domain stops working.
+The site is served at https://virajsinghchadha.github.io/notchapples-site/ (the notch.cc.cd custom domain was removed because some networks block it as Dynamic DNS).
 
 ## Updating the site for a new release
 

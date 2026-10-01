@@ -666,9 +666,10 @@ const shots=[
  ['Settings','settings-general','General','Like System Settings'],['Settings','settings-modules','Modules','Every feature is optional'],['Settings','settings-updates','Updates','Update or Not now'],
  ['Settings','settings-ai','AI','Provider, model and keys'],['Settings','settings-ai-history','AI History','Every chat, with its model'],['Settings','settings-windows','Windows','Zones, shortcuts, gaps'],
  ['Settings','settings-permissions','Permissions','Everything in one place'],['Settings','settings-authentication','Face unlock','Face ID-style'],['Settings','settings-clipboard','Clipboard','History settings'],
- ['Settings','settings-messenger','Messenger','Handle and notifications'],['Settings','settings-audio','Audio','Built-in engine'],['Settings','settings-vpn','VPN','Profiles and servers'],['Settings','settings-widget','Widget','Location or a city'],['Settings','settings-focus','Focus','Session lengths'],
+ ['Settings','settings-messenger','Messenger','Handle and notifications'],['Settings','settings-audio','Audio','Built-in engine'],['Settings','settings-vpn','VPN','Profiles and servers'],['Settings','settings-widget','Widget','Location or a city'],['Settings','settings-focus','Focus','Session lengths'],,
+ ['Get Pro','get-pro-ltc','Pay with Litecoin','$1, or $2 to support a high school developer'],['Get Pro','get-pro-promo','Promo code','A free key, once per code'],['Get Pro','get-pro-key','Your product key','Made instantly, works on one Mac']
 ];
-const cats=['All','Notch','Settings'];
+const cats=['All','Notch','Settings','Get Pro'];
 cats.forEach((c,i)=>{const b=document.createElement('button');b.textContent=c;b.onclick=()=>{$$('#gtabs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');render(c)};if(!i)b.classList.add('on');$('#gtabs').appendChild(b)});
 const PV={
  __translator:`<div class="pn"><div class="langs" style="margin-bottom:8px"><button>English</button><button class="on">Spanish</button><button>Hindi</button><button>Arabic</button></div><div class="row2"><div><small>English</small><b>Hello, how are you?</b></div><div><small>Spanish</small><b>Hola, ¿cómo estás?</b><br><span style="font-size:11px;color:var(--p3)">🔊 Read aloud</span></div></div></div>`,

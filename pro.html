@@ -52,6 +52,7 @@ input:focus{border-color:var(--p)}
 .steps{counter-reset:s;list-style:none;margin:14px 0 0}.steps li{counter-increment:s;position:relative;padding-left:30px;margin:8px 0;font-size:14px;color:var(--mut)}
 .steps li:before{content:counter(s);position:absolute;left:0;top:1px;width:20px;height:20px;border-radius:50%;background:rgba(168,85,247,.2);color:var(--p3);font-size:12px;display:grid;place-items:center;font-weight:700}
 .status{margin-top:14px;font-size:14px;min-height:22px}.status.err{color:var(--red)}.status.ok{color:var(--green)}
+.status .help{color:var(--p3);font-size:13px;text-decoration:underline}
 .result{display:none;text-align:center;padding:8px 0}.result.on{display:block}
 .result .ic{font-size:44px}.result h2{font-size:24px;margin:6px 0}
 .key{font:700 clamp(18px,4.5vw,26px) ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.06em;padding:18px;border-radius:14px;background:rgba(0,0,0,.4);border:1px dashed var(--p);margin:16px 0 10px;user-select:all}
@@ -128,7 +129,7 @@ input:focus{border-color:var(--p)}
 </main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
-const WALLET="ltc1qymlmvkdmvpk5f90esthzgwaw6w0tuzq6tdr6kf", MIN_USD=0.9;
+const WALLET="ltc1qymlmvkdmvpk5f90esthzgwaw6w0tuzq6tdr6kf", MIN_USD=0.75;
 let USD=1;
 const FB={project:"notchapples",key:"AIzaSyAxGosR52aaTa2N28ci44qd1DJTXsR950w"};
 const DOCS=`https://firestore.googleapis.com/v1/projects/${FB.project}/databases/(default)/documents`;
@@ -163,7 +164,12 @@ loadPrice();setInterval(loadPrice,120000);
 async function sha256(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
 const clean=s=>s.toUpperCase().replace(/[^A-Z0-9]/g,'');
 function newKey(){const A='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',r=crypto.getRandomValues(new Uint32Array(12));let s='';r.forEach(n=>s+=A[n%32]);return'NOTCH-'+s.slice(0,4)+'-'+s.slice(4,8)+'-'+s.slice(8)}
-function status(id,text,cls=''){const e=$(id);e.textContent=text;e.className='status '+cls}
+function status(id,text,cls=''){const e=$(id);e.textContent=text;e.className='status '+cls;
+  if(cls==='err'){const tx=($('#txid').value.toLowerCase().match(/[0-9a-f]{64}/)||[''])[0],code=$('#code').value;
+    const body=`What happened: ${text}\n\nTransaction ID: ${id==='#ltcStatus'?tx||'(none)':'-'}\nPromo code: ${id==='#promoStatus'?code:'-'}\nAmount I sent (LTC):\nWallet or exchange I used:\n`;
+    const a=document.createElement('a');a.className='help';a.target='_blank';a.rel='noopener';
+    a.href='https://github.com/AdityaJainDXB/NotchApples/issues/new?labels=payment&title='+encodeURIComponent('Pro key help'+(tx&&id==='#ltcStatus'?' ('+tx.slice(0,10)+'…)':''))+'&body='+encodeURIComponent(body);
+    a.textContent='Need help? Send us the details and we\'ll sort it out →';e.appendChild(document.createElement('br'));e.appendChild(a)}}
 function busy(btn,on){btn.disabled=on;btn.classList.toggle('busy',on)}
 function store(ref,key){try{localStorage.setItem('na.key.'+ref,key)}catch{}}
 function stored(ref){try{return localStorage.getItem('na.key.'+ref)}catch{return null}}

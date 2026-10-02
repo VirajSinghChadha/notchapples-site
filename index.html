@@ -301,7 +301,7 @@ footer a:hover{color:#fff}
 <header class="hero">
   <div class="bgglow"></div><div class="gridbg"></div>
   <div class="wrap">
-    <a class="badge" href="pro.html"><b>New</b> 1.14.3: Get Pro for $1 in Litecoin, or free with a promo code →</a>
+    <a class="badge" href="#features"><b>New</b> 1.14.5: F1 live timing in your notch 🏁 →</a>
     <h1>Your MacBook notch,<br><span class="grad">finally useful.</span></h1>
     <p class="sub">Notch apple turns the black cutout at the top of your screen into a purple productivity hub: AI chat, window snapping, clipboard history, a file shelf, focus timer and more. Click it, or press <b>⌘E</b> from anywhere.</p>
     <div class="cta">
@@ -442,6 +442,7 @@ footer a:hover{color:#fff}
     <div class="tile reveal"><span class="tag">Add-on</span><div class="ic">🌍</div><h3>World Clock</h3><p>The time in the cities you care about, with day or night and the difference from yours.</p></div>
     <div class="tile reveal"><span class="tag">New</span><div class="ic">⏲</div><h3>Timer &amp; stopwatch</h3><p>Presets from 1 minute to an hour, laps, and the time left right beside the closed notch.</p></div>
     <div class="tile reveal"><span class="tag">New</span><div class="ic">🎧</div><h3>Devices</h3><p>AirPods, Magic Mouse and keyboard battery, which apps are using your mic, a one-click mic mute, and Ring my iPhone.</p></div>
+    <div class="tile w3 reveal"><span class="tag">New</span><div class="ic">🏁</div><h3>F1 live timing</h3><p>The running order, gaps, tyres, laps, flags and safety car during every session, the weekend schedule with a countdown, and the standings. Follow a driver and their position shows beside the notch.</p><img loading="lazy" src="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/screenshots/f1.png" alt="F1 live timing in the notch"></div>
     <div class="tile reveal"><span class="tag">New</span><div class="ic">🏟</div><h3>Live scores &amp; tracking</h3><p>Follow your team (Premier League, NBA, NFL and more) and see the score beside the notch. Paste a parcel or flight number to track it.</p></div>
     <div class="tile reveal"><span class="tag">New</span><div class="ic">🔔</div><h3>Notifications</h3><p>Notifications from your other apps in the notch, and reply to iMessages without opening Messages.</p></div>
     <div class="tile reveal"><span class="tag">New</span><div class="ic">✂️</div><h3>Snippets &amp; Shortcuts</h3><p>Paste saved text into any app in one click. Run your Apple Shortcuts and switch Focus modes, or control the notch from Shortcuts with notchapple:// links.</p></div>
@@ -476,9 +477,10 @@ footer a:hover{color:#fff}
 
 <section id="new"><div class="wrap new">
   <div class="reveal">
-    <span class="eyebrow">What's new in 1.14.3</span>
+    <span class="eyebrow">What's new in 1.14.5</span>
     <div class="list" style="margin-top:0;margin-bottom:22px">
       <div class="li"><div class="ic">🎵</div><div><b>Now Playing, like the iPhone <span class="tag-new">NEWLY ADDED</span></b><span>Free for everyone. Anything playing on your Mac, including Anghami, Spotify, Apple Music and browsers, with the album cover beside the notch and bars that move with the song. Choose your default music app.</span></div></div>
+      <div class="li"><div class="ic">🏁</div><div><b>F1 in the notch <span class="tag-new">NEWLY ADDED</span></b><span>The live running order during every session, then the classification with gaps and tyres, the weekend countdown and the standings. Follow a driver and their position shows beside the notch.</span></div></div>
       <div class="li"><div class="ic">🔑</div><div><b>Get Pro in a minute <span class="tag-new">NEWLY ADDED</span></b><span>Nothing that was free became paid: everything outside Pro stays free forever. $1 in Litecoin (or $2 to cover fees and support a high school developer), or free with a promo code. Your one-time product key is made instantly. <a href="pro.html" style="color:var(--p3)">Get Pro →</a></span></div></div>
       <a href="pro.html"><img loading="lazy" src="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/screenshots/get-pro-key.png" alt="Your product key" style="width:100%;border-radius:14px;border:1px solid var(--line);margin:6px 0 14px"></a>
       <div class="li"><div class="ic">☁️</div><div><b>Your notch, on every Mac <span class="tag-new">NEWLY ADDED</span></b><span>Continue with Google and your setup and access code follow you: sign in on another Mac and it's set up just the same, with Pro unlocked. Plus iCloud sync and settings backup files.</span></div></div>
@@ -537,7 +539,7 @@ footer a:hover{color:#fff}
   </div>
   <div class="update-card reveal">
     <div class="top">⬇️ Update available</div>
-    <p>Notch apple 1.14.3 is ready. Would you like to update?</p>
+    <p>Notch apple 1.14.5 is ready. Would you like to update?</p>
     <div class="row"><button class="btn ghost sm" onclick="this.closest('.update-card').querySelector('.top').textContent='👍 Skipped this version'">Not now</button><button class="btn sm" id="updBtn">Update</button></div>
     <div class="notes"><b style="color:var(--tx)">Release notes</b><ul><li>Downloaded from GitHub releases</li><li>Settings and data are kept</li><li>Turn off automatic checks any time</li></ul></div>
   </div>
@@ -593,6 +595,7 @@ brew install --cask notch-apple</code></pre>
     <a href="https://github.com/AdityaJainDXB/NotchApples" target="_blank" rel="noopener">GitHub</a>
     <a href="https://github.com/AdityaJainDXB/NotchApples/releases" target="_blank" rel="noopener">Releases</a>
     <a href="https://github.com/AdityaJainDXB/NotchApples/issues" target="_blank" rel="noopener">Report an issue</a>
+    <a href="https://github.com/AdityaJainDXB/NotchApples#donate-" target="_blank" rel="noopener">Donate 💜</a>
     <span>MIT licence · Made with 💜</span>
   </div>
 </div></footer>
@@ -656,7 +659,7 @@ const R='https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/s
 const shots=[
  ['Notch','nowplaying','Now Playing','Any app · album cover · controls'],['Notch','island-music','Music beside the notch','Album cover and live bars'],['Notch','island-charging','Charging','Time to full, in words'],
  ['Notch','voice-notes','Voice Notes','Pro · transcribed on your Mac'],['Notch','screen-time','Screen Time','Pro · limits and Focus Blocker'],['Notch','quick-add','Quick Add','Pro · Calendar and Reminders'],
- ['Notch','timer','Timer','Countdown and stopwatch'],['Notch','live','Live','Scores and tracking'],['Notch','devices','Devices','Accessory battery, mic and camera'],
+ ['Notch','timer','Timer','Countdown and stopwatch'],['Notch','f1','F1','Live timing, schedule, standings'],['Notch','notch-update','Update','A new release, one click away'],['Notch','live','Live','Scores and tracking'],['Notch','devices','Devices','Accessory battery, mic and camera'],
  ['Notch','notifications','Notifications','Reply to iMessages'],['Notch','plugins','Plugins','Widgets from any script'],['Notch','snippets','Snippets','Paste saved text anywhere'],
  ['Settings','settings-extras','Notch Extras','What shows beside the notch'],['Settings','settings-backup','Backup & Sync','Google account, iCloud, backup files'],['Settings','settings-license','Sign in','Pro unlocked on every Mac'],
  ['Notch','today','Today','Weather, events and battery'],['Notch','claude','AI','Free providers, screen-aware'],['Notch','windows','Windows','Snap, tile and save layouts'],

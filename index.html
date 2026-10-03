@@ -848,7 +848,7 @@ let cur=0,auto=true;
 
 /* tabs */
 views.forEach((v,i)=>{const b=document.createElement('button');b.innerHTML=`<span>${v.dataset.i}</span>${v.dataset.t}${v.dataset.new?' <em class="nw">NEW</em>':''}`;b.onclick=e=>{e.stopPropagation();stopAuto();show(i)};tabsEl.appendChild(b)});
-function show(i){cur=i;views.forEach((v,j)=>v.classList.toggle('on',i===j));[...tabsEl.children].forEach((b,j)=>{b.classList.toggle('on',i===j);if(i===j)b.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'})})}
+function show(i){cur=i;views.forEach((v,j)=>v.classList.toggle('on',i===j));[...tabsEl.children].forEach((b,j)=>{b.classList.toggle('on',i===j);if(i===j)tabsEl.scrollTo({left:b.offsetLeft-tabsEl.clientWidth/2+b.clientWidth/2,behavior:'smooth'}) /* only the tab strip, never the page */})}
 show(0);
 function openN(){notch.classList.add('open');hint.style.opacity=0}
 function closeN(){notch.classList.remove('open');hint.style.opacity=1}
@@ -860,7 +860,8 @@ $('#closeBtn').onclick=e=>{e.stopPropagation();stopAuto();closeN()};
 document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='e'){e.preventDefault();stopAuto();notch.classList.contains('open')?closeN():openN()}if(e.key==='Escape'){stopAuto();closeN()}});
 document.addEventListener('click',e=>{if(!notch.contains(e.target)&&notch.classList.contains('open')&&!auto)closeN()});
 /* autoplay tour until the visitor interacts */
-setTimeout(function tour(){if(!auto)return;openN();let n=0;show(0);const t=setInterval(()=>{if(!auto){clearInterval(t);return}n++;if(n>=views.length){clearInterval(t);closeN();setTimeout(tour,3500);return}show(n)},2300)},1400);
+let demoVisible=true;new IntersectionObserver(es=>{demoVisible=es[0].isIntersecting}).observe(document.querySelector('#demo'));
+setTimeout(function tour(){if(!auto)return;if(!demoVisible){setTimeout(tour,2000);return}openN();let n=0;show(0);const t=setInterval(()=>{if(!auto){clearInterval(t);return}n++;if(n>=views.length){clearInterval(t);closeN();setTimeout(tour,3500);return}show(n)},2300)},1400);
 
 /* snap zones */
 const zones=[[0,0,.5,1],[.5,0,.5,1],[0,0,1,.5],[0,.5,1,.5],[0,0,.667,1],[.333,0,.667,1],[0,0,1,1],[.2,.15,.6,.7],[0,0,.5,.5],[.5,0,.5,.5],[0,.5,.5,.5],[.5,.5,.5,.5],[0,0,.333,1],[.333,0,.333,1],[.667,0,.333,1],[.05,.05,.9,.9]];
@@ -997,12 +998,13 @@ fetch('https://api.github.com/repos/AdityaJainDXB/NotchApples/releases/latest').
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;let push=0,looping=false;
 function atBottom(){return innerHeight+scrollY>=document.documentElement.scrollHeight-4}
 function backToStart(){looping=true;$('#loopText').textContent='Back to the start…';scrollTo({top:0,behavior:reduce?'auto':'smooth'});setTimeout(()=>{looping=false;push=0;setRing();$('#loopText').textContent='Back to the start'},1200)}
-function setRing(){$('#loopRing').style.setProperty('--deg',Math.min(push/600,1)*360+'deg')}
+function setRing(){$('#loopRing').style.setProperty('--deg',Math.min(push/900,1)*360+'deg')}
 $('#loop').onclick=backToStart;
 if(!reduce){
-  addEventListener('wheel',e=>{if(looping)return;if(atBottom()&&e.deltaY>0){push+=e.deltaY;setRing();$('#loopText').textContent='Keep scrolling to start again';if(push>600)backToStart()}else if(e.deltaY<0&&push){push=0;setRing();$('#loopText').textContent='Back to the start'}},{passive:true});
+  let bottomSince=0;addEventListener('scroll',()=>{if(atBottom()){if(!bottomSince)bottomSince=Date.now()}else{bottomSince=0;push=0;setRing()}},{passive:true});
+  addEventListener('wheel',e=>{if(looping)return;if(atBottom()&&bottomSince&&Date.now()-bottomSince>1200&&e.deltaY>0){push+=Math.min(e.deltaY,60);setRing();$('#loopText').textContent='Keep scrolling to start again';if(push>900)backToStart()}else if(e.deltaY<0&&push){push=0;setRing();$('#loopText').textContent='Back to the start'}},{passive:true});
   let ty=0;addEventListener('touchstart',e=>{ty=e.touches[0].clientY},{passive:true});
-  addEventListener('touchmove',e=>{if(looping||!atBottom())return;const d=ty-e.touches[0].clientY;if(d>0){push=d*3;setRing();if(push>600)backToStart()}},{passive:true});
+  addEventListener('touchmove',e=>{if(looping||!atBottom()||!bottomSince||Date.now()-bottomSince<1200)return;const d=ty-e.touches[0].clientY;if(d>0){push=d*3;setRing();if(push>900)backToStart()}},{passive:true});
   addEventListener('touchend',()=>{if(!looping){push=0;setRing()}},{passive:true});
 }
 

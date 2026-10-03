@@ -4,20 +4,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Notch apple — your MacBook notch, finally useful</title>
-<meta name="description" content="Notch apple is a free, open-source macOS app that turns the MacBook notch into a purple productivity hub: AI chat, window snapping, clipboard history, file shelf, focus timer, tools, mirror and more. No accounts, no tracking.">
-<meta property="og:title" content="Notch apple — your MacBook notch, finally useful">
-<meta property="og:description" content="Free, open source and fully local. AI, window snapping, clipboard, shelf, focus timer and more — living in your notch.">
-<meta property="og:image" content="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/screenshots/claude.png">
+<title>Notch apple: AI, right where you need it</title>
+<meta name="description" content="Notch apple turns your MacBook notch into an AI command center. Press ⌃⌥S, capture anything on screen and solve, explain, translate or summarize it, with free AI or fully local Ollama. Plus F1, window snapping, clipboard and 30 more tools. Free and open source.">
+<meta property="og:title" content="Notch apple: AI, right where you need it">
+<meta property="og:description" content="Capture anything on your Mac and understand it instantly, right from the notch. Free, open source, free AI or fully local.">
+<meta property="og:image" content="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/screenshots/ai-result.png">
+<meta property="og:type" content="website">
 <link rel="canonical" href="https://virajsinghchadha.github.io/notchapples-site/">
 <meta property="og:url" content="https://virajsinghchadha.github.io/notchapples-site/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0a0612">
+<meta name="color-scheme" content="dark">
 <link rel="icon" href="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/icon.png">
+<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+
 :root{
   --bg:#07040d;--bg2:#0d0818;--card:#130b22;--card2:#1a1030;--line:rgba(168,85,247,.16);--line2:rgba(255,255,255,.07);
   --tx:#f4efff;--mut:#a79cc0;--dim:#6f6589;--p:#a855f7;--p2:#7c3aed;--p3:#d8b4fe;--glow:rgba(168,85,247,.38);
@@ -278,39 +282,179 @@ footer a:hover{color:#fff}
 .prev .sw{display:flex;gap:8px}.prev .sw i{flex:1;height:52px;border-radius:12px}
 .shot.pv{cursor:default}
 .tag-new{display:inline-block;vertical-align:middle;margin-left:8px;background:rgba(34,197,94,.16);color:#4ade80;border:1px solid #22c55e;border-radius:99px;padding:1px 9px;font-size:10.5px;font-weight:700;letter-spacing:.06em}
+
+
+/* ===== 1.15 long-form story ===== */
+:focus-visible{outline:2px solid var(--p3);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:-9999px;top:8px;z-index:200;background:var(--p2);color:#fff;padding:8px 14px;border-radius:10px}
+.skip:focus{left:12px}
+section[id],header[id]{scroll-margin-top:76px}
+nav .links a.donate{color:var(--p3)}
+.menu-btn{display:none;background:none;border:1px solid var(--line2);color:var(--tx);border-radius:10px;width:40px;height:36px;font-size:18px;cursor:pointer}
+.mobile-menu{display:none}
+.hero h1 .tagline{display:block}
+.hero .kbd{font:600 .8em Inter,sans-serif;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:7px;padding:1px 7px}
+.btn.donate{background:rgba(244,114,182,.12);border:1px solid rgba(244,114,182,.45);box-shadow:none;color:#fbcfe8}
+.btn.donate:hover{background:rgba(244,114,182,.2)}
+
+/* more tools: first nine, then Show all */
+.bento.collapsed .tile:nth-child(n+10){display:none}
+@media(max-width:760px){.bento.collapsed .tile:nth-child(n+5){display:none}.tile img{display:none}}
+
+/* chapters: big screenshot + short story, alternating */
+.chapter{padding:90px 0}
+.ch{display:grid;grid-template-columns:1fr 1.25fr;gap:56px;align-items:center}
+.ch.flip{grid-template-columns:1.25fr 1fr}.ch.flip .ch-text{order:2}
+.ch-text h2{font-size:clamp(30px,4.4vw,48px)}
+.ch-text p{color:var(--mut);font-size:17.5px;margin-top:14px}
+.ch-text ul{list-style:none;margin-top:18px;display:grid;gap:9px}
+.ch-text li{display:flex;gap:10px;color:var(--tx);font-size:15.5px}
+.ch-text li:before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:var(--p);margin-top:9px}
+.frame{position:relative;border-radius:22px;padding:10px;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid var(--line2);box-shadow:0 40px 100px rgba(0,0,0,.55),0 0 80px rgba(124,58,237,.18)}
+.frame img{border-radius:14px;width:100%;height:auto;background:#0d0818}
+.frame figcaption{font-size:13px;color:var(--dim);padding:10px 6px 2px}
+.frame.stack2{display:grid;gap:12px}
+.js .story .frame{opacity:0;transform:translateY(40px) scale(.98);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.js .story .frame.in{opacity:1;transform:none}
+.modes{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.modes span{font-size:13.5px;padding:6px 12px;border-radius:99px;background:rgba(168,85,247,.12);border:1px solid var(--line);color:var(--p3)}
+.modes span.local{background:rgba(74,222,128,.1);border-color:rgba(74,222,128,.4);color:#bbf7d0}
+.kbds{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;margin-top:20px;font-size:14.5px;color:var(--mut)}
+.kbds kbd{font:600 12px Inter,sans-serif;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:7px;padding:2px 8px;color:var(--tx);white-space:nowrap}
+.monitors{display:flex;gap:14px;align-items:flex-end;justify-content:center;padding:30px 10px}
+.mon{border-radius:12px;border:2px solid #3a3346;background:linear-gradient(160deg,#241445,#120a26);position:relative}
+.mon.a{width:44%;aspect-ratio:16/10}.mon.b{width:36%;aspect-ratio:16/9}
+.mon .sel{position:absolute;left:22%;top:26%;width:46%;height:40%;border:2px solid #fff;box-shadow:0 0 0 9999px rgba(0,0,0,.45);border-radius:3px}
+.mon .ptr{position:absolute;left:66%;top:64%;font-size:18px}
+.mon small{position:absolute;left:8px;bottom:6px;font-size:11px;color:var(--mut)}
+.mon.b{overflow:hidden}
+
+/* F1 */
+.f1 .ch-text h2 span{color:#ff4d4d}
+
+/* pro + donate */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:1000px;margin:0 auto}
+.card{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line2);border-radius:24px;padding:30px}
+.card h3{font-size:22px;letter-spacing:-.01em}
+.card p{color:var(--mut);margin:10px 0 18px;font-size:15.5px}
+.card .cta{justify-content:flex-start}
+.addr{display:flex;gap:8px;align-items:center;background:rgba(0,0,0,.35);border:1px solid var(--line2);border-radius:12px;padding:10px 12px;margin:12px 0}
+.addr code{font:13px ui-monospace,SFMono-Regular,Menlo,monospace;word-break:break-all;flex:1}
+.addr button{flex:none;font:600 12px Inter,sans-serif;background:rgba(255,255,255,.08);color:var(--tx);border:1px solid var(--line2);border-radius:8px;padding:5px 11px;cursor:pointer}
+.qr{width:132px;height:132px;background:#fff;border-radius:12px;padding:8px}
+.qr img,.qr canvas{width:116px!important;height:116px!important}
+.small{font-size:13px;color:var(--dim)}
+
+/* what's new timeline */
+.timeline{max-width:860px;margin:0 auto;position:relative}
+.timeline:before{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--p),transparent)}
+.rel{position:relative;padding:0 0 34px 42px}
+.rel:before{content:"";position:absolute;left:4px;top:6px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid var(--p)}
+.rel .v{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.rel .v b{font-size:20px}.rel .v span{color:var(--dim);font-size:14px}
+.rel h3{font-size:17px;color:var(--p3);margin:4px 0 8px}
+.rel ul{margin-left:18px;color:var(--mut);font-size:15px;display:grid;gap:4px}
+.rel img{margin-top:14px;border-radius:14px;border:1px solid var(--line2);max-width:560px}
+.older summary{font-size:15px;color:var(--p3);font-weight:600;padding:6px 0}
+.older summary:after{content:none}
+
+/* download */
+.dl{text-align:center}
+.dl .ver{font-size:15px;color:var(--mut);margin-bottom:6px}
+.dl .ver b{color:var(--tx)}
+.dl .big{font-size:clamp(34px,5vw,58px);font-weight:800;letter-spacing:-.035em;margin:6px 0 22px}
+.dl .facts{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;color:var(--dim);font-size:13.5px;margin-top:18px}
+
+/* gh */
+.gh{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1000px;margin:0 auto}
+.gh a{display:block;background:var(--card);border:1px solid var(--line2);border-radius:18px;padding:22px;transition:border-color .2s}
+.gh a:hover{border-color:var(--p)}
+.gh b{display:block;font-size:17px;margin-bottom:4px}.gh span{color:var(--mut);font-size:14px}
+
+/* footer */
+.foot{display:grid!important;grid-template-columns:1.3fr repeat(3,1fr);gap:30px;align-items:start!important}
+.foot h4{font-size:13px;color:var(--tx);margin-bottom:10px;letter-spacing:.02em}
+.foot ul{list-style:none;display:grid;gap:7px}
+.foot .brand p{margin-top:10px;max-width:300px}
+.footbar{border-top:1px solid var(--line2);margin-top:30px;padding-top:18px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;color:var(--dim)}
+
+/* the end: a deliberate loop back to the start */
+.the-end{padding:70px 0 120px;text-align:center}
+.the-end h2{font-size:clamp(28px,4vw,42px)}
+.the-end p{color:var(--mut);margin-top:8px}
+.loop{display:inline-flex;flex-direction:column;align-items:center;gap:12px;margin-top:26px;background:none;border:0;color:var(--tx);cursor:pointer;font:600 15px Inter,sans-serif}
+.loop .ring{width:64px;height:64px;margin:0;background:conic-gradient(var(--p) var(--deg,0deg),rgba(255,255,255,.08) 0)}
+.loop .ring:before{background:var(--bg)}
+.loop .ring>div{font-size:22px}
+
+/* sticky call to action */
+.sticky{position:fixed;left:50%;bottom:18px;transform:translate(-50%,140%);z-index:60;display:flex;gap:6px;padding:6px;border-radius:16px;background:rgba(19,11,34,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--line);box-shadow:0 20px 50px rgba(0,0,0,.5);transition:transform .35s ease}
+.sticky.on{transform:translate(-50%,0)}
+.sticky a{font-size:13.5px;font-weight:600;padding:8px 14px;border-radius:11px;color:var(--tx)}
+.sticky a.primary{background:linear-gradient(135deg,var(--p),var(--p2))}
+.sticky a:hover{background:rgba(255,255,255,.08)}.sticky a.primary:hover{filter:brightness(1.1)}
+
+@media(max-width:900px){
+  .ch,.ch.flip{grid-template-columns:1fr;gap:30px}.ch.flip .ch-text{order:0}
+  .duo,.gh{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr 1fr}
+  .chapter{padding:64px 0}
+}
+@media(max-width:900px){
+  nav .links>a:not(.btn){display:none}
+  .menu-btn{display:block}
+  .mobile-menu.on{display:grid;position:fixed;top:64px;left:0;right:0;z-index:49;background:rgba(7,4,13,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--line2);padding:10px 16px 16px;gap:2px}
+  .mobile-menu a{padding:12px 8px;border-radius:10px;font-size:16px}
+  .mobile-menu a:active{background:rgba(255,255,255,.06)}
+}
+@media(max-width:760px){
+  section{padding:70px 0}
+  .sticky a{padding:8px 10px;font-size:13px}
+  .rel img{max-width:100%}
+}
+@media(prefers-reduced-motion:reduce){.js .story .frame{opacity:1;transform:none}}
+
 </style>
 </head>
 <body>
-
 <svg width="0" height="0" style="position:absolute"><symbol id="gh" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol>
 <symbol id="dl" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0l-5-5m5 5l5-5M4 19h16"/></symbol></svg>
-
-<nav><div class="wrap">
-  <a href="#" class="logo"><img src="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/icon.png" alt=""> Notch apple</a>
+<a class="skip" href="#main">Skip to content</a>
+<nav aria-label="Main"><div class="wrap">
+  <a href="#top" class="logo"><img src="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/icon.png" alt=""> Notch apple</a>
   <div class="links">
-    <a class="hide" href="#features">Features</a>
-    <a class="hide" href="#gallery">Screenshots</a>
-    <a class="hide" href="#new">What's new</a>
-    <a class="hide" href="#install">Install</a>
-    <a href="pro.html" style="color:var(--p3);font-weight:600">Get Pro</a>
-    <a class="gh-star" href="https://github.com/AdityaJainDXB/NotchApples" target="_blank" rel="noopener"><svg><use href="#gh"/></svg><span>GitHub</span></a>
-    <a class="btn sm" href="https://github.com/AdityaJainDXB/NotchApples/releases/latest">Download</a>
+    <a href="#capture">Features</a>
+    <a href="#screenshots">Screenshots</a>
+    <a href="#f1">F1</a>
+    <a href="#new">What's New</a>
+    <a href="pro.html">Get Pro</a>
+    <a class="donate" href="#donate">Donate</a>
+    <a class="gh-star" href="https://github.com/AdityaJainDXB/NotchApples" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#gh"/></svg><span>GitHub</span></a>
+    <a class="btn sm" href="#download">Download</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">☰</button>
   </div>
 </div></nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#capture">Features</a><a href="#screenshots">Screenshots</a><a href="#f1">F1</a><a href="#new">What's New</a>
+  <a href="pro.html">Get Pro</a><a href="#donate">Donate</a><a href="#download">Download</a>
+  <a href="https://github.com/AdityaJainDXB/NotchApples" target="_blank" rel="noopener">GitHub</a>
+</div>
 
-<header class="hero">
+<header class="hero" id="top">
   <div class="bgglow"></div><div class="gridbg"></div>
   <div class="wrap">
-    <a class="badge" href="#features"><b>New</b> 1.14.5: F1 live timing in your notch 🏁 →</a>
-    <h1>Your MacBook notch,<br><span class="grad">finally useful.</span></h1>
-    <p class="sub">Notch apple turns the black cutout at the top of your screen into a purple productivity hub: AI chat, window snapping, clipboard history, a file shelf, focus timer and more. Click it, or press <b>⌘E</b> from anywhere.</p>
+    <a class="badge" href="#new"><b>New</b> 1.15: capture anything, understand it instantly →</a>
+    <h1><span class="tagline">AI, right where</span><span class="grad">you need it.</span></h1>
+    <p class="sub">Notch apple turns your MacBook's notch into an AI command center. Press <span class="kbd">⌃⌥S</span>, drag over anything on screen, and solve, explain, translate or summarize it in a second. Plus thirty more tools, all in the notch.</p>
     <div class="cta">
-      <a class="btn" href="https://github.com/AdityaJainDXB/NotchApples/releases/latest"><svg><use href="#dl"/></svg> Download for Mac</a>
-      <a class="btn ghost" href="https://github.com/AdityaJainDXB/NotchApples" target="_blank" rel="noopener"><svg><use href="#gh"/></svg> Star on GitHub</a>
+      <a class="btn" href="#download"><svg aria-hidden="true"><use href="#dl"/></svg> Download for Mac</a>
+      <a class="btn ghost" href="https://github.com/AdityaJainDXB/NotchApples" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#gh"/></svg> GitHub</a>
+      <a class="btn donate" href="#donate">💜 Donate</a>
     </div>
-    <div class="meta"><span>Free &amp; open source</span><span>No account</span><span>No tracking</span><span>macOS 14+</span></div>
+    <div class="meta"><span>Free &amp; open source</span><span>Free AI or fully local</span><span>No account needed</span><span>macOS 14+</span></div>
 
-    <div class="laptop reveal in" id="demo">
+
+    <div class="laptop reveal in" id="demo" aria-label="Interactive illustration of Notch apple (not a screenshot)">
       <div class="screen"><div class="display" id="display">
         <div class="menubar"><div class="l"><b></b><b>Finder</b><span>File</span><span>Edit</span><span>View</span><span>Go</span></div><div class="r"><span>⌁ 92%</span><span id="clock">Tue 9:41</span></div></div>
         <div class="win" id="w1"><div class="bar"><i></i><i></i><i></i><span>Safari</span></div><div class="lines"><div style="width:80%"></div><div style="width:60%"></div><div style="width:70%"></div><div style="width:40%"></div></div></div>
@@ -342,7 +486,7 @@ footer a:hover{color:#fff}
                 </div>
               </div>
               <div class="view" data-t="AI" data-i="✨">
-                <div class="chip">✨ Google Gemini · gemini-2.5-flash · <span style="color:var(--green)">Free</span></div>
+                <div class="chip">✨ Google Gemini · gemini-3.8-flash · <span style="color:var(--green)">Free</span></div>
                 <div class="msg u">What's on my screen?</div>
                 <div class="msg a">📸 Screenshot attached. You're comparing two windows: a Safari page about notch apps and a note with your to-do list for today.</div>
                 <div class="msg u">Summarise my note in one line</div>
@@ -421,16 +565,117 @@ footer a:hover{color:#fff}
             </div>
           </div>
         </div>
-        <div class="hint" id="hint">👆 Click the notch, or press <kbd>⌘</kbd> <kbd>E</kbd> — this demo is live</div>
+        <div class="hint" id="hint">👆 Click the notch to try it — this demo is live</div>
       </div></div>
       <div class="base"></div>
     </div>
   </div>
+
+  </div>
 </header>
 
-<section id="features"><div class="wrap">
-  <div class="head reveal"><span class="eyebrow">Everything in one place</span><h2>One notch. <span class="grad">Every tool.</span></h2><p>Over thirty modules and add-ons, each optional. Turn on what you use in Settings → Modules, and the rest stays out of your way.</p></div>
-  <div class="bento">
+<main id="main" class="story">
+
+<section class="chapter" id="what"><div class="wrap">
+  <div class="head reveal"><span class="eyebrow">What is Notch apple?</span><h2>The space you never used,<br><span class="grad">now the fastest way to think.</span></h2>
+  <p>Notch apple lives in the black cutout at the top of your MacBook screen (or a small pill on Macs without one). Click it, or press <b>⌃⌥N</b>, and it opens over whatever you're doing. No windows to find, no app switching. It's free, open source, and everything except Pro works without a code.</p></div>
+</div></section>
+
+<section class="chapter" id="capture"><div class="wrap ch">
+  <div class="ch-text reveal">
+    <span class="eyebrow">Capture anything</span>
+    <h2>See it. <span class="grad">Snap it.</span></h2>
+    <p>Press <b>⌃⌥S</b> from any app, even full screen. The display under your pointer freezes; drag a box around a question, an error or a chart. Click for the whole display, press Esc or right-click to cancel.</p>
+    <ul><li>Retina-sharp: the crop keeps every pixel, with the exact size shown as you drag</li><li>The display under your pointer, every display at once, or the whole screen</li><li>Or paste an image, drop an image or PDF, or use the text you copied or selected</li></ul>
+  </div>
+  <figure class="frame"><img loading="lazy" src="assets/screenshots/capture-overlay.webp" width="1600" height="1041" alt="The capture overlay: the screen is dimmed except a selected box around a maths question, with its size, 1800 by 764 pixels, shown at the corner"><figcaption>The capture overlay, selecting one question from a worksheet.</figcaption></figure>
+</div></section>
+
+<section class="chapter" id="ai"><div class="wrap ch flip">
+  <div class="ch-text reveal">
+    <span class="eyebrow">Understand instantly</span>
+    <h2>One click, <span class="grad">the right answer.</span></h2>
+    <p>Pick what you want done. Notch apple takes a quick look at the text on your Mac first and suggests the likely action: Solve for maths, Code for an error, Translate for another language.</p>
+    <div class="modes" aria-label="Modes"><span>Solve</span><span>Explain</span><span>Explain simply</span><span>Answer only</span><span>Hint</span><span>Summarize</span><span>Translate</span><span class="local">Extract text · on your Mac</span><span>Rewrite</span><span>Code</span><span>Ask</span></div>
+    <p>Answers stream in as they're written, with readable maths (not raw LaTeX), code blocks with Copy, and real tables.</p>
+  </div>
+  <figure class="frame stack2">
+    <img loading="lazy" src="assets/screenshots/ai-input.webp" width="1480" height="840" alt="The AI tab with a captured maths question, labelled 'Looks like math', and action buttons: Solve, Hint, Explain simply, Answer only, Explain and Summarize">
+    <img loading="lazy" src="assets/screenshots/ai-result.webp" width="1480" height="840" alt="The answer: numbered steps solving 3x squared minus 12 equals 0, ending with x equals 2 and minus 2, answered on this Mac with Ollama">
+    <figcaption>A real capture and a real answer, from Ollama running on the Mac.</figcaption>
+  </figure>
+</div></section>
+
+<section class="chapter" id="actions"><div class="wrap ch">
+  <div class="ch-text reveal">
+    <span class="eyebrow">Quick actions</span>
+    <h2>Built for <span class="grad">the keyboard.</span></h2>
+    <p>Everything is one click or one shortcut away. Change any global shortcut in Settings.</p>
+    <div class="kbds">
+      <kbd>⌃⌥S</kbd><span>Capture from anywhere, even with the notch hidden</span>
+      <kbd>⌃⌥N</kbd><span>Open or close the notch</span>
+      <kbd>⌘⇧V</kbd><span>Paste an image or text as the input</span>
+      <kbd>Return</kbd><span>Send · <kbd>⌘.</kbd> Stop · <kbd>⌘R</kbd> Retry</span>
+      <kbd>⌘⇧C</kbd><span>Copy the answer · <kbd>⌘N</kbd> New task</span>
+    </div>
+  </div>
+  <figure class="frame"><img loading="lazy" src="assets/screenshots/code-analysis.webp" width="1480" height="840" alt="Code mode on a screenshot of a Python ZeroDivisionError: the AI explains the bug and gives a fixed version in a code block"><figcaption>Code mode on a screenshot of a Python error, with the fix ready to copy.</figcaption></figure>
+</div></section>
+
+<section class="chapter" id="followup"><div class="wrap ch flip">
+  <div class="ch-text reveal">
+    <span class="eyebrow">Follow-up conversations</span>
+    <h2>Keep <span class="grad">asking.</span></h2>
+    <p>"Why are there two answers?" "Explain step 3." "Make it simpler." The AI still sees your capture and its earlier answers, so you never upload it again.</p>
+    <ul><li><b>Stop</b> keeps whatever was written so far</li><li><b>Retry</b> asks again, with a different provider if you switched</li><li><b>Edit</b> puts your question back to change and resend</li><li>Copy one answer, the whole conversation, or export it as Markdown</li></ul>
+  </div>
+  <figure class="frame"><img loading="lazy" src="assets/screenshots/follow-up.webp" width="1480" height="840" alt="A follow-up question, 'Why are there two answers?', answered with an explanation about quadratic equations"><figcaption>A follow-up about the same capture.</figcaption></figure>
+</div></section>
+
+<section class="chapter" id="history"><div class="wrap ch">
+  <div class="ch-text reveal">
+    <span class="eyebrow">History</span>
+    <h2>Everything you asked, <span class="grad">on your Mac.</span></h2>
+    <p>Every task is saved locally with its image, mode, question, answer and the model that wrote it. Search "quadratic" and find it again; reopen it and keep going.</p>
+    <ul><li>Search questions, answers, modes and dates</li><li>Continue, copy, export or delete any task</li><li>Keep chats forever, 30, 7 or 1 day, keep images or not, or turn history off</li></ul>
+  </div>
+  <figure class="frame"><img loading="lazy" src="assets/screenshots/history.webp" width="1600" height="1042" alt="Settings, AI History: a searchable list of past tasks with thumbnails and modes, and the selected Code task with its answer"><figcaption>Settings → AI History.</figcaption></figure>
+</div></section>
+
+<section class="chapter" id="monitors"><div class="wrap ch flip">
+  <div class="ch-text reveal">
+    <span class="eyebrow">Multi-monitor</span>
+    <h2>The right display, <span class="grad">every time.</span></h2>
+    <p>Capture always uses the display your pointer is on, at that display's own resolution, so a Retina laptop next to a 4K or 1080p monitor all come out sharp and correctly sized. Notch apple's own windows are always left out, and it works over full-screen apps and every Space.</p>
+  </div>
+  <div class="frame reveal" role="img" aria-label="Illustration: two displays; the pointer is on the second, where the selection box is drawn">
+    <div class="monitors"><div class="mon a"><small>Built-in Retina</small></div><div class="mon b"><div class="sel"></div><div class="ptr">➤</div><small>External display</small></div></div>
+    <figcaption>Illustration: the capture follows the pointer to the second display.</figcaption>
+  </div>
+</div></section>
+
+<section class="chapter f1" id="f1"><div class="wrap ch">
+  <div class="ch-text reveal">
+    <span class="eyebrow">F1 · add-on</span>
+    <h2>Stay <span>informed.</span></h2>
+    <p>The live running order during every session, then the full classification with gaps, tyres and lap times as soon as F1 publishes it. The weekend schedule in your time zone with a countdown, and the standings.</p>
+    <ul><li>Follow a driver or a favourite team: "P3 VER +4.221" beside the notch while a session runs</li><li>Nothing stale is ever shown as live; live gaps need a paid F1 account, so live view is the running order</li></ul>
+  </div>
+  <figure class="frame"><img loading="lazy" src="assets/screenshots/f1.webp" width="1480" height="840" alt="The F1 tab: Bahrain Grand Prix qualifying classification with team colours, tyres and lap times, the weekend schedule with a countdown to the race, and driver standings"><figcaption>F1 after qualifying, with the race countdown.</figcaption></figure>
+</div></section>
+
+<section class="chapter" id="settings"><div class="wrap ch flip">
+  <div class="ch-text reveal">
+    <span class="eyebrow">Free AI, or fully local</span>
+    <h2>Your provider. <span class="grad">Your choice.</span></h2>
+    <p>Use free Google Gemini, Groq or OpenRouter, run models on your own Mac with Ollama (no key, works offline), or bring a key for Claude, ChatGPT or DeepSeek. Test the connection in one click; a badge shows whether the model can read images.</p>
+  </div>
+  <figure class="frame"><img loading="lazy" src="assets/screenshots/settings-ai.webp" width="1600" height="1042" alt="Settings, AI: provider Ollama on this Mac, model gemma3:4b, 'This model can read screenshots', a Test connection button, and capture settings"><figcaption>Settings → AI.</figcaption></figure>
+</div></section>
+
+<section id="features" class="more"><div class="wrap">
+  <div class="head reveal"><span class="eyebrow">More in your notch</span><h2>One notch. <span class="grad">Every tool.</span></h2><p>Over thirty modules and add-ons, each optional. Turn on what you use in Settings → Modules, and the rest stays out of your way.</p></div>
+  <div class="bento collapsed" id="bento">
     <div class="tile w4 reveal"><div class="ic">✨</div><h3>AI that can see your screen</h3><p>Chat with free AI (Gemini, Groq, OpenRouter, Ollama on your Mac) or bring a key for Claude, ChatGPT or DeepSeek. Ask "what's on my screen?" and it takes a screenshot for you. One-click summarise, translate and fix, plus a full chat history.</p><img loading="lazy" src="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/screenshots/claude.png" alt="AI tab in the notch"></div>
     <div class="tile reveal"><div class="ic">🪟</div><h3>Window snapping</h3><p>Drag a window up to the notch and drop it on a zone: halves, quarters, thirds. Tile everything at once, save layouts, or use ⌃⌥ + arrows.</p><img loading="lazy" src="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/screenshots/window-snap-zones.png" alt="Snap zones"></div>
     <div class="tile reveal"><div class="ic">📋</div><h3>Clipboard history</h3><p>Everything you copy, searchable, pinnable and filterable. Password-manager secrets are never saved.</p></div>
@@ -467,140 +712,134 @@ footer a:hover{color:#fff}
     <div class="tile reveal"><span class="tag gn">NEWLY ADDED</span><div class="ic">🎨</div><h3>Color themes</h3><p>Restyle the notch in Settings → Appearance. Plus a volume and brightness gauge, a recording indicator, and Screenshot and Record buttons in Today.</p></div>
     <div class="tile reveal"><span class="tag gn">NEWLY ADDED</span><div class="ic">🔑</div><h3>Access code &amp; shortcuts</h3><p>One product key unlocks Pro: AI, Messenger, Audio, VPN, Voice Notes, Screen Time and Quick Add. <a href="pro.html" style="color:var(--p3)">Get one for $1 in Litecoin, or free with a promo code →</a> Reassign any hotkey: ⌃⌥O hides the notch, ⌃⌥N opens it.</p><img loading="lazy" src="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/screenshots/get-pro-ltc.png" alt="Get Pro: pay with Litecoin"></div>
   </div>
+  <div class="cta" style="margin-top:26px"><button class="btn ghost" id="moreTools" aria-expanded="false" aria-controls="bento">Show all the tools</button></div>
 </div></section>
 
-<section id="gallery" style="background:linear-gradient(var(--bg),var(--bg2) 20%,var(--bg2) 80%,var(--bg))"><div class="wrap">
-  <div class="head reveal"><span class="eyebrow">See it for real</span><h2>Screenshots from <span class="grad">the actual app</span></h2><p>Every picture here is the real Notch apple, using sample data. Click any one to enlarge it.</p></div>
-  <div class="gtabs" id="gtabs"></div>
+
+
+<section id="privacy" style="background:linear-gradient(var(--bg),var(--bg2),var(--bg))"><div class="wrap">
+  <div class="head reveal"><span class="eyebrow">Privacy</span><h2>Local first. <span class="grad">Always clear.</span></h2><p>You always know what leaves your Mac.</p></div>
+  <div class="pgrid">
+    <div class="pcard reveal"><h3>Stays on your Mac</h3><p>API keys, chat history, saved captures, and Extract text (Apple's on-device text recognition). History can be turned off, or set to delete itself.</p></div>
+    <div class="pcard reveal"><h3>Sent only when you ask</h3><p>With a cloud provider, only your question, the image you captured or pasted, and that conversation go to the provider you chose. Nothing else.</p></div>
+    <div class="pcard reveal"><h3>Ollama: nothing leaves</h3><p>Choose Ollama and answers are made on your Mac. The notch shows "On this Mac" so you always know.</p></div>
+    <div class="pcard reveal"><h3>No tracking, no account</h3><p>No telemetry. Signing in is optional and only syncs your setup. Every module is optional and stops when off.</p></div>
+  </div>
+</div></section>
+
+<section id="pro"><div class="wrap">
+  <div class="head reveal"><span class="eyebrow">Pro</span><h2>Everything free. <span class="grad">Pro for the extras.</span></h2>
+  <p>Most of Notch apple is free forever. One product key unlocks AI, Messenger, Audio, VPN, Voice Notes, Screen Time and Quick Add on your Mac: $1 in Litecoin, or free with a promo code. Older access codes keep working.</p></div>
+  <div class="ch">
+    <figure class="frame"><img loading="lazy" src="assets/screenshots/pro.webp" width="1480" height="840" alt="The unlock screen inside the notch: enter an access code or product key, with a link to get a product key for one dollar in Litecoin or with a promo code"><figcaption>Unlocking Pro inside the notch.</figcaption></figure>
+    <div class="ch-text reveal">
+      <ul><li>Your key is made instantly on the Get Pro page and works once, on one Mac (that Mac can re-activate any time)</li><li>Keys are checked online, and payments are re-checked on the Litecoin blockchain</li><li>Signed in with Google? Pro follows you to your other Macs</li></ul>
+      <div class="cta" style="justify-content:flex-start;margin-top:24px"><a class="btn" href="pro.html">Get Pro</a><a class="btn ghost" href="pro.html#promo">I have a promo code</a></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="screenshots" style="background:linear-gradient(var(--bg),var(--bg2) 20%,var(--bg2) 80%,var(--bg))"><div class="wrap">
+  <div class="head reveal"><span class="eyebrow">Screenshots</span><h2>Every screen, <span class="grad">for real.</span></h2><p>Taken from the current app with a repeatable script. Click any to enlarge.</p></div>
+  <div class="gtabs" id="gtabs" role="tablist" aria-label="Screenshot categories"></div>
   <div class="gallery" id="gal"></div>
 </div></section>
 
-<section id="new"><div class="wrap new">
-  <div class="reveal">
-    <span class="eyebrow">What's new in 1.14.5</span>
-    <div class="list" style="margin-top:0;margin-bottom:22px">
-      <div class="li"><div class="ic">🎵</div><div><b>Now Playing, like the iPhone <span class="tag-new">NEWLY ADDED</span></b><span>Free for everyone. Anything playing on your Mac, including Anghami, Spotify, Apple Music and browsers, with the album cover beside the notch and bars that move with the song. Choose your default music app.</span></div></div>
-      <div class="li"><div class="ic">🏁</div><div><b>F1 in the notch <span class="tag-new">NEWLY ADDED</span></b><span>The live running order during every session (tested live in Malaysia FP1), then the classification with gaps and tyres, the weekend countdown and the standings. Follow a driver and their position shows beside the notch.</span></div></div>
-      <div class="li"><div class="ic">🔑</div><div><b>Get Pro in a minute <span class="tag-new">NEWLY ADDED</span></b><span>Nothing that was free became paid: everything outside Pro stays free forever. $1 in Litecoin (or $2 to cover fees and support a high school developer), or free with a promo code. Your one-time product key is made instantly. <a href="pro.html" style="color:var(--p3)">Get Pro →</a></span></div></div>
-      <a href="pro.html"><img loading="lazy" src="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/screenshots/get-pro-key.png" alt="Your product key" style="width:100%;border-radius:14px;border:1px solid var(--line);margin:6px 0 14px"></a>
-      <div class="li"><div class="ic">☁️</div><div><b>Your notch, on every Mac <span class="tag-new">NEWLY ADDED</span></b><span>Continue with Google and your setup and access code follow you: sign in on another Mac and it's set up just the same, with Pro unlocked. Plus iCloud sync and settings backup files.</span></div></div>
-      <div class="li"><div class="ic">🔌</div><div><b>Charging time <span class="tag-new">NEWLY ADDED</span></b><span>Plug in and the notch says "Charging · 88% · 51m to full".</span></div></div>
-      <div class="li"><div class="ic">🎙</div><div><b>Pro: Voice Notes <span class="tag-new">NEWLY ADDED</span></b><span>Transcribed on your Mac, with an AI summary and action items.</span></div></div>
-      <div class="li"><div class="ic">⏳</div><div><b>Pro: Screen Time &amp; Focus Blocker <span class="tag-new">NEWLY ADDED</span></b><span>Time per app, daily limits, and distracting apps hidden during Focus sessions.</span></div></div>
-      <div class="li"><div class="ic">📅</div><div><b>Pro: Quick Add <span class="tag-new">NEWLY ADDED</span></b><span>Type "Dentist tomorrow 3pm" and it lands in Calendar or Reminders.</span></div></div>
-    </div>
-    <span class="eyebrow">What's new in 1.14</span>
-    <h2 style="text-align:left">22 new features.<br><span class="grad">Easier on your battery.</span></h2>
-    <div class="list" style="margin-top:0;margin-bottom:22px">
-      <div class="li"><div class="ic">🏝️</div><div><b>A livelier closed notch <span class="tag-new">NEWLY ADDED</span></b><span>Timers, the recording timer, download progress, the Keep Awake countdown, "Join" before video calls, "rain in 15 min", mic and camera in use, live scores, new notifications and low-battery warnings. Pick which ones in Settings → Notch Extras.</span></div></div>
-      <div class="li"><div class="ic">👆</div><div><b>Gestures <span class="tag-new">NEWLY ADDED</span></b><span>Scroll on the notch to change the volume; swipe sideways to skip tracks.</span></div></div>
-      <div class="li"><div class="ic">🖥️</div><div><b>Every display <span class="tag-new">NEWLY ADDED</span></b><span>The notch can follow your pointer to an external monitor, which gets a virtual notch.</span></div></div>
-      <div class="li"><div class="ic">🧩</div><div><b>Seven new add-ons <span class="tag-new">NEWLY ADDED</span></b><span>Timer, Snippets, Shortcuts, Devices, Live, Notifications and Plugins.</span></div></div>
-      <div class="li"><div class="ic">🎬</div><div><b>Better screen recording <span class="tag-new">NEWLY ADDED</span></b><span>Pause and resume, a live timer, the notch left out of the video, and trim when you stop.</span></div></div>
-      <div class="li"><div class="ic">🎤</div><div><b>Synced lyrics <span class="tag-new">NEWLY ADDED</span></b><span>Now Playing follows along line by line, with previous, play/pause and next buttons.</span></div></div>
-      <div class="li"><div class="ic">⏱</div><div><b>Smarter focus <span class="tag-new">NEWLY ADDED</span></b><span>A 7-day chart, and Do Not Disturb during focus sessions.</span></div></div>
-      <div class="li"><div class="ic">🔋</div><div><b>Lighter on battery <span class="tag-new">NEWLY ADDED</span></b><span>Background checks pause while your Mac sleeps and slow down in Low Power Mode. Idle CPU is about 0.1%.</span></div></div>
-    </div>
-    <span class="eyebrow">What's new in 1.13.5</span>
-    <div class="list" style="margin-top:0;margin-bottom:22px">
-      <div class="li"><div class="ic">🌐</div><div><b>Browser &amp; Launcher</b><span>Browse from the notch, and open your apps from a shelf.</span></div></div>
-      <div class="li"><div class="ic">🤖</div><div><b>Smarter free AI</b><span>If a free OpenRouter model is busy, another one steps in.</span></div></div>
-    </div>
-    <span class="eyebrow">What's new in 1.13.1</span>
-    <div class="list" style="margin-top:0;margin-bottom:22px">
-      <div class="li"><div class="ic">👀</div><div><b>Screen-aware AI fixed </b><span>Ask about your screen and Notch apple requests Screen Recording properly, then offers a one-click Relaunch so macOS applies it.</span></div></div>
-      <div class="li"><div class="ic">↕️</div><div><b>Reorder your tabs</b><span>Settings → Appearance → Notch tab order. Drag tabs and add-ons up or down.</span></div></div>
-      <div class="li"><div class="ic">🎚️</div><div><b>Only the notch gauge</b><span>Volume and brightness keys show just the notch gauge, not macOS's pop-up too, and it now glides smoothly at up to 120 Hz.</span></div></div>
-      <div class="li"><div class="ic">⏻</div><div><b>Colour-coded app menu</b><span>The power button offers Settings (purple), Relaunch (orange) and Quit (red).</span></div></div>
-      <div class="li"><div class="ic">🔤</div><div><b>Text Grab</b><span>In Tools: drag over any part of the screen, even an image or video, and its text is copied. Recognised on your Mac.</span></div></div>
-      <div class="li"><div class="ic">🔐</div><div><b>Permissions that stick</b><span>Accessibility and Screen Recording keep working after you update.</span></div></div>
-    </div>
-    <span class="eyebrow">What's new in 1.13</span>
-    <div class="list" style="margin-top:0;margin-bottom:22px">
-      <div class="li"><div class="ic">🔑</div><div><b>Access Code</b><span>Unlocks AI, Messenger, Audio, Now Playing and VPN.</span></div></div>
-      <div class="li"><div class="ic">🌐</div><div><b>Translator add-on</b><span>Arabic, English, French, Spanish, Hindi, Mandarin and German, with pronunciation and read-aloud.</span></div></div>
-      <div class="li"><div class="ic">📊</div><div><b>Mac Stats add-on</b><span>Live RAM, CPU, network speed, battery and disk space. Also as a MacBook Center widget (Small and Medium) in Notification Center.</span></div></div>
-      <div class="li"><div class="ic">🎨</div><div><b>Color Themes</b><span>Restyle the notch in Settings → Appearance.</span></div></div>
-      <div class="li"><div class="ic">🔊</div><div><b>Volume &amp; brightness gauge</b><span>Plus a recording indicator beside the notch.</span></div></div>
-      <div class="li"><div class="ic">📸</div><div><b>Screenshot &amp; Record buttons</b><span>Now in the Today tab.</span></div></div>
-      <div class="li"><div class="ic">⌨️</div><div><b>Custom shortcuts</b><span>Reassign hotkeys. ⌃⌥O hides the notch by default; ⌃⌥N opens it.</span></div></div>
-      <div class="li"><div class="ic">✨</div><div><b>Cleaner first launch</b><span>Fresh installs show only Today and AI. Add the rest when you want.</span></div></div>
-      <div class="li"><div class="ic">🛡</div><div><b>VPN ready out of the box</b><span>The Tunnelblick VPN helper is included in the download, so free servers connect without installing anything else.</span></div></div>
-    </div>
-    <span class="eyebrow">What's new in 1.12</span>
-    <h2 style="text-align:left">Updates itself.<br><span class="grad">When you say so.</span></h2>
-    <p style="color:var(--mut);font-size:18px">When a new version is published on GitHub, Notch apple lets you know. Update in one click, or choose Not now. Don't want it checking at all? Turn it off.</p>
-    <div class="list">
-      <div class="li"><div class="ic">⬇️</div><div><b>Built-in updates</b><span>A notification, a badge in Settings and an Update button in the notch. It checks the download is genuine before installing.</span></div></div>
-      <div class="li"><div class="ic">🧰</div><div><b>Tools tab</b><span>Keep Awake, a screen colour picker and a quick calculator.</span></div></div>
-      <div class="li"><div class="ic">🪞</div><div><b>Mirror &amp; World Clock add-ons</b><span>Switch them on in Settings → Modules.</span></div></div>
-      <div class="li"><div class="ic">🔍</div><div><b>File Search &amp; hide shortcut</b><span>Spotlight search in the notch; ⌃⌥O hides the notch completely.</span></div></div>
-    </div>
-  </div>
-  <div class="update-card reveal">
-    <div class="top">⬇️ Update available</div>
-    <p>Notch apple 1.14.5 is ready. Would you like to update?</p>
-    <div class="row"><button class="btn ghost sm" onclick="this.closest('.update-card').querySelector('.top').textContent='👍 Skipped this version'">Not now</button><button class="btn sm" id="updBtn">Update</button></div>
-    <div class="notes"><b style="color:var(--tx)">Release notes</b><ul><li>Downloaded from GitHub releases</li><li>Settings and data are kept</li><li>Turn off automatic checks any time</li></ul></div>
-  </div>
+<section id="new"><div class="wrap">
+  <div class="head reveal"><span class="eyebrow">What's new</span><h2>Always <span class="grad">getting better.</span></h2><p>Updates arrive in the app: a notification, an Update button in the notch, and Update or Not now in Settings.</p></div>
+  <div class="timeline" id="timeline"></div>
 </div></section>
 
-<section id="privacy" style="background:linear-gradient(var(--bg),var(--bg2),var(--bg))"><div class="wrap">
-  <div class="head reveal"><span class="eyebrow">Private by design</span><h2>Nothing leaves your Mac<br><span class="grad">unless you ask.</span></h2></div>
-  <div class="pgrid">
-    <div class="pcard reveal"><h3>No account, no tracking</h3><p>There's nothing to sign up for and no analytics. Your notes, clipboard and chats stay on your Mac.</p></div>
-    <div class="pcard reveal"><h3>Your AI, your key</h3><p>Chats go only to the provider you pick, with your own free or paid key. Ollama keeps everything offline.</p></div>
-    <div class="pcard reveal"><h3>Encrypted by default</h3><p>Messenger rooms are end-to-end encrypted. Keys and face templates live in the macOS Keychain.</p></div>
-    <div class="pcard reveal"><h3>Every module optional</h3><p>Turn off what you don't use and it stops running. Permissions are only asked for when a feature needs them.</p></div>
-  </div>
-</div></section>
-
-<section id="install"><div class="wrap">
-  <div class="install reveal">
-    <span class="eyebrow">Get started</span>
-    <h2>Install <span class="grad">Notch apple</span></h2>
-    <p style="color:var(--mut)">Free for macOS 14 Sonoma or newer, on any Mac (notch or not).</p>
+<section id="download"><div class="wrap">
+  <div class="install dl reveal">
+    <span class="eyebrow">Download</span>
+    <p class="ver" id="dlVer">Latest version · <b>Notch apple 1.15.0</b></p>
+    <div class="big">Download for <span class="grad">macOS</span></div>
+    <div class="cta">
+      <a class="btn" id="dlBtn" href="https://github.com/AdityaJainDXB/NotchApples/releases/latest"><svg aria-hidden="true"><use href="#dl"/></svg> <span>Download for macOS</span></a>
+      <a class="btn ghost" href="https://github.com/AdityaJainDXB/NotchApples" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#gh"/></svg> View on GitHub</a>
+    </div>
+    <div class="facts"><span id="dlArch">Apple silicon and Intel</span><span>macOS 14 Sonoma or newer</span><span id="dlSize">DMG</span><span>Free · MIT licence</span></div>
     <div class="steps">
-      <div class="step"><b>1</b><p><strong style="color:var(--tx)">Download the DMG</strong> from the latest GitHub release, or use Homebrew below.</p></div>
-      <div class="step"><b>2</b><p><strong style="color:var(--tx)">Drag it to Applications</strong> and open it. macOS may ask you to confirm the first launch.</p></div>
-      <div class="step"><b>3</b><p><strong style="color:var(--tx)">Click the notch</strong> or press ⌘E. Pick your modules in Settings.</p></div>
+      <div class="step"><b>1</b><p><strong style="color:var(--tx)">Open the DMG</strong> and drag Notch apple into Applications.</p></div>
+      <div class="step"><b>2</b><p><strong style="color:var(--tx)">Open it.</strong> It isn't notarized by Apple, so the first time right-click → Open (or Privacy &amp; Security → Open Anyway).</p></div>
+      <div class="step"><b>3</b><p><strong style="color:var(--tx)">Press ⌃⌥N</strong> or click the notch. Screen Recording is asked for the first time you capture.</p></div>
     </div>
-    <pre><button class="copy" onclick="cp(this)">Copy</button><code id="brew"><span class="c"># with Homebrew</span>
+    <pre><button class="copy" onclick="cp(this)">Copy</button><code id="brew"><span class="c"># or with Homebrew</span>
 brew tap adityajaindxb/notchapples https://github.com/AdityaJainDXB/NotchApples
 brew install --cask notch-apple</code></pre>
-    <div class="cta">
-      <a class="btn" href="https://github.com/AdityaJainDXB/NotchApples/releases/latest"><svg><use href="#dl"/></svg> Download latest DMG</a>
-      <a class="btn ghost" href="https://github.com/AdityaJainDXB/NotchApples#want-a-lighter-version" target="_blank" rel="noopener">Want a lighter version?</a>
-    </div>
-    <p class="note">Notch apple is ad-hoc signed (not notarized by Apple), so the first time you open it you may need to right-click → Open.</p>
-    <div class="stack"><span>Swift</span><span>SwiftUI</span><span>AppKit</span><span>ScreenCaptureKit</span><span>Vision</span><span>CryptoKit</span><span>Core Audio</span><span>MIT licence</span></div>
+    <p class="note">Also on Windows: <a style="color:var(--p3)" href="https://github.com/AdityaJainDXB/NotchApples/releases/tag/windows-latest">download Notch apple for Windows</a>.</p>
   </div>
 </div></section>
 
-<section id="faq" style="padding-top:40px"><div class="wrap">
+<section id="donate"><div class="wrap">
+  <div class="head reveal"><span class="eyebrow">Support</span><h2>Like <span class="grad">Notch apple?</span></h2><p>Notch apple is an independent project by a high school developer. It's free, and donating is entirely optional. If you find it useful, you can support continued development.</p></div>
+  <div class="duo">
+    <div class="card reveal">
+      <h3>💜 Donate</h3>
+      <p>Optional support, any amount, in Litecoin (LTC). It doesn't unlock anything; it just helps keep Notch apple going.</p>
+      <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+        <div class="qr" id="donateQr" role="img" aria-label="QR code for the Litecoin donation address"></div>
+        <div style="flex:1;min-width:220px">
+          <div class="addr"><code id="ltcAddr">ltc1qymlmvkdmvpk5f90esthzgwaw6w0tuzq6tdr6kf</code><button id="copyAddr">Copy</button></div>
+          <a class="btn sm donate" href="litecoin:ltc1qymlmvkdmvpk5f90esthzgwaw6w0tuzq6tdr6kf">Open in my wallet</a>
+        </div>
+      </div>
+    </div>
+    <div class="card reveal">
+      <h3>🔑 Get Pro</h3>
+      <p>Product access: a one-time key that unlocks the Pro features on your Mac, for $1 in Litecoin or free with a promo code.</p>
+      <div class="cta"><a class="btn" href="pro.html">Get Pro</a></div>
+      <h3 style="margin-top:26px">⭐ Star on GitHub</h3>
+      <p>Free, and it helps other people find Notch apple.</p>
+      <div class="cta"><a class="btn ghost" href="https://github.com/AdityaJainDXB/NotchApples" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#gh"/></svg> GitHub</a></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="github" style="padding-top:20px"><div class="wrap">
+  <div class="head reveal"><span class="eyebrow">Open source</span><h2>Built in <span class="grad">the open.</span></h2><p>Swift, SwiftUI and AppKit under the MIT licence. Read the code, report a bug, or build it yourself.</p></div>
+  <div class="gh">
+    <a href="https://github.com/AdityaJainDXB/NotchApples" target="_blank" rel="noopener"><b>Source code</b><span>Everything, including the screenshot script and tests.</span></a>
+    <a href="https://github.com/AdityaJainDXB/NotchApples/issues" target="_blank" rel="noopener"><b>Report an issue</b><span>Bugs, ideas and payment help.</span></a>
+    <a href="https://github.com/AdityaJainDXB/NotchApples#readme" target="_blank" rel="noopener"><b>Documentation</b><span>Install, permissions, providers, troubleshooting.</span></a>
+  </div>
+</div></section>
+
+<section id="faq"><div class="wrap">
   <div class="head reveal"><span class="eyebrow">FAQ</span><h2>Questions</h2></div>
   <div class="faq reveal">
     <details><summary>Does it work on Macs without a notch?</summary><p>Yes. On Macs without a notch, Notch apple shows a small pill at the top centre of the screen that works exactly the same way.</p></details>
     <details><summary>Is it really free?</summary><p>Yes, and open source under the MIT licence. The AI features use free providers by default (Gemini, Groq, OpenRouter's free models, or Ollama on your Mac). Paid providers are optional and use your own key.</p></details>
-    <details><summary>How do I open and close it?</summary><p>Click the notch, press <code>⌘E</code> in any app, or drag a file onto it. Press <code>Esc</code> or click elsewhere to close. You can also turn on "open on hover" in Settings → General.</p></details>
+    <details><summary>How do I open and close it?</summary><p>Click the notch, press <code>⌃⌥N</code> in any app (<code>⌘E</code> if you used Notch apple before 1.13), or drag a file onto it. Press <code>Esc</code> or click elsewhere to close. You can also turn on "open on hover" in Settings → General.</p></details>
     <details><summary>Why does window snapping need Accessibility?</summary><p>Moving other apps' windows is only possible through macOS Accessibility. Notch apple uses it just to read and set window positions. Turn it on in System Settings → Privacy &amp; Security → Accessibility.</p></details>
     <details><summary>How do updates work?</summary><p>Notch apple asks GitHub for the latest release. If there's a newer one you'll see "Update available". Choose Update or Not now, or turn off automatic checks in Settings → Updates.</p></details>
     <details><summary>Can I make it smaller?</summary><p>Turn off modules you don't need in Settings → Modules. Older, smaller builds are listed in the <a style="color:var(--p3)" href="https://github.com/AdityaJainDXB/NotchApples#want-a-lighter-version">README</a>.</p></details>
+    <details><summary>What does capture need?</summary><p>Screen Recording permission, asked the first time you press <code>⌃⌥S</code>. macOS applies it after Notch apple restarts. Reading selected text needs Accessibility; you can always copy text and paste it instead.</p></details>
+    <details><summary>Which AI should I use?</summary><p>Google Gemini is free and reads images. For complete privacy, install Ollama and run <code>ollama pull gemma3:4b</code>: answers are made on your Mac, offline. Settings → AI → Test connection checks your setup.</p></details>
   </div>
 </div></section>
 
+</main>
+
 <footer><div class="wrap">
-  <a href="#" class="logo"><img src="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/icon.png" alt=""> Notch apple</a>
-  <div style="display:flex;gap:22px;flex-wrap:wrap">
-    <a href="https://github.com/AdityaJainDXB/NotchApples" target="_blank" rel="noopener">GitHub</a>
-    <a href="https://github.com/AdityaJainDXB/NotchApples/releases" target="_blank" rel="noopener">Releases</a>
-    <a href="https://github.com/AdityaJainDXB/NotchApples/issues" target="_blank" rel="noopener">Report an issue</a>
-    <a href="https://github.com/AdityaJainDXB/NotchApples#donate-" target="_blank" rel="noopener">Donate 💜</a>
-    <span>MIT licence · Made with 💜</span>
+  <div class="foot">
+    <div class="brand"><a href="#top" class="logo"><img src="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/icon.png" alt=""> Notch apple</a><p>AI, right where you need it. Free and open source for macOS.</p></div>
+    <div><h4>Product</h4><ul><li><a href="#download">Download</a></li><li><a href="#new">What's New</a></li><li><a href="pro.html">Get Pro</a></li><li><a href="#screenshots">Screenshots</a></li></ul></div>
+    <div><h4>Project</h4><ul><li><a href="https://github.com/AdityaJainDXB/NotchApples" target="_blank" rel="noopener">GitHub</a></li><li><a href="https://github.com/AdityaJainDXB/NotchApples#readme" target="_blank" rel="noopener">Documentation</a></li><li><a href="https://github.com/AdityaJainDXB/NotchApples/releases" target="_blank" rel="noopener">Releases</a></li><li><a href="https://github.com/AdityaJainDXB/NotchApples/issues" target="_blank" rel="noopener">Report an issue</a></li></ul></div>
+    <div><h4>About</h4><ul><li><a href="#donate">Donate 💜</a></li><li><a href="#privacy">Privacy</a></li><li><a href="https://github.com/AdityaJainDXB/NotchApples/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a></li></ul></div>
   </div>
+  <div class="footbar"><span id="footVer">Notch apple 1.15.0</span><span>Made with 💜 by a high school developer</span></div>
 </div></footer>
 
-<div class="lb" id="lb"><img alt=""></div>
+<section class="the-end" aria-label="End of page"><div class="wrap">
+  <h2>That's <span class="grad">everything.</span></h2>
+  <p>You've reached the end. Keep scrolling and Notch apple takes you back to the start.</p>
+  <button class="loop" id="loop"><span class="ring" id="loopRing"><div>↑</div></span><span id="loopText">Back to the start</span></button>
+</div></section>
+
+<div class="sticky" id="sticky" role="navigation" aria-label="Quick links"><a class="primary" href="#download">Download</a><a href="https://github.com/AdityaJainDXB/NotchApples" target="_blank" rel="noopener">GitHub</a><a href="#donate">Donate</a></div>
+<div class="lb" id="lb" role="dialog" aria-label="Screenshot"><img alt=""></div>
 
 <script>
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
@@ -655,39 +894,42 @@ function tick(){const now=new Date();$('#clocks').innerHTML=cities.map(([n,z])=>
 tick();setInterval(tick,10000);
 
 /* gallery */
-const R='https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/screenshots/';
+const R='https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/screenshots/',L='assets/screenshots/';
 const shots=[
+ ['AI','ai-empty','AI','Capture, paste, selected text, or ask',1],['AI','capture-overlay','Capture','Drag over anything on screen',1],['AI','ai-input','Pick an action','Suggested from a look at the text',1],
+ ['AI','ai-result','Answer','Readable maths, streamed in',1],['AI','follow-up','Follow-ups','The image is remembered',1],['AI','code-analysis','Code','Explain and fix errors',1],
+ ['AI','history','History','Search, reopen, export',1],['AI','settings-ai','AI settings','Providers, Test connection, privacy',1],['Get Pro','pro','Unlock Pro','In the notch',1],['Notch','f1','F1','Live timing, schedule, standings',1],
  ['Notch','nowplaying','Now Playing','Any app · album cover · controls'],['Notch','island-music','Music beside the notch','Album cover and live bars'],['Notch','island-charging','Charging','Time to full, in words'],
  ['Notch','voice-notes','Voice Notes','Pro · transcribed on your Mac'],['Notch','screen-time','Screen Time','Pro · limits and Focus Blocker'],['Notch','quick-add','Quick Add','Pro · Calendar and Reminders'],
- ['Notch','timer','Timer','Countdown and stopwatch'],['Notch','f1','F1','Live timing, schedule, standings'],['Notch','notch-update','Update','A new release, one click away'],['Notch','live','Live','Scores and tracking'],['Notch','devices','Devices','Accessory battery, mic and camera'],
+ ['Notch','timer','Timer','Countdown and stopwatch'],['Notch','notch-update','Update','A new release, one click away'],['Notch','live','Live','Scores and tracking'],['Notch','devices','Devices','Accessory battery, mic and camera'],
  ['Notch','notifications','Notifications','Reply to iMessages'],['Notch','plugins','Plugins','Widgets from any script'],['Notch','snippets','Snippets','Paste saved text anywhere'],
  ['Settings','settings-extras','Notch Extras','What shows beside the notch'],['Settings','settings-backup','Backup & Sync','Google account, iCloud, backup files'],['Settings','settings-license','Sign in','Pro unlocked on every Mac'],
- ['Notch','today','Today','Weather, events and battery'],['Notch','claude','AI','Free providers, screen-aware'],['Notch','windows','Windows','Snap, tile and save layouts'],
+ ['Notch','today','Today','Weather, events and battery'],['Notch','windows','Windows','Snap, tile and save layouts'],
  ['Notch','window-snap-zones','Snap zones','Drag a window to the notch'],['Notch','tools','Tools','Keep Awake, colours, calculator'],['Notch','mirror','Mirror','Add-on · camera placeholder shown'],['Notch','world-clock','World Clock','Add-on · cities and time difference'],['Notch','clipboard','Clipboard','Search, pin and filter'],
  ['Notch','notes','Notes','Saved automatically'],['Notch','messenger','Messenger','Anonymous encrypted rooms'],['Notch','focus','Focus','Pomodoro timer'],
  ['Notch','share','Share','AirDrop and PairDrop'],['Notch','shelf','File Shelf','Drop files into the notch'],['Notch','audio','Audio','Per-app volume and EQ'],
  ['Notch','vpn','VPN','Free servers'],
  ['Settings','settings-general','General','Like System Settings'],['Settings','settings-modules','Modules','Every feature is optional'],['Settings','settings-updates','Updates','Update or Not now'],
- ['Settings','settings-ai','AI','Provider, model and keys'],['Settings','settings-ai-history','AI History','Every chat, with its model'],['Settings','settings-windows','Windows','Zones, shortcuts, gaps'],
+ ['Settings','settings-windows','Windows','Zones, shortcuts, gaps'],
  ['Settings','settings-permissions','Permissions','Everything in one place'],['Settings','settings-authentication','Face unlock','Face ID-style'],['Settings','settings-clipboard','Clipboard','History settings'],
  ['Settings','settings-messenger','Messenger','Handle and notifications'],['Settings','settings-audio','Audio','Built-in engine'],['Settings','settings-vpn','VPN','Profiles and servers'],['Settings','settings-widget','Widget','Location or a city'],['Settings','settings-focus','Focus','Session lengths'],,
  ['Get Pro','get-pro-ltc','Pay with Litecoin','$1, or $2 to support a high school developer'],['Get Pro','get-pro-promo','Promo code','A free key, once per code'],['Get Pro','get-pro-key','Your product key','Made instantly, works on one Mac']
 ];
-const cats=['All','Notch','Settings','Get Pro'];
-cats.forEach((c,i)=>{const b=document.createElement('button');b.textContent=c;b.onclick=()=>{$$('#gtabs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');render(c)};if(!i)b.classList.add('on');$('#gtabs').appendChild(b)});
+const cats=['AI','Notch','Settings','Get Pro','All'];
+cats.forEach((c,i)=>{const b=document.createElement('button');b.textContent=c;b.setAttribute('role','tab');b.onclick=()=>{$$('#gtabs button').forEach(x=>{x.classList.remove('on');x.setAttribute('aria-selected','false')});b.classList.add('on');b.setAttribute('aria-selected','true');render(c)};if(!i){b.classList.add('on');b.setAttribute('aria-selected','true')}$('#gtabs').appendChild(b)});
 const PV={
  __translator:`<div class="pn"><div class="langs" style="margin-bottom:8px"><button>English</button><button class="on">Spanish</button><button>Hindi</button><button>Arabic</button></div><div class="row2"><div><small>English</small><b>Hello, how are you?</b></div><div><small>Spanish</small><b>Hola, ¿cómo estás?</b><br><span style="font-size:11px;color:var(--p3)">🔊 Read aloud</span></div></div></div>`,
  __stats:`<div class="pn"><div class="row2"><div><small>🧠 RAM</small><b>8.4 GB</b><div class="meter"><i style="width:52%"></i></div></div><div><small>⚙️ CPU</small><b>23%</b><div class="meter"><i style="width:23%"></i></div></div><div><small>🌐 Network</small><b>↓ 4.2 MB/s</b></div><div><small>💾 Disk free</small><b>312 GB</b><div class="meter"><i style="width:34%"></i></div></div></div></div>`,
  __themes:`<div class="pn"><small style="margin-bottom:8px">Settings → Appearance</small><div class="sw"><i style="background:linear-gradient(135deg,#b67cff,#7c3aed)"></i><i style="background:linear-gradient(135deg,#38bdf8,#0284c7)"></i><i style="background:linear-gradient(135deg,#fb923c,#e11d48)"></i><i style="background:linear-gradient(135deg,#4ade80,#15803d)"></i><i style="background:linear-gradient(135deg,#f472b6,#be185d)"></i></div></div>`};
 function render(c){$('#gal').innerHTML=shots.filter(s=>c==='All'||s[0]===c).map(s=>s[1].startsWith('__')
   ?`<figure class="shot pv"><div class="prev">${PV[s[1]]}</div><figcaption>${s[2]} <span class="tag gn" style="display:inline-block;font-size:10.5px;padding:1px 9px;border-radius:99px;border:1px solid #22c55e;margin-left:6px">NEWLY ADDED</span><span>${s[3]} · illustration</span></figcaption></figure>`
-  :`<figure class="shot" data-src="${R+s[1]}.png"><img loading="lazy" src="${R+s[1]}.png" alt="${s[2]}"><figcaption>${s[2]}<span>${s[3]}</span></figcaption></figure>`).join('');
+  :`<figure class="shot" data-src="${s[4]?L+s[1]+'.webp':R+s[1]+'.png'}"><img loading="lazy" src="${s[4]?L+s[1]+'.webp':R+s[1]+'.png'}" alt="${s[2]}: ${s[3]}"><figcaption>${s[2]}<span>${s[3]}</span></figcaption></figure>`).join('');
   $$('.shot[data-src]').forEach(f=>f.onclick=()=>{$('#lb img').src=f.dataset.src;$('#lb').classList.add('on')})}
-render('All');
+render('AI');
 $('#lb').onclick=()=>$('#lb').classList.remove('on');
 
 /* update card demo */
-$('#updBtn').onclick=function(){const top=this.closest('.update-card').querySelector('.top');let p=0;this.disabled=true;const t=setInterval(()=>{p+=7;top.textContent=p<100?`⬇️ Downloading… ${p}%`:'✅ Updated — Notch apple reopened';if(p>=100){clearInterval(t)}},90)};
+if($('#updBtn'))$('#updBtn').onclick=function(){const top=this.closest('.update-card').querySelector('.top');let p=0;this.disabled=true;const t=setInterval(()=>{p+=7;top.textContent=p<100?`⬇️ Downloading… ${p}%`:'✅ Updated — Notch apple reopened';if(p>=100){clearInterval(t)}},90)};
 
 /* reveal on scroll */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
@@ -695,6 +937,76 @@ $$('.reveal').forEach(el=>io.observe(el));
 setTimeout(()=>$$('.reveal').forEach(el=>el.classList.add('in')),2500); // never leave content hidden
 
 function cp(b){navigator.clipboard&&navigator.clipboard.writeText('brew tap adityajaindxb/notchapples https://github.com/AdityaJainDXB/NotchApples\nbrew install --cask notch-apple');b.textContent='Copied!';setTimeout(()=>b.textContent='Copy',1500)}
+
+/* ===== 1.15 story ===== */
+$('#moreTools').onclick=e=>{const b=$('#bento'),open=b.classList.toggle('collapsed');e.target.textContent=open?'Show all the tools':'Show fewer';e.target.setAttribute('aria-expanded',!open);if(open)$('#features').scrollIntoView()};
+// Mobile menu.
+const menuBtn=$('#menuBtn'),mm=$('#mobileMenu');
+menuBtn.onclick=()=>{const on=mm.classList.toggle('on');menuBtn.setAttribute('aria-expanded',on);menuBtn.textContent=on?'✕':'☰'};
+$$('#mobileMenu a').forEach(a=>a.addEventListener('click',()=>{mm.classList.remove('on');menuBtn.setAttribute('aria-expanded',false);menuBtn.textContent='☰'}));
+
+// Screenshots appear as you scroll through the story.
+const fio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');fio.unobserve(e.target)}}),{threshold:.15});
+$$('.story .frame').forEach(f=>fio.observe(f));
+setTimeout(()=>$$('.story .frame').forEach(f=>f.classList.add('in')),4000);
+$$('.story figure.frame img').forEach(img=>{img.style.cursor='zoom-in';img.onclick=()=>{$('#lb img').src=img.src;$('#lb img').alt=img.alt;$('#lb').classList.add('on')}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')$('#lb').classList.remove('on')});
+
+// The URL follows the section you're reading.
+const secs=$$('main section[id], #download, #donate, #new, #screenshots, #pro, #github');
+const hio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)history.replaceState(null,'','#'+e.target.id)}),{rootMargin:'-45% 0px -54% 0px'});
+secs.forEach(s=>hio.observe(s));
+
+// Sticky Download · GitHub · Donate after the hero, hidden near the download and donate sections.
+const sticky=$('#sticky');let pastHero=false,nearCTA=false;
+new IntersectionObserver(es=>{pastHero=!es[0].isIntersecting;sticky.classList.toggle('on',pastHero&&!nearCTA)}).observe($('.hero'));
+const cio=new IntersectionObserver(es=>{nearCTA=es.some(e=>e.isIntersecting)||[...document.querySelectorAll('#download,#donate,footer,.the-end')].some(el=>{const r=el.getBoundingClientRect();return r.top<innerHeight&&r.bottom>0});sticky.classList.toggle('on',pastHero&&!nearCTA)});
+['#download','#donate','footer','.the-end'].forEach(s=>cio.observe($(s)));
+
+// Donation address: copy + QR.
+$('#copyAddr').onclick=e=>{navigator.clipboard&&navigator.clipboard.writeText($('#ltcAddr').textContent);e.target.textContent='Copied';setTimeout(()=>e.target.textContent='Copy',1500)};
+function qr(){if(window.QRCode)new QRCode($('#donateQr'),{text:'litecoin:'+$('#ltcAddr').textContent,width:116,height:116,correctLevel:QRCode.CorrectLevel.M})}
+
+// What's New, newest first; older releases folded away.
+const REL=[
+ ['1.15.0','3 October 2026','See it, capture it, understand it',['Capture anything with ⌃⌥S: a region on the display under the pointer (Retina-sharp), the whole display or every display','Paste or drop an image or PDF, or use copied or selected text','One-click modes: Solve, Explain, Explain simply, Answer only, Hint, Summarize, Translate, Extract text, Rewrite, Code, Ask','Streaming answers with Stop, Retry, Edit, Copy and export; follow-ups remember the image','Readable maths, code blocks and tables; local, searchable history with images','Test connection, a vision badge and a Privacy summary in Settings; F1 favourite team'],'ai-result'],
+ ['1.14.6','2 October 2026','Sports',['Follow your team: next match, every competition, results and the live score beside the notch','Fixtures and scores for the big football leagues, the NBA, NFL, MLB and NHL']],
+ ['1.14.5','2 October 2026','F1 in the notch',['Live running order, then the full classification with gaps, tyres and lap times','Weekend schedule with a countdown, standings, and a followed driver beside the notch'],'f1'],
+ ['1.14.4','1 October 2026','Updates that install',['Update downloads, checks and installs the new version, then relaunches']],
+ ['1.14.2','1 October 2026','Get Pro',['A product key for $1 in Litecoin (or $2 to cover fees and support the developer), or free with a promo code']],
+ ['1.14.1','30 September 2026','Now Playing like the iPhone',['Album art beside the notch and bars that move with the song; Charging with time to full','Sign in with Google to bring your setup and Pro to any Mac']],
+ ['1.14.0','30 September 2026','22 new features',['Timer, Snippets, Shortcuts, Devices, Live scores, Alerts, Plugins, Voice Notes, Screen Time and Quick Add']],
+ ['1.13.5','30 September 2026','Browser and Launcher',['A browser and an app launcher in the notch; smarter free-AI fallback']],
+ ['1.13.0','29 September 2026','Access code, Translator, Mac Stats, themes',[]],
+ ['1.12.0','29 September 2026','File Search and invisibility',[]],
+ ['1.11.0','29 September 2026','Window manager',[]],
+ ['1.10.0','28 September 2026','Screen-aware AI',[]],
+ ['1.9.0','28 September 2026','Free AI',[]],
+];
+const relHTML=r=>`<article class="rel"><div class="v"><b>Notch apple ${r[0]}</b><span>${r[1]}</span></div><h3>${r[2]}</h3>${r[3].length?`<ul>${r[3].map(i=>`<li>${i}</li>`).join('')}</ul>`:''}${r[4]?`<img loading="lazy" src="assets/screenshots/${r[4]}.webp" alt="${r[2]} in Notch apple ${r[0]}">`:''}</article>`;
+$('#timeline').innerHTML=REL.slice(0,4).map(relHTML).join('')+`<details class="older"><summary>Earlier releases (${REL.length-4})</summary>${REL.slice(4).map(relHTML).join('')}<p class="small" style="padding-left:42px">Full notes: <a style="color:var(--p3)" href="https://github.com/AdityaJainDXB/NotchApples/releases" target="_blank" rel="noopener">GitHub releases</a></p></details>`;
+
+// Latest release, straight from GitHub (falls back to the text above).
+fetch('https://api.github.com/repos/AdityaJainDXB/NotchApples/releases/latest').then(r=>r.ok?r.json():null).then(j=>{
+  if(!j)return;const v=(j.tag_name||'').replace(/^v/,'');const dmg=(j.assets||[]).find(a=>/\.dmg$/i.test(a.name));
+  if(v){$('#dlVer').innerHTML='Latest version · <b>Notch apple '+v+'</b>'+(j.published_at?' · '+new Date(j.published_at).toLocaleDateString(undefined,{day:'numeric',month:'long',year:'numeric'}):'');$('#footVer').textContent='Notch apple '+v}
+  if(dmg){$('#dlBtn').href=dmg.browser_download_url;$('#dlSize').textContent='DMG · '+(dmg.size/1048576).toFixed(0)+' MB'}
+}).catch(()=>{});
+
+// The end: scrolling on past the bottom loops back to the start, on purpose.
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;let push=0,looping=false;
+function atBottom(){return innerHeight+scrollY>=document.documentElement.scrollHeight-4}
+function backToStart(){looping=true;$('#loopText').textContent='Back to the start…';scrollTo({top:0,behavior:reduce?'auto':'smooth'});setTimeout(()=>{looping=false;push=0;setRing();$('#loopText').textContent='Back to the start'},1200)}
+function setRing(){$('#loopRing').style.setProperty('--deg',Math.min(push/600,1)*360+'deg')}
+$('#loop').onclick=backToStart;
+if(!reduce){
+  addEventListener('wheel',e=>{if(looping)return;if(atBottom()&&e.deltaY>0){push+=e.deltaY;setRing();$('#loopText').textContent='Keep scrolling to start again';if(push>600)backToStart()}else if(e.deltaY<0&&push){push=0;setRing();$('#loopText').textContent='Back to the start'}},{passive:true});
+  let ty=0;addEventListener('touchstart',e=>{ty=e.touches[0].clientY},{passive:true});
+  addEventListener('touchmove',e=>{if(looping||!atBottom())return;const d=ty-e.touches[0].clientY;if(d>0){push=d*3;setRing();if(push>600)backToStart()}},{passive:true});
+  addEventListener('touchend',()=>{if(!looping){push=0;setRing()}},{passive:true});
+}
+
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer onload="qr()"></script>
 </body>
 </html>

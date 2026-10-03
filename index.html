@@ -444,7 +444,7 @@ nav .links a.donate{color:var(--p3)}
 <header class="hero" id="top">
   <div class="bgglow"></div><div class="gridbg"></div>
   <div class="wrap">
-    <a class="badge" href="#new"><b>New</b> 1.15.1: match alerts, cricket and Notch Games →</a>
+    <a class="badge" href="#new"><b>New</b> 1.15.2: window capture, charts and a full view →</a>
     <h1><span class="tagline">AI, right where</span><span class="grad">you need it.</span></h1>
     <p class="sub">Notch apple turns your MacBook's notch into an AI command center. Press <span class="kbd">⌃⌥S</span>, drag over anything on screen, and solve, explain, translate or summarize it in a second. Plus thirty more tools, all in the notch.</p>
     <div class="cta">
@@ -587,7 +587,7 @@ nav .links a.donate{color:var(--p3)}
     <span class="eyebrow">Capture anything</span>
     <h2>See it. <span class="grad">Snap it.</span></h2>
     <p>Press <b>⌃⌥S</b> from any app, even full screen. The display under your pointer freezes; drag a box around a question, an error or a chart. Click for the whole display, press Esc or right-click to cancel.</p>
-    <ul><li>Retina-sharp: the crop keeps every pixel, with the exact size shown as you drag</li><li>The display under your pointer, every display at once, or the whole screen</li><li>Or paste an image, drop an image or PDF, or use the text you copied or selected</li></ul>
+    <ul><li>Retina-sharp: the crop keeps every pixel, with the exact size shown as you drag</li><li>A single window (even if others overlap it), the display under your pointer, or every display at once</li><li>Or paste an image, drop an image or PDF, or use the text you copied or selected</li></ul>
   </div>
   <figure class="frame"><img loading="lazy" src="assets/screenshots/capture-overlay.webp" width="1600" height="1041" alt="The capture overlay: the screen is dimmed except a selected box around a maths question, with its size, 1800 by 764 pixels, shown at the corner"><figcaption>The capture overlay, selecting one question from a worksheet.</figcaption></figure>
 </div></section>
@@ -596,7 +596,7 @@ nav .links a.donate{color:var(--p3)}
   <div class="ch-text reveal">
     <span class="eyebrow">Understand instantly</span>
     <h2>One click, <span class="grad">the right answer.</span></h2>
-    <p>Pick what you want done. Notch apple takes a quick look at the text on your Mac first and suggests the likely action: Solve for maths, Code for an error, Translate for another language.</p>
+    <p>Pick what you want done. Notch apple takes a quick look at the text on your Mac first and suggests the likely action: Solve for maths, Code for an error, Translate for another language, Explain for a chart.</p>
     <div class="modes" aria-label="Modes"><span>Solve</span><span>Explain</span><span>Explain simply</span><span>Answer only</span><span>Hint</span><span>Summarize</span><span>Translate</span><span class="local">Extract text · on your Mac</span><span>Rewrite</span><span>Code</span><span>Ask</span></div>
     <p>Answers stream in as they're written, with readable maths (not raw LaTeX), code blocks with Copy, and real tables.</p>
   </div>
@@ -768,7 +768,7 @@ nav .links a.donate{color:var(--p3)}
 <section id="download"><div class="wrap">
   <div class="install dl reveal">
     <span class="eyebrow">Download</span>
-    <p class="ver" id="dlVer">Latest version · <b>Notch apple 1.15.1</b></p>
+    <p class="ver" id="dlVer">Latest version · <b>Notch apple 1.15.2</b></p>
     <div class="big">Download for <span class="grad">macOS</span></div>
     <div class="cta">
       <a class="btn" id="dlBtn" href="https://github.com/AdityaJainDXB/NotchApples/releases/latest"><svg aria-hidden="true"><use href="#dl"/></svg> <span>Download for macOS</span></a>
@@ -844,7 +844,7 @@ brew install --cask notch-apple</code></pre>
     <div><h4>Project</h4><ul><li><a href="https://github.com/AdityaJainDXB/NotchApples" target="_blank" rel="noopener">GitHub</a></li><li><a href="https://github.com/AdityaJainDXB/NotchApples#readme" target="_blank" rel="noopener">Documentation</a></li><li><a href="https://github.com/AdityaJainDXB/NotchApples/releases" target="_blank" rel="noopener">Releases</a></li><li><a href="https://github.com/AdityaJainDXB/NotchApples/issues" target="_blank" rel="noopener">Report an issue</a></li></ul></div>
     <div><h4>About</h4><ul><li><a href="#donate">Donate 💜</a></li><li><a href="#privacy">Privacy</a></li><li><a href="https://github.com/AdityaJainDXB/NotchApples/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a></li></ul></div>
   </div>
-  <div class="footbar"><span id="footVer">Notch apple 1.15.1</span><span>Made with 💜 by a high school developer</span></div>
+  <div class="footbar"><span id="footVer">Notch apple 1.15.2</span><span>Made with 💜 by a high school developer</span></div>
 </div></footer>
 
 <section class="the-end" aria-label="End of page"><div class="wrap">
@@ -985,6 +985,7 @@ function qr(){if(window.QRCode)new QRCode($('#donateQr'),{text:'litecoin:'+$('#l
 
 // What's New, newest first; older releases folded away.
 const REL=[
+ ['1.15.2','3 October 2026','Windows, charts and a full view',['Capture a single window, even if others overlap it','Charts and tables are recognised, with Explain, Summarize and Extract suggested','Open full view: a resizable window for long answers','First-run AI setup with Test connection','AI temperature, and System, Light or Dark for the Settings window']],
  ['1.15.1','3 October 2026','Match day, cricket and games',['Sports match alerts: 30 minutes before kick-off, plus a flash on goals and at full time','League tables, and match details with goalscorers, cards and lineups','National teams, India cricket and the IPL','Notch Games: 2048, Snake and a reaction test','Fixed: an old Update available notification could stay after updating'],'sports-detail'],
  ['1.15.0','3 October 2026','See it, capture it, understand it',['Capture anything with ⌃⌥S: a region on the display under the pointer (Retina-sharp), the whole display or every display','Paste or drop an image or PDF, or use copied or selected text','One-click modes: Solve, Explain, Explain simply, Answer only, Hint, Summarize, Translate, Extract text, Rewrite, Code, Ask','Streaming answers with Stop, Retry, Edit, Copy and export; follow-ups remember the image','Readable maths, code blocks and tables; local, searchable history with images','Test connection, a vision badge and a Privacy summary in Settings; F1 favourite team'],'ai-result'],
  ['1.14.6','2 October 2026','Sports',['Follow your team: next match, every competition, results and the live score beside the notch','Fixtures and scores for the big football leagues, the NBA, NFL, MLB and NHL']],

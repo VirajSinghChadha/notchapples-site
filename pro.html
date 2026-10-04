@@ -83,7 +83,7 @@ footer{border-top:1px solid var(--line2);padding:28px 0 40px;color:var(--dim);fo
 <main>
 <div class="wrap">
   <h1>Free for everyone. <span>Pay once</span> for more.</h1>
-  <p class="lead">No subscriptions, no account, no renewals. Buy a key once and keep it for life, with every 1.x update included. The app has no ads and no tracking in every tier.</p>
+  <p class="lead">No subscriptions, no account, no renewals. Buy a key once and keep it for life, with every future update included. The app has no ads and no tracking in every tier.</p>
 
   <div class="plans">
     <div class="plan">
@@ -148,6 +148,13 @@ footer{border-top:1px solid var(--line2);padding:28px 0 40px;color:var(--dim);fo
           <div class="choice" id="tierChoice">
             <button class="on" data-tier="pro"><b>Pro · $1</b><span>One-time. Every Pro feature.</span></button>
             <button data-tier="ultimate"><b>Ultimate · $5</b><span>Everything, now and as it ships.</span></button>
+          </div>
+          <label>Add a tip? (optional, it goes to a high school developer 💜)</label>
+          <div class="choice" id="tipChoice" style="grid-template-columns:repeat(4,1fr)">
+            <button class="on" data-tip="0"><b>No tip</b></button>
+            <button data-tip="1"><b>+$1</b></button>
+            <button data-tip="3"><b>+$3</b></button>
+            <button data-tip="5"><b>+$5</b></button>
           </div>
           <label for="email">Email (your key is sent here; used only for that and "Lost my key?")</label>
           <input id="email" type="email" placeholder="you@example.com" autocomplete="email">
@@ -222,7 +229,9 @@ footer{border-top:1px solid var(--line2);padding:28px 0 40px;color:var(--dim);fo
 
   <h2>Questions</h2>
   <section class="faq">
-    <h3>Is it really one payment?</h3><p>Yes. Pro is $1 and Ultimate is $5, once. There are no subscriptions, renewals or expiry dates, and every 1.x update is included.</p>
+    <h3>Is it really one payment?</h3><p>Yes. Pro is $1 and Ultimate is $5, once. There are no subscriptions, renewals or expiry dates, and every future update is included, 2.0 and beyond.</p>
+    <h3>Student discount?</h3><p>Students can ask for a free Pro promo code: <a href="https://github.com/AdityaJainDXB/NotchApples/issues/new?labels=payment&title=Student%20promo%20code" style="text-decoration:underline">open a request</a> (no proof needed, just be honest).</p>
+    <h3>Can I pay more?</h3><p>Yes, add a tip at checkout. It all goes to a high school developer, and it's hugely appreciated.</p>
     <h3>How does activation work?</h3><p>Your key is signed by our license server. The app checks the signature on your Mac, offline, using a public key built into the app. When you activate, the app tells the server a one-way hash of your Mac (so a key works on up to 3 Macs); nothing else.</p>
     <h3>I have Pro. How do I upgrade?</h3><p>Use the Upgrade tab: paste your Pro key and pay the $4 difference. You get a new Ultimate key; your Pro key keeps working until you replace it.</p>
     <h3>I lost my key</h3><p>Use "Lost my key?" with the email you bought with. Keys are emailed only to that address.</p>
@@ -232,12 +241,12 @@ footer{border-top:1px solid var(--line2);padding:28px 0 40px;color:var(--dim);fo
   </section>
 </div>
 </main>
-<footer><a href="./">Home</a><a href="terms.html">Terms and refunds</a><a href="legacy.html">Classic checkout</a><a href="https://github.com/AdityaJainDXB/NotchApples">GitHub</a></footer>
+<footer><a href="./">Home</a><a href="terms.html">Terms and refunds</a><a href="https://github.com/AdityaJainDXB/NotchApples">GitHub</a></footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
 // The license server (server/license-worker in the app's repo). Also listed in api.json for the app.
-const WORKER = "";
+const WORKER = "https://notchapple-licenses.adityajain1225.workers.dev";
 const $ = s => document.querySelector(s);
 const save = (k, v) => { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, JSON.stringify(v)) } catch {} };
 const load = k => { try { return JSON.parse(localStorage.getItem(k)) } catch { return null } };
@@ -320,7 +329,9 @@ async function startOrder(btn, statusId, body) {
   busy(btn, true); status(statusId, 'Getting your exact amount…');
   try { paying(await api('/order', body)); status(statusId, '') } catch (e) { status(statusId, e.message, 'err') } finally { busy(btn, false) }
 }
-$('#orderBtn').onclick = () => startOrder($('#orderBtn'), '#orderStatus', { tier, email: $('#email').value });
+let tip = 0;
+document.querySelectorAll('#tipChoice button').forEach(b => b.onclick = () => { document.querySelectorAll('#tipChoice button').forEach(x => x.classList.remove('on')); b.classList.add('on'); tip = +b.dataset.tip });
+$('#orderBtn').onclick = () => startOrder($('#orderBtn'), '#orderStatus', { tier, email: $('#email').value, tip });
 $('#upBtn').onclick = () => {
   const k = $('#upKey').value.trim();
   if (!/^ntch-?pro/i.test(k)) return status('#upStatus', 'Paste your whole Pro key (it starts with NTCH-PRO-).', 'err', false);

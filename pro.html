@@ -119,7 +119,8 @@ footer{border-top:1px solid var(--line2);padding:28px 0 40px;color:var(--dim);fo
         <li>Plugin SDK and the community plugin gallery</li>
         <li><code>notch</code> command and scripting, notes and to-dos in iCloud</li>
         <li>Priority support and the beta channel</li>
-        <li class="soon">iPhone and Watch companions</li>
+        <li>iPhone companion (sideload with Sideloadly)</li>
+        <li class="soon">Apple Watch</li>
       </ul>
       <p class="muted" style="font-size:12.5px;margin-top:8px">◷ planned. Already have Pro? Upgrade for $4.</p>
       <button class="btn" data-buy="ultimate" id="ultBtn">Get Ultimate, $5</button>
@@ -258,8 +259,8 @@ const ROWS = [
   ['Live activities'], ['Now Playing, visualizer, timers, battery, AirPods, volume HUD', 1], ['Live scores, followed team, F1 live timing', 1], ['Meeting alerts, download progress, Markets, flight status, more teams', 2], ['Live Activities API, two activities at once', 3],
   ['AI'], ['Ask anything, follow-ups, your own key, Ollama, Apple Intelligence', 1], ['Screen and files, history, web search, personas, slash commands, voice', 2], ['Automations on a schedule', 3],
   ['Productivity'], ['Clipboard history, notes, to-do, file shelf, AirDrop, Text Grab', 1], ['Window snapping, screenshots, Shortcuts, calculator', 1], ['Command palette, text expander, markup, ruler, converter, Reminders', 2], ['notch command and scripting', 3],
-  ['Customization'], ['Light/dark Settings, 14 themes, tab order', 1], ['22 themes, theme editor, Home dashboard, profiles, per-app rules, styles', 2], ['Plugin SDK and gallery', 3],
-  ['Platform'], ['Updates, What\'s New, backup, Privacy dashboard, feedback', 1], ['Sync settings across Macs', 2], ['Notes and to-dos in iCloud, beta channel, priority support', 3], ['iPhone and Watch companions', 'soon3'],
+  ['Customization'], ['Light/dark Settings, 14 themes, tab order', 1], ['Browser video and podcast speed and skip', 2], ['22 themes, theme editor, Home dashboard, profiles, per-app rules, styles', 2], ['Plugin SDK and gallery', 3],
+  ['Platform'], ['Updates, What\'s New, backup, Privacy dashboard, feedback', 1], ['Sync settings across Macs', 2], ['Notes and to-dos in iCloud, beta channel, priority support', 3], ['iPhone companion (sideloaded): send to the notch, status, controls', 3], ['Apple Watch', 'soon3'],
 ];
 $('#cmp').innerHTML = ROWS.map(r => r.length === 1 ? `<tr class="grp"><td colspan="4">${r[0]}</td></tr>` :
   `<tr><td>${r[0]}</td>${[1, 2, 3].map(t => { const v = r[1], soon = typeof v === 'string', min = soon ? +v.slice(-1) : v;

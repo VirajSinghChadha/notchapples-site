@@ -100,11 +100,12 @@ footer{border-top:1px solid var(--line2);padding:28px 0 40px;color:var(--dim);fo
     <div class="plan">
       <h3>Pro</h3><div class="pr">$1<small>once</small></div><p class="sub">Power, depth and polish.</p>
       <ul>
-        <li>Ask AI about your screen (⌃⌥S), selected text, images and PDFs</li>
-        <li>AI history with search and export</li>
-        <li>Messenger, Audio, VPN, Voice Notes, Screen Time, Quick Add</li>
-        <li>Launcher, Snippets, Mirror, Focus timer</li>
-        <li>Meeting alerts, download progress, rain alerts, lyrics, sync across Macs</li>
+        <li>AI about your screen, images and PDFs; web search with sources; personas, slash commands, voice</li>
+        <li>Home dashboard, profiles, per-app rules, command palette (⌃⌥P)</li>
+        <li>Text expander, screenshot markup, ruler, unit and currency converter</li>
+        <li>Markets, live flight status, more teams, week forecast, meeting planner</li>
+        <li>22 themes and a theme editor, resize, gestures, edge zones, styles</li>
+        <li>Messenger, Audio, VPN, Voice Notes, Screen Time, Launcher, Snippets, Mirror, Focus, sync</li>
       </ul>
       <button class="btn" data-buy="pro">Get Pro, $1</button>
     </div>
@@ -113,12 +114,14 @@ footer{border-top:1px solid var(--line2);padding:28px 0 40px;color:var(--dim);fo
       <h3>Ultimate</h3><div class="pr">$5<small>once</small></div><p class="sub">Everything in Pro, plus the platform.</p>
       <ul>
         <li>Everything in Pro</li>
-        <li class="soon">Live Activities API for your own apps and scripts</li>
-        <li class="soon">Plugin SDK and community widgets</li>
-        <li class="soon">iCloud sync of notes and themes; iPhone and Watch companions</li>
-        <li class="soon">Priority support and the beta channel</li>
+        <li>Live Activities API for your own apps and scripts, two activities at once</li>
+        <li>AI automations on a schedule</li>
+        <li>Plugin SDK and the community plugin gallery</li>
+        <li><code>notch</code> command and scripting, notes and to-dos in iCloud</li>
+        <li>Priority support and the beta channel</li>
+        <li class="soon">iPhone and Watch companions</li>
       </ul>
-      <p class="muted" style="font-size:12.5px;margin-top:8px">◷ arrives in upcoming free updates. Already have Pro? Upgrade for $4.</p>
+      <p class="muted" style="font-size:12.5px;margin-top:8px">◷ planned. Already have Pro? Upgrade for $4.</p>
       <button class="btn" data-buy="ultimate" id="ultBtn">Get Ultimate, $5</button>
     </div>
   </div>
@@ -242,12 +245,12 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 // Comparison table
 const ROWS = [
-  ['Notch'], ['Spring animations, hover / click / hotkey, menu bar, launch at login', 1], ['Notch on Macs without a notch', 1], ['Notch size', 'soon2'],
-  ['Live activities'], ['Now Playing, visualizer, timers, battery, AirPods, volume HUD', 1], ['Live scores, followed team, F1 live timing', 1], ['Calendar countdown', 1], ['Meeting alerts with Join', 2], ['Download progress', 2], ['Live Activities API, two at once', 'soon3'],
-  ['AI'], ['Ask anything, follow-ups, copy / regenerate / stop', 1], ['Choose provider, your own key, on-device Ollama', 1], ['Ask about the screen (⌃⌥S) or selected text', 2], ['Images and PDFs', 2], ['History with search and export', 2],
-  ['Productivity'], ['Clipboard history, notes, file shelf, AirDrop', 1], ['Window snapping, screenshots, Shortcuts', 1], ['Launcher, Snippets, Focus timer, Quick Add', 2],
-  ['System and media'], ['CPU/RAM, weather, world clock, caffeine', 1], ['Rain alerts, lyrics, Mirror', 2], ['Messenger, Audio, VPN, Voice Notes, Screen Time', 2],
-  ['Platform'], ['Updates, What\'s New, backup and restore', 1], ['Sync across Macs', 2], ['Plugin SDK, priority support, beta channel', 'soon3'],
+  ['Notch'], ['Spring animations, hover / click / hotkey, menu bar, launch at login', 1], ['Hide in fullscreen apps, hover delay, keyboard control', 1], ['Notch on Macs without a notch', 1], ['Resize, edge trigger zones, tabs per display, custom gestures', 2],
+  ['Live activities'], ['Now Playing, visualizer, timers, battery, AirPods, volume HUD', 1], ['Live scores, followed team, F1 live timing', 1], ['Meeting alerts, download progress, Markets, flight status, more teams', 2], ['Live Activities API, two activities at once', 3],
+  ['AI'], ['Ask anything, follow-ups, your own key, Ollama, Apple Intelligence', 1], ['Screen and files, history, web search, personas, slash commands, voice', 2], ['Automations on a schedule', 3],
+  ['Productivity'], ['Clipboard history, notes, to-do, file shelf, AirDrop, Text Grab', 1], ['Window snapping, screenshots, Shortcuts, calculator', 1], ['Command palette, text expander, markup, ruler, converter, Reminders', 2], ['notch command and scripting', 3],
+  ['Customization'], ['Light/dark Settings, 14 themes, tab order', 1], ['22 themes, theme editor, Home dashboard, profiles, per-app rules, styles', 2], ['Plugin SDK and gallery', 3],
+  ['Platform'], ['Updates, What\'s New, backup, Privacy dashboard, feedback', 1], ['Sync settings across Macs', 2], ['Notes and to-dos in iCloud, beta channel, priority support', 3], ['iPhone and Watch companions', 'soon3'],
 ];
 $('#cmp').innerHTML = ROWS.map(r => r.length === 1 ? `<tr class="grp"><td colspan="4">${r[0]}</td></tr>` :
   `<tr><td>${r[0]}</td>${[1, 2, 3].map(t => { const v = r[1], soon = typeof v === 'string', min = soon ? +v.slice(-1) : v;

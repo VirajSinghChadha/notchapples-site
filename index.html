@@ -770,7 +770,7 @@ nav .links a.donate{color:var(--p3)}
   <div class="ch">
     <figure class="frame"><img loading="lazy" src="assets/screenshots/pro.webp" width="1480" height="840" alt="A Pro tab in the notch, locked: it says what the Launcher does, shows a PRO badge and a field to paste a key, with links to get Pro for one dollar once, recover a lost key or compare tiers"><figcaption>Locked features say what they do and which tier unlocks them.</figcaption></figure>
     <div class="ch-text reveal">
-      <ul><li><b>Pro:</b> ask AI about your screen, images and PDFs, AI history, Messenger, Audio, VPN, Launcher, Snippets, Mirror, Focus, sync and more</li><li><b>Ultimate:</b> everything in Pro plus the platform: Live Activities API, plugin SDK, priority support and the beta channel as they ship</li><li>Your key is signed and checked on your Mac, offline; it works on up to 3 of your Macs and is emailed to you</li></ul>
+      <ul><li><b>Pro:</b> AI about your screen, web search with sources, personas and voice; Home dashboard, profiles, command palette, text expander, markup; Markets, flight status, 22 themes and more</li><li><b>Ultimate:</b> everything in Pro plus the platform: Live Activities API, two activities at once, AI automations, plugin SDK and gallery, scripting, notes sync, beta channel and priority support</li><li>Your key is signed and checked on your Mac, offline; it works on up to 3 of your Macs and is emailed to you</li></ul>
       <div class="cta" style="justify-content:flex-start;margin-top:24px"><a class="btn" href="pro.html">See pricing</a><a class="btn ghost" href="pro.html#promo">I have a promo code</a></div>
     </div>
   </div>
@@ -791,7 +791,7 @@ nav .links a.donate{color:var(--p3)}
 <section id="download"><div class="wrap">
   <div class="install dl reveal">
     <span class="eyebrow">Download</span>
-    <p class="ver" id="dlVer">Latest version · <b>Notch apple 1.16.0</b></p>
+    <p class="ver" id="dlVer">Latest version · <b>Notch apple 1.22.0</b></p>
     <div class="big">Download for <span class="grad">macOS</span></div>
     <div class="cta">
       <a class="btn" id="dlBtn" href="https://github.com/AdityaJainDXB/NotchApples/releases/latest"><svg aria-hidden="true"><use href="#dl"/></svg> <span>Download for macOS</span></a>
@@ -944,6 +944,8 @@ const R='https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/s
 const shots=[
  ['AI','ai-empty','AI','Capture, paste, selected text, or ask',1],['AI','capture-overlay','Capture','Drag over anything on screen',1],['AI','ai-input','Pick an action','Suggested from a look at the text',1],
  ['AI','ai-result','Answer','Readable maths, streamed in',1],['AI','follow-up','Follow-ups','The image is remembered',1],['AI','code-analysis','Code','Explain and fix errors',1],
+ ['AI','ai-web','Web search','Pro · answers cite their sources',1],['Notch','home','Home','Pro · your own dashboard of widgets',1],['Notch','palette','Command palette','Pro · ⌃⌥P runs anything',1],['Notch','markets','Markets','Pro · stocks and crypto',1],['Notch','notch-stacked','Two at once','Ultimate · timer and your build',1],['Notch','notes-todo','To-do','Free · Reminders sync with Pro',1],['Notch','tools-convert','Converter','Pro · units and currencies',1],
+ ['Settings','settings-notch','Notch','Hover, fullscreen, size, gestures',1],['Settings','settings-themes','Themes','22 themes and your own',1],['Settings','settings-profiles','Profiles','Pro · by app or time of day',1],['Settings','settings-privacy','Privacy','Everything it can access',1],['Settings','settings-help','Help & Feedback','Reviewed before it\'s sent',1],['Settings','onboarding','Welcome','Four short steps',1],
  ['AI','history','History','Search, reopen, export',1],['Notch','sports','Sports','Your team, fixtures, table',1],['Notch','sports-detail','Match details','Goals, cards, lineups',1],['Notch','sports-table','League table','Next to the fixtures',1],['Notch','sports-cricket','Cricket','India and the IPL',1],['Notch','games','Games','2048, Snake, reaction test',1],['AI','settings-ai','AI settings','Providers, Test connection, privacy',1],['Get Pro','pro','Unlock Pro','In the notch',1],['Notch','f1','F1','Live timing, schedule, standings',1],
  ['Notch','nowplaying','Now Playing','Any app · album cover · controls'],['Notch','island-music','Music beside the notch','Album cover and live bars'],['Notch','island-charging','Charging','Time to full, in words'],
  ['Notch','voice-notes','Voice Notes','Pro · transcribed on your Mac'],['Notch','screen-time','Screen Time','Pro · limits and Focus Blocker'],['Notch','quick-add','Quick Add','Pro · Calendar and Reminders'],
@@ -1015,6 +1017,12 @@ function qr(){if(window.QRCode)new QRCode($('#donateQr'),{text:'litecoin:'+$('#l
 
 // What's New, newest first; older releases folded away.
 const REL=[
+ ['1.22.0','4 October 2026','Trust, and a few more extras',['Settings → Privacy shows every permission and connection','Bug reports and crash reports you review first','Pro: week forecast, meeting planner, mic mute, top apps','Ultimate: beta channel, priority support, notes sync'],'settings-privacy'],
+ ['1.21.0','4 October 2026','Make it yours',['Pro: Home dashboard, profiles, per-app rules','Pro: animation styles, sounds, fonts, menu bar icon','Ultimate: plugin SDK and gallery'],'home'],
+ ['1.20.0','4 October 2026','Get more done',['To-do list for everyone','Pro: command palette, text expander, markup, ruler, converter','Ultimate: notch command for Terminal'],'palette'],
+ ['1.19.0','4 October 2026','A smarter assistant',['Apple Intelligence, free and on your Mac','Pro: web search with sources, personas, slash commands, voice','Ultimate: AI automations'],'ai-web'],
+ ['1.18.0','4 October 2026','More live activities',['Meeting pulse','Pro: Markets, flight status, more teams','Ultimate: Live Activities API, two at once'],'notch-stacked'],
+ ['1.17.0','4 October 2026','A notch that fits how you work',['Hide in fullscreen apps, hover delay, keyboard control','Welcome tour and Settings search','Pro: resize, edge zones, gestures, 22 themes'],'settings-notch'],
  ['1.16.0','4 October 2026','Free, Pro and Ultimate',['Pay once: Pro is $1, Ultimate is $5; no subscription, every 1.x update included','AI is free with your own key or Ollama; screen, files and history are Pro','Signed keys checked offline, emailed to you, on up to 3 Macs','Older keys keep working as Pro'],'pro'],
  ['1.15.3','3 October 2026','Clearer cricket scores',['Each side\'s score under its name, LIVE or Result between them, and the match status on its own line'],'sports-cricket'],
  ['1.15.2','3 October 2026','Windows, charts and a full view',['Capture a single window, even if others overlap it','Charts and tables are recognised, with Explain, Summarize and Extract suggested','Open full view: a resizable window for long answers','First-run AI setup with Test connection','AI temperature, and System, Light or Dark for the Settings window']],

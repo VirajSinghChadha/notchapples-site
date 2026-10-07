@@ -28,7 +28,7 @@
 
 ## How it's built
 
-It's one self-contained `index.html`: plain HTML, CSS and a little JavaScript. There's no framework, no build step and no tracking. The only outside requests are the Geist fonts from Google Fonts, Phosphor icons from jsDelivr, the QR code script, the ads and the screenshots.
+It's one self-contained `index.html`: plain HTML, CSS and a little JavaScript. There's no framework, no build step and no tracking. The only outside requests are the Geist fonts from Google Fonts, Phosphor icons from jsDelivr the QR code script and the screenshots.
 
 The screenshots and the app icon are loaded straight from the main repo's [`docs/screenshots`](https://github.com/AdityaJainDXB/NotchApples/tree/main/docs/screenshots) folder, so when the app's README screenshots are updated, the website's gallery updates with them.
 

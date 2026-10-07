@@ -11,7 +11,7 @@ Mac (and Windows) users who live on the keyboard: students checking a maths ques
 2. Prove it with the live notch demo and real screenshots, never mockups pretending to be screenshots.
 3. Explain pricing honestly: the notch is free; Pro is $1 and Ultimate $5, paid once.
 4. Be upfront about privacy: local first, free AI or fully local Ollama, no tracking in the app.
-5. Support the project: optional Litecoin donations, GitHub stars, and small clearly-labelled ads (site only, never in the app).
+5. Support the project: optional Litecoin donations and GitHub stars. No ads anywhere.
 
 ## Voice
 Plain, specific, friendly. Short sentences. Names real keys, real providers, real settings paths. No hype words, no em dashes.
@@ -19,7 +19,7 @@ Plain, specific, friendly. Short sentences. Names real keys, real providers, rea
 ## Constraints
 - Single static `index.html` on GitHub Pages; no build step, no framework.
 - Brand colour is the app icon's violet; the app UI is dark.
-- Keep: SEO meta and structured data, the admin easter egg (3 clicks on the footer line), the A-ADS slots, the end-of-page loop back to the top, the GitHub latest-release fetch.
+- Keep: SEO meta and structured data, the admin easter egg (3 clicks on the footer line), the end-of-page loop back to the top, the GitHub latest-release fetch.
 - Made by a high school developer; the site can say so.
 
 ## Mode

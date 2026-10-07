@@ -771,7 +771,7 @@ footer{background:linear-gradient(180deg,transparent,rgba(118,80,238,.06))}
   </div>
   <div class="fx" id="fx">
     <div class="fi" data-c="day"><span class="ic"><i class="ph ph-music-notes"></i></span><div><h3>Now Playing</h3><p>Anything playing, with album art beside the notch, controls and synced lyrics.</p></div></div>
-    <div class="fi" data-c="day"><span class="ic"><i class="ph ph-sun"></i></span><div><h3>Today</h3><p>Date, local weather, your next events with a "Now" badge, and battery.</p></div></div>
+    <div class="fi" data-c="day"><span class="ic"><i class="ph ph-sun"></i></span><div><h3>Home</h3><p>Weather, your next events, battery, devices, notifications and quick add, with clipboard, now playing and notes one click away. Choose the Classic page or the widget page, and reorder the widgets.</p></div></div>
     <div class="fi" data-c="day"><span class="ic"><i class="ph ph-clipboard-text"></i></span><div><h3>Clipboard history</h3><p>Search, pin and filter what you copied. Password-manager secrets are never saved.</p></div></div>
     <div class="fi" data-c="day"><span class="ic"><i class="ph ph-note-pencil"></i></span><div><h3>Notes and to-do</h3><p>Quick notes and a to-do list, saved on your Mac as you type.</p></div></div>
     <div class="fi" data-c="day"><span class="ic"><i class="ph ph-tray"></i></span><div><h3>File Shelf</h3><p>Drop a file on the notch to park it. Drag it out whenever you need it.</p></div></div>
@@ -876,7 +876,7 @@ footer{background:linear-gradient(180deg,transparent,rgba(118,80,238,.06))}
 <section id="download"><div class="wrap">
   <div class="dl-head rv">
     <h2>Download Notch apple.</h2>
-    <p class="ver" id="dlVer">Latest version: <b>Notch apple 1.33.0</b></p>
+    <p class="ver" id="dlVer">Latest version: <b>Notch apple 1.34.9</b></p>
   </div>
   <div class="plats rv">
     <div class="plat" id="platMac">
@@ -1060,7 +1060,7 @@ const shots=[
  ['Notch','voice-notes','Voice Notes','Pro. Transcribed on your Mac'],['Notch','screen-time','Screen Time','Pro. Limits and Focus Blocker'],['Notch','quick-add','Quick Add','Pro. Calendar and Reminders'],
  ['Notch','timer','Timer','Countdown and stopwatch'],['Notch','notch-update','Update','A new release, one click away'],['Notch','live','Live','Scores and tracking'],['Notch','devices','Devices','Accessory battery, mic and camera'],
  ['Notch','notifications','Notifications','Reply to iMessages'],['Notch','plugins','Plugins','Widgets from any script'],['Notch','snippets','Snippets','Paste saved text anywhere'],
- ['Notch','today','Today','Weather, events and battery'],['Notch','windows','Windows','Snap, tile and save layouts'],['Notch','window-snap-zones','Snap zones','Drag a window to the notch'],['Notch','tools','Tools','Keep Awake, colours, calculator'],['Notch','mirror','Mirror','Add-on. Camera placeholder shown'],['Notch','world-clock','World Clock','Add-on. Cities and time difference'],['Notch','clipboard','Clipboard','Search, pin and filter'],
+ ['Notch','today','Home','Weather, events, devices and widgets'],['Notch','windows','Windows','Snap, tile and save layouts'],['Notch','window-snap-zones','Snap zones','Drag a window to the notch'],['Notch','tools','Tools','Keep Awake, colours, calculator'],['Notch','mirror','Mirror','Add-on. Camera placeholder shown'],['Notch','world-clock','World Clock','Add-on. Cities and time difference'],['Notch','clipboard','Clipboard','Search, pin and filter'],
  ['Notch','notes','Notes','Saved automatically'],['Notch','messenger','Messenger','Anonymous encrypted rooms'],['Notch','focus','Focus','Pomodoro timer'],['Notch','share','Share','AirDrop and PairDrop'],['Notch','shelf','File Shelf','Drop files into the notch'],['Notch','audio','Audio','Per-app volume and EQ'],['Notch','vpn','VPN','Free servers'],
  ['Settings','settings-notch','Notch','Hover, fullscreen, size, gestures',1],['Settings','settings-themes','Themes','22 themes and your own',1],['Settings','settings-profiles','Profiles','Pro. By app or time of day',1],['Settings','settings-privacy','Privacy','Everything it can access',1],['Settings','settings-help','Help and Feedback','Reviewed before it\'s sent',1],['Settings','onboarding','Welcome','Four short steps',1],['Settings','onboarding-tour','Tour','A quick look around',1],
  ['Settings','settings-extras','Notch Extras','What shows beside the notch'],['Settings','settings-backup','Backup and Sync','Google account, iCloud, backup files'],['Settings','settings-license','Sign in','Pro unlocked on every Mac'],
@@ -1080,6 +1080,13 @@ $('#gMore').onclick=()=>{gShown=999;renderGal()};
 
 /* ---------- what's new ---------- */
 const REL=[
+ ['1.34.9','7 October 2026','Out-of-date copies must update',['Notch apple checks for the newest release in the background every 15 minutes, even with update notifications off. A copy that is not the newest must update before it works','A release can carry a security message that the update screen shows']],
+ ['1.34.7','7 October 2026','Faster license suspension',['A suspended license stops working about 10 minutes after the Mac next checks in (launch, wake, every 10 minutes), with no update needed','A Mac that cannot verify its license for 3 days pauses paid features until it is online again']],
+ ['1.34.5','7 October 2026','Search finds features, and a better Claude usage tab',['Settings search finds features: type "windows" and Modules & Layout shows only Windows, highlighted','Claude usage: a ring per limit, Opus and Sonnet bars, a 30-day history chart and several Claude accounts','Alerts at 80% and 95% of your real limits, and a forecast of when you would hit one (1.34.4)']],
+ ['1.34.3','7 October 2026','A notch that closes, and What\'s New that fits',['The notch closes when you swipe to another desktop or open Settings','What\'s New, the tour and update screens stay inside the notch\'s edges']],
+ ['1.34.2','7 October 2026','Claude usage connects again',['Finds Claude Code\'s newer sign-in and reads your limits even when Anthropic\'s usage endpoint is off']],
+ ['1.34.1','7 October 2026','Classic Home is back, and PairDrop fixed',['Choose Classic (weather, battery, next events) or Widgets Home in Settings → Modules & Layout, and reorder your Home widgets','PairDrop file transfers complete again']],
+ ['1.34.0','7 October 2026','HUGE UPDATE for efficiency and modular design',['Home replaces Today: devices, notifications and quick add always there; clipboard, now playing and notes tucked away until you click them','Claude usage as green, yellow and red lights for your 5-hour window and week, with a 5-second badge in the closed notch and Pin to Home','An algebra calculator (variables, equations, systems) and the Translator inside Tools','Non-Necessities: Focus, World Clock, Audio, Snippets, Shortcuts, Timers, Plugins, Voice Notes, Screen Time and Smart Home in one tab, placed your way','PairDrop rebuilt (any size, folders, progress) with private chat, and a guided tour after updating']],
  ['1.33.0','7 October 2026','Meeting summaries',['Ultimate: record a calendar meeting from Today, get it transcribed, and an AI summary with decisions and action items','One click adds the summary to the meeting\'s note. It records your microphone only']],
  ['Windows 1.31.0','7 October 2026','Meeting summaries and Messenger',['Ultimate: meeting summaries from a calendar event','Messenger shows by default, like on the Mac']],
  ['1.32.0','7 October 2026','Pinned notes, emoji search, named timers',['Pin notes to Today; emoji and symbol search in the command palette','Pro: named timers, focus time by project, meeting notes from a calendar event, full-screen lyrics','A links shelf to save a link now and read it later']],

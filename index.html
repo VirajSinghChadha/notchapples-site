@@ -427,6 +427,36 @@ footer{border-top:1px solid var(--line);padding:56px 0 36px;color:var(--mut);fon
 .loop .ring:before{background:var(--bg)}
 .loop .ring>div{font-size:22px;display:grid;place-items:center}
 
+
+/* ============ Polish: fill the dark, add depth ============ */
+body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:
+  radial-gradient(circle at 1px 1px,rgba(255,255,255,.055) 1px,transparent 1.4px) 0 0/28px 28px,
+  radial-gradient(900px 600px at 100% 30%,rgba(118,80,238,.09),transparent 70%),
+  radial-gradient(800px 600px at 0% 75%,rgba(162,59,196,.07),transparent 70%)}
+section::before{content:"";position:absolute;left:50%;top:0;width:min(1100px,100%);height:1px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,rgba(155,123,255,.35),transparent);pointer-events:none}
+section.statement::before,section.the-end::before{display:none}
+section:nth-of-type(odd)::after{content:"";position:absolute;right:-12%;top:12%;width:520px;height:520px;border-radius:50%;background:radial-gradient(closest-side,rgba(118,80,238,.13),transparent);pointer-events:none;z-index:-1}
+section:nth-of-type(even)::after{content:"";position:absolute;left:-12%;top:20%;width:520px;height:520px;border-radius:50%;background:radial-gradient(closest-side,rgba(162,59,196,.10),transparent);pointer-events:none;z-index:-1}
+section{padding:clamp(64px,7vw,100px) 0}
+.sh{margin-bottom:44px}
+h1 .l2{background:linear-gradient(90deg,#cdbfff,#9b7bff 55%,#e08bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{background:linear-gradient(180deg,#fff 30%,#b9b2d0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.statement p{max-width:min(34ch,100%)}
+.sa-step{min-height:34vh}
+.sa-steps{padding:3vh 0 5vh}
+.cell,.card,.plan,.shot{transition:transform .35s var(--ease-out),box-shadow .35s ease,background-color .35s ease}
+.cell,.card{background:linear-gradient(160deg,rgba(155,123,255,.07),transparent 55%),var(--surface)}
+@media (hover:hover) and (pointer:fine){
+  .cell:hover,.card:hover{transform:translateY(-3px);box-shadow:inset 0 0 0 1px rgba(155,123,255,.35),0 24px 60px -24px rgba(118,80,238,.5)}
+}
+.fi{border-radius:14px;padding:20px 14px;transition:background-color .25s ease}
+@media (hover:hover) and (pointer:fine){.fi:hover{background:rgba(155,123,255,.06)}}
+.the-end{padding:64px 0 90px;background:radial-gradient(600px 260px at 50% 100%,rgba(118,80,238,.2),transparent 70%)}
+footer{background:linear-gradient(180deg,transparent,rgba(118,80,238,.06))}
+.makers{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:26px}
+.makers span{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--mut);padding:8px 16px;border-radius:99px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px var(--line2)}
+.makers .ph{color:var(--ac-ink);font-size:17px}
+
 /* ============ Responsive ============ */
 @media(max-width:980px){
   .hero-top{grid-template-columns:1fr;gap:22px}
@@ -921,12 +951,13 @@ brew install --cask notch-apple</code></pre>
     <div><h4>Project</h4><ul><li><a href="https://github.com/AdityaJainDXB/NotchApples" target="_blank" rel="noopener">GitHub</a></li><li><a href="https://github.com/AdityaJainDXB/NotchApples#readme" target="_blank" rel="noopener">Documentation</a></li><li><a href="https://github.com/AdityaJainDXB/NotchApples/releases" target="_blank" rel="noopener">Releases</a></li><li><a href="https://github.com/AdityaJainDXB/NotchApples/issues" target="_blank" rel="noopener">Report an issue</a></li></ul></div>
     <div><h4>About</h4><ul><li><a href="#donate">Donate</a></li><li><a href="#privacy">Privacy</a></li><li><a href="terms.html">Terms and refunds</a></li><li><a href="https://github.com/AdityaJainDXB/NotchApples/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a></li></ul></div>
   </div>
-  <div class="footbar"><span id="footVer">Notch apple 1.24.3</span><span id="footMade">Made by a high school developer</span></div>
+  <div class="footbar"><span id="footVer">Notch apple 1.24.3</span><span id="footMade">Made by two high school developers</span></div>
 </div></footer>
 
 <section class="the-end" aria-label="End of page"><div class="wrap">
   <h2>That's everything.</h2>
   <p>Keep scrolling and Notch apple takes you back to the start.</p>
+  <div class="makers"><span><i class="ph ph-users-three"></i>Built by two high school developers</span><span><i class="ph ph-heart"></i>Free and open source</span></div>
   <button class="loop" id="loop"><span class="ring" id="loopRing"><div><i class="ph ph-arrow-up"></i></div></span><span id="loopText">Back to the start</span></button>
 </div></section>
 

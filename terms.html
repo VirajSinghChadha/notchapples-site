@@ -5,22 +5,37 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Notch apple Terms</title>
 <meta name="description" content="Terms of sale, refunds and privacy for Notch apple Pro and Ultimate keys.">
-<meta name="theme-color" content="#0a0612">
+<meta name="theme-color" content="#09080d">
 <link rel="icon" href="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/icon.png">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#07040d;--tx:#f4efff;--mut:#a79cc0;--p3:#d8b4fe;--line2:rgba(255,255,255,.07)}
+:root{--bg:#09080d;--line:rgba(255,255,255,.08);--tx:#f3f1f8;--mut:#a7a2b5;--dim:#8b8698;--ac-ink:#cdbfff;--mono:"Geist Mono",ui-monospace,Menlo,monospace}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--tx);font:16px/1.7 Inter,-apple-system,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-main{max-width:720px;margin:0 auto;padding:48px 16px 64px}
-a{color:var(--p3)}
-h1{font-size:36px;letter-spacing:-.02em;margin-bottom:6px}h2{font-size:20px;margin:32px 0 8px}
-p,li{color:var(--mut);margin:8px 0}ul{padding-left:22px}
-.top{border-bottom:1px solid var(--line2);padding:16px}.top a{color:var(--mut);text-decoration:none}
+html{scrollbar-color:#2c2838 var(--bg)}
+body{background:var(--bg);color:var(--tx);font:17px/1.7 Geist,-apple-system,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+::selection{background:rgba(155,123,255,.38);color:#fff}
+:focus-visible{outline:2px solid var(--ac-ink);outline-offset:3px;border-radius:6px}
+a{color:var(--tx);text-decoration:underline;text-decoration-color:rgba(205,191,255,.45);text-underline-offset:3px}
+a:hover{text-decoration-color:var(--ac-ink)}
+.notchnav{position:sticky;top:0;z-index:5;display:flex;justify-content:center}
+.nn{position:relative;display:flex;align-items:center;gap:6px;height:52px;padding:0 8px 0 16px;background:#050408;border-radius:0 0 22px 22px;box-shadow:0 10px 30px -10px rgba(0,0,0,.8)}
+.nn:before,.nn:after{content:"";position:absolute;top:0;width:14px;height:14px;background:radial-gradient(circle at 0 100%,transparent 13.5px,#050408 14px)}
+.nn:before{left:-14px;transform:scaleX(-1)}.nn:after{right:-14px}
+.nn a{text-decoration:none}
+.logo{display:flex;align-items:center;gap:9px;font-weight:600;font-size:15px;padding-right:8px}.logo img{width:24px;height:24px;border-radius:6px}
+.nn .back{font-size:14px;color:var(--mut);padding:7px 12px;border-radius:99px;transition:color .2s,background-color .2s}.nn .back:hover{color:var(--tx);background:rgba(255,255,255,.07)}
+main{max-width:680px;margin:0 auto;padding:88px 24px 96px}
+h1{font-size:clamp(38px,5.4vw,56px);letter-spacing:-.04em;line-height:1.02;font-weight:600;margin-bottom:16px}
+main>p:first-of-type{color:var(--dim);font-size:15px;padding-bottom:28px;border-bottom:1px solid var(--line)}
+h2{font-size:21px;letter-spacing:-.02em;font-weight:600;margin:44px 0 10px}
+p,li{color:var(--mut);margin:10px 0;text-wrap:pretty}
+ul{padding-left:22px}li::marker{color:#5a5569}
+footer{border-top:1px solid var(--line);padding:30px 24px 44px;color:var(--dim);font-size:14px;text-align:center}
+@media(max-width:560px){body{font-size:16px}main{padding:64px 16px 72px}}
 </style>
 </head>
 <body>
-<div class="top"><a href="./">← Notch apple</a> · <a href="pro.html">Pricing</a></div>
+<nav class="notchnav" aria-label="Main"><div class="nn"><a class="logo" href="./"><img src="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/icon.png" alt="" width="24" height="24"> Notch apple</a><a class="back" href="pro.html">Pricing</a></div></nav>
 <main>
 <h1>Terms and refunds</h1>
 <p>Last updated 4 October 2026 (lifetime updates and tips added). Plain English, because this is a one-person project run by a high school developer.</p>

@@ -5,84 +5,119 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Notch apple Pricing</title>
 <meta name="description" content="Notch apple is free. Pro is $1 once, Ultimate $5 once: no subscription, no account, lifetime 1.x updates. Pay in Litecoin; your signed key is shown and emailed.">
-<meta name="theme-color" content="#0a0612">
+<meta name="theme-color" content="#09080d">
 <link rel="icon" href="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
 <style>
-:root{--bg:#07040d;--bg2:#0d0818;--card:#130b22;--card2:#1a1030;--line:rgba(168,85,247,.16);--line2:rgba(255,255,255,.07);
-  --tx:#f4efff;--mut:#a79cc0;--dim:#6f6589;--p:#a855f7;--p2:#7c3aed;--p3:#d8b4fe;--glow:rgba(168,85,247,.38);--green:#4ade80;--red:#fb7185;--gold:#fbbf24;--r:20px}
+:root{--bg:#09080d;--surface:#13111a;--surface2:#1a1723;--line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.14);
+  --tx:#f3f1f8;--mut:#a7a2b5;--dim:#8b8698;--ac:#9b7bff;--ac-strong:#7650ee;--ac-ink:#cdbfff;--ac-wash:rgba(155,123,255,.12);
+  --ok:#6ee7a8;--red:#ff8a9a;--gold:#ffd28a;--r-s:16px;--r-m:20px;
+  --ease-out:cubic-bezier(.23,1,.32,1);--ease-drawer:cubic-bezier(.32,.72,0,1);--mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:radial-gradient(900px 500px at 50% -10%,rgba(124,58,237,.28),transparent 70%),var(--bg);color:var(--tx);font:16px/1.6 Inter,-apple-system,system-ui,sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased}
+html{scrollbar-color:#2c2838 var(--bg);scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--bg);color:var(--tx);font:16px/1.6 Geist,-apple-system,system-ui,sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased;caret-color:var(--ac)}
+body:before{content:"";position:absolute;left:50%;top:-320px;width:1000px;height:760px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(118,80,238,.2),transparent 72%);pointer-events:none;z-index:-1}
+::selection{background:rgba(155,123,255,.38);color:#fff}
 a{color:inherit;text-decoration:none}
-.wrap{max-width:1040px;margin:0 auto;padding:0 16px}.narrow{max-width:720px}
-nav{border-bottom:1px solid var(--line2);background:rgba(7,4,13,.72);backdrop-filter:blur(16px);position:sticky;top:0;z-index:5}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:1160px}
-.logo{display:flex;align-items:center;gap:10px;font-weight:700}.logo img{width:28px;height:28px;border-radius:7px}
-nav .back{font-size:14px;color:var(--mut)}nav .back:hover{color:var(--tx)}
-h1{font-size:clamp(32px,6vw,52px);line-height:1.08;letter-spacing:-.03em;margin:56px 0 12px;text-align:center}
-h1 span,.grad{background:linear-gradient(135deg,var(--p3),var(--p));-webkit-background-clip:text;background-clip:text;color:transparent}
-h2{font-size:clamp(24px,4vw,32px);letter-spacing:-.02em;text-align:center;margin:64px 0 18px}
-.lead{color:var(--mut);text-align:center;max-width:600px;margin:0 auto 32px}
-.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.plan{position:relative;background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:var(--r);padding:24px;display:flex;flex-direction:column}
-.plan.best{border-color:var(--p);box-shadow:0 0 0 1px var(--p),0 30px 80px rgba(124,58,237,.25)}
-.plan .badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);font:700 12px Inter;padding:4px 12px;border-radius:99px;background:linear-gradient(135deg,var(--p),var(--p2));white-space:nowrap}
-.plan h3{font-size:18px}.plan .pr{font-size:40px;font-weight:800;letter-spacing:-.03em;margin:6px 0 0}.plan .pr small{font-size:14px;color:var(--mut);font-weight:500;margin-left:6px}
-.plan p.sub{color:var(--mut);font-size:14px;margin:4px 0 14px}
-.plan ul{list-style:none;font-size:14px;color:var(--mut);flex:1}.plan li{padding:5px 0 5px 22px;position:relative}.plan li:before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:700}
-.plan li.soon:before{content:"◷";color:var(--gold)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:16px;padding:13px 18px;border-radius:14px;font:600 15px Inter,system-ui;background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;border:0;cursor:pointer;box-shadow:0 10px 34px var(--glow)}
-.btn.ghost{background:rgba(255,255,255,.05);border:1px solid var(--line2);box-shadow:none}
-.btn:disabled{opacity:.5;cursor:default}
-table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
-th,td{padding:10px 12px;border-bottom:1px solid var(--line2);text-align:left}th{font-size:13px;color:var(--mut);font-weight:600}
-td:not(:first-child),th:not(:first-child){text-align:center;width:90px}td.y{color:var(--green);font-weight:700}td.n{color:var(--dim)}
-tr.grp td{background:rgba(168,85,247,.08);color:var(--p3);font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
-.tblwrap{overflow-x:auto;border-radius:var(--r)}
-.card{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:var(--r);padding:24px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
-.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:5px;background:rgba(0,0,0,.35);border-radius:14px;margin-bottom:22px}
-.tabs button{border:0;background:none;color:var(--mut);font:600 13px Inter,system-ui;padding:10px 6px;border-radius:10px;cursor:pointer}
-.tabs button.on{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff}
-.pane{display:none}.pane.on{display:block}
-.muted{color:var(--mut);font-size:14px}
-.choice{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
-.choice button{text-align:left;border:1px solid var(--line2);background:rgba(0,0,0,.3);color:var(--tx);border-radius:14px;padding:12px 14px;cursor:pointer;font:inherit}
-.choice b{display:block;font-size:18px}.choice span{font-size:12.5px;color:var(--mut)}
-.choice button.on{border-color:var(--p);background:rgba(168,85,247,.12);box-shadow:0 0 0 1px var(--p)}
+p a,.faq a,.note a{text-decoration:underline;text-decoration-color:rgba(205,191,255,.4);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--ac-ink);outline-offset:3px;border-radius:8px}
+code{font-family:var(--mono);font-size:.92em}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}.narrow{max-width:720px}
+/* nav: the notch */
+.notchnav{position:sticky;top:0;z-index:20;display:flex;justify-content:center}
+.nn{position:relative;display:flex;align-items:center;gap:6px;height:52px;padding:0 8px 0 16px;background:#050408;border-radius:0 0 22px 22px;box-shadow:0 10px 30px -10px rgba(0,0,0,.8),inset 0 -1px 0 rgba(255,255,255,.06)}
+.nn:before,.nn:after{content:"";position:absolute;top:0;width:14px;height:14px;background:radial-gradient(circle at 0 100%,transparent 13.5px,#050408 14px)}
+.nn:before{left:-14px;transform:scaleX(-1)}.nn:after{right:-14px}
+.logo{display:flex;align-items:center;gap:9px;font-weight:600;font-size:15px;padding-right:8px}.logo img{width:24px;height:24px;border-radius:6px}
+.nn .back{font-size:14px;color:var(--mut);padding:7px 12px;border-radius:99px;transition:color .2s,background-color .2s}
+.nn .back:hover{color:var(--tx);background:rgba(255,255,255,.07)}
+h1{font-size:clamp(40px,6.4vw,72px);line-height:1;letter-spacing:-.04em;font-weight:600;margin:88px 0 18px;text-wrap:balance}
+h1 span{color:var(--mut)}
+h2{font-size:clamp(28px,3.6vw,40px);letter-spacing:-.03em;font-weight:600;line-height:1.1;margin:120px 0 26px}
+.lead{color:var(--mut);font-size:clamp(17px,1.6vw,19px);max-width:58ch;margin:0 0 48px;text-wrap:pretty}
+/* plans: one table */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);border-radius:var(--r-m);box-shadow:inset 0 0 0 1px var(--line2);background:var(--surface);overflow:hidden}
+.plan{position:relative;padding:34px 28px;display:flex;flex-direction:column}
+.plan+.plan{border-left:1px solid var(--line)}
+.plan.best{background:linear-gradient(180deg,rgba(118,80,238,.2),rgba(118,80,238,.05) 70%)}
+.plan .badge{position:absolute;top:34px;right:28px;font:500 11px var(--mono);color:var(--ac-ink);background:var(--ac-wash);padding:3px 8px;border-radius:6px}
+.plan h3{font-size:17px;font-weight:600}
+.plan .pr{font-size:48px;font-weight:600;letter-spacing:-.04em;margin:12px 0 0;font-variant-numeric:tabular-nums}.plan .pr small{font-size:15px;color:var(--mut);font-weight:500;letter-spacing:0;margin-left:6px}
+.plan p.sub{color:var(--mut);font-size:15px;margin:2px 0 22px}
+.plan ul{list-style:none;font-size:14.5px;color:var(--mut);flex:1;display:grid;gap:11px;align-content:start;margin-bottom:26px}
+.plan li{padding-left:28px;position:relative}
+.plan li:before{content:"\e182";font-family:Phosphor;position:absolute;left:0;top:1px;color:var(--ac-ink);font-size:15px}
+.plan li.soon:before{content:"\e19a";color:var(--gold)}
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;margin-top:10px;height:48px;padding:0 20px;border-radius:99px;font:600 15px Geist,system-ui;background:var(--ac-strong);color:#fff;border:0;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 8px 20px -10px rgba(0,0,0,.7);transition:transform 160ms var(--ease-out),background-color .2s ease,opacity .2s}
+.btn:active:not(:disabled){transform:scale(.97)}
+.btn.ghost{background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px var(--line2)}
+.btn:disabled{opacity:.45;cursor:default}
+@media (hover:hover) and (pointer:fine){.btn:hover:not(:disabled){background:#6a44e0}.btn.ghost:hover:not(:disabled){background:rgba(255,255,255,.1)}}
+/* comparison */
+.tblwrap{overflow-x:auto;border-radius:var(--r-m);box-shadow:inset 0 0 0 1px var(--line);background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th,td{padding:12px 18px;border-bottom:1px solid var(--line);text-align:left}
+th{font-size:13.5px;color:var(--mut);font-weight:600;position:sticky;top:0;background:var(--surface)}
+tbody tr:last-child td{border-bottom:0}
+td:not(:first-child),th:not(:first-child){text-align:center;width:96px}
+td.y{color:var(--ac-ink)}td.n{color:#4e4a5c}
+tr.grp td{color:var(--tx);font-weight:600;font-size:14.5px;padding-top:26px;border-bottom-color:var(--line2)}
+td .ph{font-size:17px;vertical-align:-3px}
+/* checkout */
+.card{background:var(--surface);border-radius:var(--r-m);box-shadow:inset 0 0 0 1px var(--line2),0 40px 100px -40px rgba(0,0,0,.9);padding:30px}
+.tabs{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:4px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px var(--line);border-radius:99px;margin-bottom:26px}
+.tabs button{border:0;background:none;color:var(--mut);font:600 13.5px Geist,system-ui;height:38px;padding:0 8px;border-radius:99px;cursor:pointer;transition:color .2s,background-color .25s var(--ease-out);white-space:nowrap}
+.tabs button.on{background:var(--ac-strong);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
+.pane{display:none}.pane.on{display:block;animation:pin .3s var(--ease-out)}
+@keyframes pin{from{opacity:0;transform:translateY(6px)}}
+.muted{color:var(--mut);font-size:14.5px}
+.choice{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.choice button{text-align:left;border:0;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px var(--line2);color:var(--tx);border-radius:14px;padding:13px 15px;cursor:pointer;font:inherit;transition:transform 160ms var(--ease-out),box-shadow .2s,background-color .2s}
+.choice button:active:not(:disabled){transform:scale(.98)}
+.choice b{display:block;font-size:17px;font-weight:600}.choice span{font-size:13px;color:var(--mut)}
+.choice button.on{background:var(--ac-wash);box-shadow:inset 0 0 0 1.5px var(--ac)}
 .choice button:disabled{opacity:.45;cursor:default}
-label{display:block;font-size:13px;color:var(--mut);margin-top:14px}
-input,textarea{width:100%;background:rgba(0,0,0,.35);border:1px solid var(--line2);border-radius:12px;padding:12px 14px;color:var(--tx);font:15px Inter,system-ui;margin-top:6px;outline:none}
-input.mono,textarea{font:14px ui-monospace,SFMono-Regular,Menlo,monospace}
-input:focus,textarea:focus{border-color:var(--p)}
-.pay{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;margin:18px 0}
-#qr{background:#fff;padding:10px;border-radius:12px;width:160px;height:160px}#qr img,#qr canvas{width:140px!important;height:140px!important}
-.field{display:flex;gap:8px;align-items:center;background:rgba(0,0,0,.35);border:1px solid var(--line2);border-radius:12px;padding:10px 12px;margin-top:6px}
-.field code{font:14px ui-monospace,SFMono-Regular,Menlo,monospace;word-break:break-all;flex:1}
-.field code.big{font-size:20px;font-weight:700;color:var(--p3)}
-.mini{border:1px solid var(--line2);background:rgba(255,255,255,.04);color:var(--tx);border-radius:8px;padding:5px 10px;font:600 12px Inter,system-ui;cursor:pointer;white-space:nowrap}
-.warn{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.35);color:#fde68a;border-radius:12px;padding:10px 12px;font-size:13px;margin-top:12px}
-.status{margin-top:14px;font-size:14px;min-height:22px}.status.err{color:var(--red)}.status.ok{color:var(--green)}
-.status a{color:var(--p3);text-decoration:underline;font-size:13px}
-.result{display:none;text-align:center}.result.on{display:block}.result h3{font-size:22px;margin:6px 0}
-.key{font:600 13px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.02em;padding:16px;border-radius:14px;background:rgba(0,0,0,.4);border:1px dashed var(--p);margin:14px 0 10px;user-select:all;word-break:break-all;text-align:left}
-.steps{counter-reset:s;list-style:none;margin:14px 0 0;text-align:left}.steps li{counter-increment:s;position:relative;padding-left:30px;margin:8px 0;font-size:14px;color:var(--mut)}
-.steps li:before{content:counter(s);position:absolute;left:0;top:1px;width:20px;height:20px;border-radius:50%;background:rgba(168,85,247,.2);color:var(--p3);font-size:12px;display:grid;place-items:center;font-weight:700}
-.spin{width:14px;height:14px;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:r .8s linear infinite;display:none}
+label{display:block;font-size:13.5px;color:var(--mut);margin-top:18px;font-weight:500}
+input,textarea{width:100%;background:rgba(0,0,0,.35);border:0;box-shadow:inset 0 0 0 1px var(--line2);border-radius:12px;padding:12px 14px;color:var(--tx);font:15px Geist,system-ui;margin-top:7px;outline:none;transition:box-shadow .2s}
+input::placeholder,textarea::placeholder{color:#7b768a}
+input.mono,textarea{font:14px var(--mono)}
+input:focus,textarea:focus{box-shadow:inset 0 0 0 1.5px var(--ac),0 0 0 4px rgba(155,123,255,.15)}
+.pay{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;margin:20px 0}
+#qr{background:#fff;padding:10px;border-radius:14px;width:160px;height:160px}#qr img,#qr canvas{width:140px!important;height:140px!important}
+.field{display:flex;gap:8px;align-items:center;background:rgba(0,0,0,.35);box-shadow:inset 0 0 0 1px var(--line);border-radius:12px;padding:9px 9px 9px 13px;margin-top:7px}
+.field code{font:14px var(--mono);word-break:break-all;flex:1}
+.field code.big{font-size:20px;font-weight:500;color:var(--ac-ink)}
+.mini{display:inline-flex;align-items:center;height:30px;border:0;background:rgba(255,255,255,.08);color:var(--tx);border-radius:99px;padding:0 13px;font:600 12.5px Geist,system-ui;cursor:pointer;white-space:nowrap;transition:transform 160ms var(--ease-out),background-color .2s}
+.mini:active{transform:scale(.96)}.mini:hover{background:rgba(255,255,255,.14)}
+.warn{background:rgba(255,190,90,.07);box-shadow:inset 0 0 0 1px rgba(255,190,90,.28);color:#ffe2b0;border-radius:12px;padding:12px 14px;font-size:13.5px;margin-top:14px}
+.status{margin-top:14px;font-size:14px;min-height:22px}.status.err{color:var(--red)}.status.ok{color:var(--ok)}
+.status a{color:var(--ac-ink);text-decoration:underline;font-size:13.5px}
+.result{display:none;text-align:center}.result.on{display:block;animation:pin .4s var(--ease-out)}.result h3{font-size:24px;font-weight:600;letter-spacing:-.02em;margin:10px 0 4px}
+.result .kicon{width:56px;height:56px;border-radius:16px;display:inline-grid;place-items:center;background:var(--ac-wash);color:var(--ac-ink);font-size:28px}
+.key{font:500 13px/1.6 var(--mono);padding:16px;border-radius:14px;background:rgba(0,0,0,.4);box-shadow:inset 0 0 0 1px rgba(155,123,255,.4);margin:16px 0 12px;user-select:all;word-break:break-all;text-align:left}
+.steps{counter-reset:s;list-style:none;margin:14px 0 0;text-align:left}.steps li{counter-increment:s;position:relative;padding-left:32px;margin:10px 0;font-size:14.5px;color:var(--mut)}
+.steps li:before{content:counter(s);position:absolute;left:0;top:1px;width:22px;height:22px;border-radius:7px;background:var(--ac-wash);color:var(--ac-ink);font:500 12px var(--mono);display:grid;place-items:center}
+.spin{width:14px;height:14px;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:r .6s linear infinite;display:none}
 .busy .spin{display:inline-block}@keyframes r{to{transform:rotate(360deg)}}
-.faq{margin:0 0 40px}.faq h3{font-size:16px;margin:18px 0 4px}.faq p{color:var(--mut);font-size:14px}
-.note{font-size:13px;color:var(--dim);text-align:center;margin:18px 0}
-footer{border-top:1px solid var(--line2);padding:28px 0 40px;color:var(--dim);font-size:13px;text-align:center}footer a{color:var(--mut);margin:0 8px}
-@media(max-width:860px){.plans{grid-template-columns:1fr}.plan.best{order:-1}}
-@media(max-width:560px){.pay{grid-template-columns:1fr;justify-items:center}.card{padding:18px}.tabs{grid-template-columns:1fr 1fr}.choice{grid-template-columns:1fr}}
+.faq{margin:0 0 80px}
+.faq div{padding:20px 0;border-top:1px solid var(--line)}
+.faq h3{font-size:16.5px;font-weight:600;margin:0 0 6px}.faq p{color:var(--mut);font-size:14.5px}
+.note{font-size:14px;color:var(--dim);text-align:center;margin:20px 0}
+footer{border-top:1px solid var(--line);padding:30px 0 44px;color:var(--dim);font-size:14px;text-align:center}footer a{color:var(--mut);margin:0 10px;transition:color .2s}footer a:hover{color:var(--tx)}
+@media(max-width:860px){.plans{grid-template-columns:1fr}.plan+.plan{border-left:0;border-top:1px solid var(--line)}.plan.best{order:-1}.faq{grid-template-columns:1fr}}
+@media(max-width:560px){.wrap{padding:0 16px}h1{margin-top:64px}.pay{grid-template-columns:1fr;justify-items:center}.card{padding:20px}.tabs{grid-template-columns:1fr 1fr;border-radius:18px}.choice{grid-template-columns:1fr}#tipChoice{grid-template-columns:1fr 1fr!important}.nn .back span{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<nav><div class="wrap"><a class="logo" href="./"><img src="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/icon.png" alt=""> Notch apple</a><a class="back" href="./">← Back to the site</a></div></nav>
+<nav class="notchnav" aria-label="Main"><div class="nn"><a class="logo" href="./"><img src="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/icon.png" alt="" width="24" height="24"> Notch apple</a><a class="back" href="./"><i class="ph ph-arrow-left"></i> <span>Back to the site</span></a></div></nav>
 <main>
 <div class="wrap">
-  <h1>Free for everyone. <span>Pay once</span> for more.</h1>
+  <h1>Free for everyone.<br><span>Pay once for more.</span></h1>
   <p class="lead">No subscriptions, no account, no renewals. Buy a key once and keep it for life, with every future update included. The app has no ads and no tracking in every tier.</p>
 
   <div class="plans">
@@ -123,7 +158,7 @@ footer{border-top:1px solid var(--line2);padding:28px 0 40px;color:var(--dim);fo
         <li>iPhone companion (sideload with Sideloadly)</li>
         <li class="soon">Apple Watch</li>
       </ul>
-      <p class="muted" style="font-size:12.5px;margin-top:8px">◷ planned. Already have Pro? Upgrade for $4.</p>
+      <p class="muted" style="font-size:13px;margin:-12px 0 6px">Apple Watch is planned. Already have Pro? Upgrade for $4.</p>
       <button class="btn" data-buy="ultimate" id="ultBtn">Get Ultimate, $5</button>
     </div>
   </div>
@@ -151,7 +186,7 @@ footer{border-top:1px solid var(--line2);padding:28px 0 40px;color:var(--dim);fo
             <button class="on" data-tier="pro"><b>Pro · $1</b><span>One-time. Every Pro feature.</span></button>
             <button data-tier="ultimate"><b>Ultimate · $5</b><span>Everything, now and as it ships.</span></button>
           </div>
-          <label>Add a tip? (optional, it goes to a high school developer 💜)</label>
+          <label>Add a tip? (optional, it goes to a high school developer)</label>
           <div class="choice" id="tipChoice" style="grid-template-columns:repeat(4,1fr)">
             <button class="on" data-tip="0"><b>No tip</b></button>
             <button data-tip="1"><b>+$1</b></button>
@@ -218,7 +253,7 @@ footer{border-top:1px solid var(--line2);padding:28px 0 40px;color:var(--dim);fo
     </div>
 
     <div class="result" id="result">
-      <div style="font-size:44px">🔑</div>
+      <div class="kicon"><i class="ph ph-key"></i></div>
       <h3>Your <span id="resTier"></span> key</h3>
       <p class="muted" id="resMail"></p>
       <div class="key" id="key"></div>
@@ -231,16 +266,16 @@ footer{border-top:1px solid var(--line2);padding:28px 0 40px;color:var(--dim);fo
   <p class="note">Payments go straight to the developer's Litecoin wallet. No card details, no payment company. <a href="terms.html" style="text-decoration:underline">Terms and refunds</a></p>
 
   <h2>Questions</h2>
-  <section class="faq">
-    <h3>Is it really one payment?</h3><p>Yes. Pro is $1 and Ultimate is $5, once. There are no subscriptions, renewals or expiry dates, and every future update is included, 2.0 and beyond.</p>
-    <h3>Student discount?</h3><p>Students can ask for a free Pro promo code: <a href="https://github.com/AdityaJainDXB/NotchApples/issues/new?labels=payment&title=Student%20promo%20code" style="text-decoration:underline">open a request</a> (no proof needed, just be honest).</p>
-    <h3>Can I pay more?</h3><p>Yes, add a tip at checkout. It all goes to a high school developer, and it's hugely appreciated.</p>
-    <h3>How does activation work?</h3><p>Your key is signed by our license server. The app checks the signature on your Mac, offline, using a public key built into the app. When you activate, the app tells the server a one-way hash of your Mac (so a key works on up to 3 Macs); nothing else.</p>
-    <h3>I have Pro. How do I upgrade?</h3><p>Use the Upgrade tab: paste your Pro key and pay the $4 difference. You get a new Ultimate key; your Pro key keeps working until you replace it.</p>
-    <h3>I lost my key</h3><p>Use "Lost my key?" with the email you bought with. Keys are emailed only to that address.</p>
-    <h3>Refunds?</h3><p>Handled case by case: email <a href="mailto:notchapples.support@gmail.com" style="text-decoration:underline">notchapples.support@gmail.com</a> with your transaction ID. A refunded key is turned off. See the <a href="terms.html" style="text-decoration:underline">terms</a>.</p>
-    <h3>I bought Pro before tiers existed</h3><p>Your NOTCH-XXXX key or access code keeps working and counts as Pro. Donors and anyone who paid $2: <a href="https://github.com/AdityaJainDXB/NotchApples/issues/new?labels=payment&title=Early%20supporter%20Ultimate" style="text-decoration:underline">ask for your free Ultimate key</a>.</p>
-    <h3>Does the app have ads or tracking?</h3><p>No, in every tier. The ads on this website help support a high school developer; they never appear in the app.</p>
+  <section class="faq" id="faqs">
+    <div><h3>Is it really one payment?</h3><p>Yes. Pro is $1 and Ultimate is $5, once. There are no subscriptions, renewals or expiry dates, and every future update is included, 2.0 and beyond.</p></div>
+    <div><h3>Student discount?</h3><p>Students can ask for a free Pro promo code: <a href="https://github.com/AdityaJainDXB/NotchApples/issues/new?labels=payment&title=Student%20promo%20code" style="text-decoration:underline">open a request</a> (no proof needed, just be honest).</p></div>
+    <div><h3>Can I pay more?</h3><p>Yes, add a tip at checkout. It all goes to a high school developer, and it's hugely appreciated.</p></div>
+    <div><h3>How does activation work?</h3><p>Your key is signed by our license server. The app checks the signature on your Mac, offline, using a public key built into the app. When you activate, the app tells the server a one-way hash of your Mac (so a key works on up to 3 Macs); nothing else.</p></div>
+    <div><h3>I have Pro. How do I upgrade?</h3><p>Use the Upgrade tab: paste your Pro key and pay the $4 difference. You get a new Ultimate key; your Pro key keeps working until you replace it.</p></div>
+    <div><h3>I lost my key</h3><p>Use "Lost my key?" with the email you bought with. Keys are emailed only to that address.</p></div>
+    <div><h3>Refunds?</h3><p>Handled case by case: email <a href="mailto:notchapples.support@gmail.com" style="text-decoration:underline">notchapples.support@gmail.com</a> with your transaction ID. A refunded key is turned off. See the <a href="terms.html" style="text-decoration:underline">terms</a>.</p></div>
+    <div><h3>I bought Pro before tiers existed</h3><p>Your NOTCH-XXXX key or access code keeps working and counts as Pro. Donors and anyone who paid $2: <a href="https://github.com/AdityaJainDXB/NotchApples/issues/new?labels=payment&title=Early%20supporter%20Ultimate" style="text-decoration:underline">ask for your free Ultimate key</a>.</p></div>
+    <div><h3>Does the app have ads or tracking?</h3><p>No, in every tier. The ads on this website help support a high school developer; they never appear in the app.</p></div>
   </section>
 </div>
 </main>
@@ -266,7 +301,7 @@ const ROWS = [
 ];
 $('#cmp').innerHTML = ROWS.map(r => r.length === 1 ? `<tr class="grp"><td colspan="4">${r[0]}</td></tr>` :
   `<tr><td>${r[0]}</td>${[1, 2, 3].map(t => { const v = r[1], soon = typeof v === 'string', min = soon ? +v.slice(-1) : v;
-    return t >= min ? `<td class="y">${soon ? '◷' : '✓'}</td>` : '<td class="n">–</td>' }).join('')}</tr>`).join('');
+    return t >= min ? `<td class="y">${soon ? '<i class="ph ph-clock" aria-label="Planned"></i>' : '<i class="ph ph-check" aria-label="Included"></i>'}</td>` : '<td class="n"><i class="ph ph-minus" aria-label="Not included"></i></td>' }).join('')}</tr>`).join('');
 
 // Tabs
 function tab(name) { document.querySelectorAll('.tabs button,.pane').forEach(x => x.classList.remove('on')); $(`[data-p=${name}]`).classList.add('on'); $('#' + name).classList.add('on') }

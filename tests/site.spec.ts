@@ -87,7 +87,9 @@ test('progress bar and back-to-top work', async ({ page }) => {
   await expect(top).not.toHaveClass(/on/);
   await page.evaluate(() => scrollTo(0, document.body.scrollHeight / 2));
   await expect(top).toHaveClass(/on/);
-  expect(await page.locator('#prog').evaluate((e) => parseFloat(e.style.getPropertyValue('--p')))).toBeGreaterThan(0.2);
+  // Browsers with native scroll timelines draw the bar themselves; the rest get it from the script (--p). Read what is drawn.
+  const filled = () => page.locator('#prog').evaluate((e) => new DOMMatrix(getComputedStyle(e).transform).a);
+  await expect.poll(filled).toBeGreaterThan(0.2);
   await top.click();
   await expect.poll(() => page.evaluate(() => scrollY)).toBeLessThan(5);
 });

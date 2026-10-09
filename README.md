@@ -62,4 +62,4 @@ The site is served at https://virajsinghchadha.github.io/notchapples-site/ (the 
 
 ## Credits
 
-Built by [@AdityaJainDXB](https://github.com/AdityaJainDXB) and [@VirajSinghChadha](https://github.com/VirajSinghChadha). Notch apple is MIT-licensed; see the [app repository](https://github.com/AdityaJainDXB/NotchApples) for the source code, releases and licence.
+Built by [@AdityaJainDXB](https://github.com/AdityaJainDXB) and [@VirajSinghChadha](https://github.com/VirajSinghChadha). Notch apple is source-available under the Notch apple Source-Available License; see the [app repository](https://github.com/AdityaJainDXB/NotchApples) for the source code, releases and licence.

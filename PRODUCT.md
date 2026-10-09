@@ -1,7 +1,7 @@
 # Notch apple
 
 ## What it is
-A free, open-source app that turns the MacBook notch (or a small pill on Macs without one, and on Windows) into a command center. The headline feature is screen-aware AI: press ⌃⌥S, drag over anything on screen, and solve, explain, translate or summarize it. Around it sit 30+ optional modules: Now Playing, clipboard history, window snapping, F1 and live sports, focus timer, file shelf, translator, Mac stats, messenger and more.
+A free-to-start, source-available app that turns the MacBook notch (or a small pill on Macs without one, and on Windows) into a command center. The headline feature is screen-aware AI: press ⌃⌥S, drag over anything on screen, and solve, explain, translate or summarize it. Around it sit 30+ optional modules: Now Playing, clipboard history, window snapping, F1 and live sports, focus timer, file shelf, translator, Mac stats, messenger and more.
 
 ## Who it's for
 Mac (and Windows) users who live on the keyboard: students checking a maths question, developers reading an error, people who want music, scores and tools without switching apps. Many arrive from search ("MacBook notch app", "Dynamic Island for Mac").

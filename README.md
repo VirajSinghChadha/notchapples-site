@@ -5,7 +5,7 @@
 <h1 align="center">Notch apple — website</h1>
 
 <p align="center">
-  The official website for <a href="https://github.com/AdityaJainDXB/NotchApples"><b>Notch apple</b></a>, the free, open-source app that turns your MacBook notch into a productivity hub.
+  The official website for <a href="https://github.com/AdityaJainDXB/NotchApples"><b>Notch apple</b></a>, the free-to-start, source-available app that turns your MacBook notch into a productivity hub.
 </p>
 
 <p align="center">

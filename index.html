@@ -43,7 +43,7 @@
   --card:var(--surface);--card2:var(--surface2);--green:var(--ok);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scrollbar-color:#2c2838 var(--bg);-webkit-text-size-adjust:100%}
+html{overflow-x:clip;scroll-behavior:smooth;scrollbar-color:#2c2838 var(--bg);-webkit-text-size-adjust:100%}
 body{background:var(--bg);color:var(--tx);font:16px/1.6 Geist,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;caret-color:var(--ac)}
 ::selection{background:rgba(155,123,255,.38);color:#fff}
 ::-webkit-scrollbar{width:12px;height:12px}::-webkit-scrollbar-track{background:var(--bg)}
@@ -82,7 +82,7 @@ section[id],header[id],[id].anchor{scroll-margin-top:84px}
 
 /* ============ Nav: the page has a notch ============ */
 .notchnav{position:fixed;top:0;left:50%;transform:translateX(-50%);z-index:60;padding-top:env(safe-area-inset-top)}
-.nn{position:relative;display:flex;align-items:center;gap:6px;height:52px;padding:0 8px 0 16px;background:#050408;border-radius:0 0 22px 22px;box-shadow:0 10px 30px -10px rgba(0,0,0,.8),inset 0 -1px 0 rgba(255,255,255,.06)}
+.nn{position:relative;width:max-content;max-width:calc(100vw - 32px);display:flex;align-items:center;gap:6px;height:52px;padding:0 8px 0 16px;background:#050408;border-radius:0 0 22px 22px;box-shadow:0 10px 30px -10px rgba(0,0,0,.8),inset 0 -1px 0 rgba(255,255,255,.06)}
 /* concave shoulders, like the real cutout */
 .nn:before,.nn:after{content:"";position:absolute;top:0;width:14px;height:14px;background:radial-gradient(circle at 0 100%,transparent 13.5px,#050408 14px)}
 .nn:before{left:-14px;transform:scaleX(-1)}.nn:after{right:-14px}
@@ -149,7 +149,7 @@ h1 .l2{display:block;color:var(--mut)}
 .panel{position:absolute;inset:0;padding:40px 18px 16px;display:flex;flex-direction:column;opacity:0;filter:blur(4px);transition:opacity .25s ease,filter .25s ease;pointer-events:none}
 .notch.open .panel{opacity:1;filter:none;transition-delay:.16s;pointer-events:auto}
 .phead{display:flex;align-items:center;gap:6px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:10px;margin-bottom:12px}
-.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1}
+.tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 28px),transparent)}
 .tabs::-webkit-scrollbar{display:none}
 .tabs button{flex:none;display:inline-flex;align-items:center;gap:6px;background:transparent;color:var(--mut);border:0;border-radius:99px;padding:6px 11px;font:600 12px Geist,sans-serif;cursor:pointer;transition:color .2s ease,background-color .2s ease;white-space:nowrap}
 .tabs button:hover{color:#fff;background:rgba(255,255,255,.06)}
@@ -157,7 +157,7 @@ h1 .l2{display:block;color:var(--mut)}
 .nb-gh{flex:none;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:99px;padding:6px 11px;transition:background-color .2s}
 .nb-gh:hover{background:rgba(155,123,255,.3)}
 .nb-gh .ph{font-size:14px}
-.nb-x{flex:none;width:28px;height:28px;border-radius:50%;border:0;background:transparent;color:var(--mut);cursor:pointer;font-size:15px;display:grid;place-items:center}
+.nb-x{flex:none;width:32px;height:32px;border-radius:50%;border:0;background:transparent;color:var(--mut);cursor:pointer;font-size:15px;display:grid;place-items:center}
 .nb-x:hover{background:rgba(255,255,255,.08);color:#fff}
 .pwr{position:relative;flex:none}
 .pmenu{position:absolute;right:0;top:34px;width:200px;background:#1b1030;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:8px;z-index:5;box-shadow:0 20px 50px rgba(0,0,0,.5);text-align:left;opacity:0;transform:scale(.96);transform-origin:top right;pointer-events:none;transition:opacity .15s ease,transform .18s var(--ease-out)}
@@ -414,7 +414,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 36px;color:var(--mut);fon
 .foot .logo img{width:26px;height:26px;border-radius:7px}
 .foot .brand p{margin-top:12px;max-width:34ch}
 .foot h4{font-size:13.5px;color:var(--tx);margin-bottom:12px;font-weight:600}
-.foot ul{list-style:none;display:grid;gap:8px}
+.foot ul{list-style:none;display:grid;gap:2px}.foot ul a{display:inline-block;padding:6px 0}
 .foot a{transition:color .2s ease}.foot a:hover{color:var(--tx)}
 .footbar{border-top:1px solid var(--line);margin-top:40px;padding-top:20px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13.5px;color:var(--dim)}
 #footMade{cursor:default;user-select:none}
@@ -501,6 +501,12 @@ footer{background:linear-gradient(180deg,transparent,rgba(118,80,238,.06))}
   .stage .s3{display:none}.stage .s2{width:62%;left:-4%}
   .foot{grid-template-columns:1fr}
 }
+/* ---------- scroll progress + back to top ---------- */
+.prog{position:fixed;top:0;left:0;right:0;height:2px;z-index:70;transform-origin:0 50%;transform:scaleX(var(--p,0));background:linear-gradient(90deg,var(--p2),var(--p3));pointer-events:none}
+.totop{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));z-index:55;width:44px;height:44px;border-radius:50%;border:0;display:grid;place-items:center;font-size:18px;color:var(--tx);background:rgba(19,17,26,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px var(--line2),0 10px 30px -10px rgba(0,0,0,.8);cursor:pointer;opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .25s ease,transform .25s var(--ease-out),background-color .2s ease}
+.totop.on{opacity:1;transform:none;pointer-events:auto}
+@media (hover:hover) and (pointer:fine){.totop:hover{background:var(--p2)}}
+@media(prefers-reduced-motion:reduce){.totop{transition:opacity .01s}}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important}
@@ -513,6 +519,7 @@ footer{background:linear-gradient(180deg,transparent,rgba(118,80,238,.06))}
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
+<div class="prog" id="prog" aria-hidden="true"></div>
 <nav class="notchnav" aria-label="Main"><div class="nn">
   <a href="#top" class="logo"><img src="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/icon.png" alt="" width="24" height="24"> Notch apple</a>
   <div class="nl"><div>
@@ -525,6 +532,7 @@ footer{background:linear-gradient(180deg,transparent,rgba(118,80,238,.06))}
   <a class="btn sm" href="#download">Download</a>
   <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu"><i class="ph ph-list"></i></button>
 </div></nav>
+<button class="totop" id="toTop" aria-label="Back to top"><i class="ph ph-arrow-up"></i></button>
 <div class="mobile-menu" id="mobileMenu">
   <a href="#capture">How it works</a><a href="#features">Features</a><a href="#screenshots">Screenshots</a><a href="#pro">Pricing</a><a href="#new">What's new</a><a href="#donate">Support the project</a>
   <a href="https://github.com/AdityaJainDXB/NotchApples" target="_blank" rel="noopener">GitHub</a>
@@ -1090,6 +1098,9 @@ $('#gMore').onclick=()=>{gShown=999;renderGal()};
 
 /* ---------- what's new ---------- */
 const REL=[
+ ['2.0.37','10 October 2026','A nicer feel, and two card games',['Drop zones lean towards your file like a magnet (Shelf, Convert, Share, Launcher, Wallpaper, AI tab)','Clearing the Shelf or finished to-dos is press-and-hold, with a countdown Undo','A searchable model picker in the AI tab, cassette mode for the music player, and Blackjack and Solitaire in Games']],
+ ['2.0.36','10 October 2026','A bigger Plane world and a world leaderboard',['The Plane map is about three times bigger; fly over Dubai, London, Paris, New York, Tokyo, Sydney, Cairo or San Francisco (or your own location) with their landmarks','Post a score to a shared world leaderboard: only your name, plane and score are sent, and only when you choose']],
+ ['2.0.35','10 October 2026','Live wallpaper (Pro)',['A video as your desktop wallpaper: your own (up to 60 seconds, 4K) or a free NASA clip, paused on battery and when covered; the lock screen shows a still']],
  ['2.0.34','9 October 2026','Notch apple AI, included with Pro',['Settings \u2192 AI \u2192 Notch apple AI (included): ask without setting up any key. Pro gets 60 messages a day and Ultimate 200; your own keys still work with no limit']],
  ['2.0.33','9 October 2026','Ultimate modules go private, radar fits',['The Ultimate modules are built into the official releases only (nothing changes for you); a build from the public source runs without them','Flight Radar\'s header fits on the Mac: the range is a small menu beside Refresh']],
  ['2.0.32','9 October 2026','A new licence, and premium sounds from the server',['The code is now source-available (copyright Aditya Jain): you can read and build it, but not resell it or unlock the paid features without a key; earlier versions stay MIT','Four premium Klick sounds (Pro) download from the licence server with your key; Clipboard Link now checks your Ultimate key with the server, so update both devices to keep linking']],
@@ -1202,6 +1213,12 @@ if(!reduce){
 }
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer onload="qr()"></script>
-<script>/* hidden: click the footer line 3 times */(function(){var n=0,t;var el=document.getElementById("footMade");if(!el)return;el.addEventListener("click",function(){n++;clearTimeout(t);t=setTimeout(function(){n=0},1500);if(n>=3){n=0;location.href="admin.html"}})})()</script>
+<script>/* hidden: click the footer line 3 times */(function(){var n=0,t;var el=document.getElementById("footMade");if(!el)return;el.addEventListener("click",function(){n++;clearTimeout(t);t=setTimeout(function(){n=0},1500);if(n>=3){n=0;location.href="admin.html"}})})()
+/* ---------- scroll progress + back to top ---------- */
+;(()=>{const bar=$('#prog'),top=$('#toTop');let t=false;
+function upd(){t=false;const max=document.documentElement.scrollHeight-innerHeight,y=scrollY;bar.style.setProperty('--p',max>0?Math.min(1,y/max):0);top.classList.toggle('on',y>innerHeight*1.2)}
+addEventListener('scroll',()=>{if(!t){t=true;requestAnimationFrame(upd)}},{passive:true});addEventListener('resize',upd);upd();
+top.onclick=()=>scrollTo({top:0,behavior:reduce?'auto':'smooth'})})();
+</script>
 </body>
 </html>

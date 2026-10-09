@@ -111,6 +111,32 @@ footer{border-top:1px solid var(--line);padding:30px 0 44px;color:var(--dim);fon
 @media(max-width:860px){.plans{grid-template-columns:1fr}.plan+.plan{border-left:0;border-top:1px solid var(--line)}.plan.best{order:-1}.faq{grid-template-columns:1fr}}
 @media(max-width:560px){.wrap{padding:0 16px}h1{margin-top:64px}.pay{grid-template-columns:1fr;justify-items:center}.card{padding:20px}.tabs{grid-template-columns:1fr 1fr;border-radius:18px}.choice{grid-template-columns:1fr}#tipChoice{grid-template-columns:1fr 1fr!important}.nn .back span{display:none}}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}html{scroll-behavior:auto}}
+
+/* receipt printer (shown after a payment is confirmed) */
+.printer[hidden]{display:none}.printer{max-width:340px;margin:0 auto 26px;display:flex;flex-direction:column;align-items:center}
+.pr-machine{width:100%;border-radius:24px;padding:12px 12px 30px;position:relative;background:#2a2830;border:1px solid #0b0a0e;box-shadow:0 20px 36px -20px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.14)}
+.pr-machine::after{content:"";position:absolute;left:24px;right:24px;bottom:12px;height:8px;border-radius:4px;background:#050408;box-shadow:inset 0 1px 2px #000}
+.pr-screen{border-radius:12px;background:#050408;border:1px solid #000;padding:14px 16px;font:12px/1.5 var(--mono);color:#cfcbdc;box-shadow:inset 0 0 24px 4px rgba(0,0,0,.5)}
+.pr-screen .row{display:flex;justify-content:space-between;gap:10px}
+.pr-status{display:flex;align-items:center;gap:8px;margin-top:10px;color:#a7a2b5;font-weight:600}
+.pr-status i{font-size:16px}
+.pr-status .spin2{width:14px;height:14px;border:2px solid #6a6678;border-top-color:transparent;border-radius:50%;animation:prspin .8s linear infinite}
+.pr-status .okc{color:var(--ok)}
+@keyframes prspin{to{transform:rotate(360deg)}}
+.pr-out{width:calc(80% + 3rem);max-width:100%;height:0;overflow:hidden;margin-top:-16px;padding:0 24px;position:relative;z-index:2;transition:height .01s}
+.pr-out.on{height:430px}
+.pr-paper{background:#fbfaf5;color:#1d1c1a;font:12px/1.55 var(--mono);padding:24px 22px 30px;min-height:300px;
+  clip-path:polygon(0 0,100% 0,100% calc(100% - 4px),97.5% 100%,95% calc(100% - 4px),92.5% 100%,90% calc(100% - 4px),87.5% 100%,85% calc(100% - 4px),82.5% 100%,80% calc(100% - 4px),77.5% 100%,75% calc(100% - 4px),72.5% 100%,70% calc(100% - 4px),67.5% 100%,65% calc(100% - 4px),62.5% 100%,60% calc(100% - 4px),57.5% 100%,55% calc(100% - 4px),52.5% 100%,50% calc(100% - 4px),47.5% 100%,45% calc(100% - 4px),42.5% 100%,40% calc(100% - 4px),37.5% 100%,35% calc(100% - 4px),32.5% 100%,30% calc(100% - 4px),27.5% 100%,25% calc(100% - 4px),22.5% 100%,20% calc(100% - 4px),17.5% 100%,15% calc(100% - 4px),12.5% 100%,10% calc(100% - 4px),7.5% 100%,5% calc(100% - 4px),2.5% 100%,0 calc(100% - 4px));
+  transform:translateY(calc(-100% + 2px));opacity:0}
+.pr-out.print .pr-paper{opacity:1;animation:prfeed 1.75s steps(9,end) forwards}
+.pr-out.done .pr-paper{opacity:1;transform:none}
+@keyframes prfeed{from{transform:translateY(calc(-100% + 2px))}to{transform:translateY(0)}}
+.pr-paper h4{font:700 14px var(--mono);letter-spacing:.08em;text-transform:uppercase;text-align:center}
+.pr-paper hr{border:0;border-top:1px dashed #1d1c1a55;margin:12px 0}
+.pr-paper dl div{display:flex;justify-content:space-between;gap:10px;padding:2px 0}
+.pr-paper dd{text-align:right;word-break:break-all}
+.pr-paper .tot{font-weight:700;font-size:13px}
+@media (prefers-reduced-motion:reduce){.pr-out.print .pr-paper{animation:none;transform:none}.pr-status .spin2{animation:none}}
 </style>
 </head>
 <body>
@@ -258,6 +284,15 @@ footer{border-top:1px solid var(--line);padding:30px 0 44px;color:var(--dim);fon
     </div>
 
     <div class="result" id="result">
+      <div class="printer" id="printer" aria-label="Receipt printer" hidden>
+        <div class="pr-machine">
+          <div class="pr-screen">
+            <div class="row"><span id="prWhat"></span><b id="prAmt"></b></div>
+            <div class="pr-status" role="status" aria-live="polite"><span id="prIcon"></span><span id="prText">Processing your order</span></div>
+          </div>
+        </div>
+        <div class="pr-out" id="prOut"><article class="pr-paper" id="prPaper"></article></div>
+      </div>
       <div class="kicon"><i class="ph ph-key"></i></div>
       <h3>Your <span id="resTier"></span> key</h3>
       <p class="muted" id="resMail"></p>
@@ -336,12 +371,36 @@ async function api(path, body) {
   return j;
 }
 const validEmail = e => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.trim());
-function showKey(r) {
+
+// A receipt prints after a confirmed payment: processing, then the paper feeds out a line at a time, then it is done.
+async function printReceipt(o) {
+  const box = $('#printer'), out = $('#prOut'), icon = $('#prIcon'), text = $('#prText');
+  const tierName = o.tier === 'ultimate' ? 'Ultimate' : 'Pro', day = new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+  const esc = t => String(t).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+  $('#prWhat').textContent = `${tierName} · one payment`; $('#prAmt').textContent = `$${o.usd}`;
+  $('#prPaper').innerHTML = `<h4>Receipt</h4><hr><dl>
+    <div><dt>Item</dt><dd>Notch apple ${esc(tierName)}</dd></div>
+    <div><dt>Price</dt><dd>$${esc(o.usd)}</dd></div>
+    <div><dt>Paid</dt><dd>${esc(o.ltc)} LTC</dd></div>
+    <div><dt>Order</dt><dd>${esc(String(o.order).slice(0, 12))}</dd></div>
+    <div><dt>Date</dt><dd>${esc(day)}</dd></div></dl><hr>
+    <dl><div class="tot"><dt>Total paid</dt><dd>$${esc(o.usd)}</dd></div></dl><hr>
+    <p style="text-align:center">Thank you. Your key is below.<br>No subscription, ever.</p>`;
+  box.hidden = false; out.className = 'pr-out';
+  icon.innerHTML = '<span class="spin2"></span>'; text.textContent = 'Processing your order';
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  await sleep(reduce ? 0 : 700);
+  text.textContent = 'Printing your receipt'; out.className = 'pr-out on print';
+  await sleep(reduce ? 0 : 1800);
+  out.className = 'pr-out on done'; icon.innerHTML = '<i class="ph ph-check-circle okc"></i>'; text.textContent = 'Order complete';
+}
+function showKey(r, order) {
   $('#forms').style.display = 'none'; $('#paying').style.display = 'none'; $('#result').classList.add('on');
   $('#resTier').textContent = r.tier; $('#key').textContent = r.key;
   $('#openKey').href = 'notchapple://activate?key=' + encodeURIComponent(r.key);
   $('#resMail').textContent = r.emailed ? "We've also emailed it to you. Keep that email." : 'Save it now (copy it somewhere safe). Email delivery is not available right now.';
   $('#result').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  if (order && order.usd) printReceipt(order); else $('#printer').hidden = true;
 }
 
 // Server availability
@@ -388,7 +447,7 @@ $('#claimBtn').onclick = async () => {
   try {
     for (let i = 0; i < 40; i++) {   // up to ~10 minutes for the transaction to reach the network
       const r = await api('/claim', { order: o.order, txid: m[0] });
-      if (r.key) { save('na.order', null); save('na.key.' + o.order, r); return showKey(r) }
+      if (r.key) { save('na.order', null); save('na.key.' + o.order, r); return showKey(r, o) }
       status('#claimStatus', (r.message || 'Waiting for the payment…') + ' Keep this page open.');
       await sleep(15000);
     }

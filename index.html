@@ -6,23 +6,30 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Notch apple: the MacBook notch app and Windows notch app, with AI</title>
 <meta name="description" content="Notch apple turns your MacBook notch (and a Windows notch pill) into a command center. Press ⌃⌥S, capture anything on screen and solve, explain, translate or summarize it with free AI or fully local Ollama. Plus music, live sports, F1, clipboard, window snapping and 30 more tools. Free to start and source-available.">
+<meta property="og:site_name" content="Notch apple">
 <meta property="og:title" content="Notch apple: the MacBook notch app and Windows notch app">
 <meta property="og:description" content="Capture anything on your screen and understand it instantly, right from the notch. Free to start, source-available, free AI or fully local.">
-<meta property="og:image" content="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/screenshots/ai-result.png">
+<meta property="og:image" content="https://virajsinghchadha.github.io/notchapples-site/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta property="og:image:alt" content="Notch apple answering a maths question in the MacBook notch">
 <meta property="og:type" content="website">
-<link rel="canonical" href="https://virajsinghchadha.github.io/notchapples-site/">
 <meta property="og:url" content="https://virajsinghchadha.github.io/notchapples-site/">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Notch apple: the MacBook notch app and Windows notch app">
+<meta name="twitter:description" content="Capture anything on your screen and understand it instantly, right from the notch. Free to start, source-available, free AI or fully local.">
+<meta name="twitter:image" content="https://virajsinghchadha.github.io/notchapples-site/assets/og.jpg">
+<link rel="canonical" href="https://virajsinghchadha.github.io/notchapples-site/">
 <meta name="keywords" content="MacBook notch app, Mac notch, notch apple, Windows notch, Windows notch app, Dynamic Island for Mac, Dynamic Island for Windows, notch widgets, now playing notch, free notch app">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Notch apple","applicationCategory":"UtilitiesApplication","operatingSystem":"macOS, Windows 10, Windows 11","description":"Turns the MacBook notch (and a Windows notch pill) into an AI command center with music, live sports, clipboard, window snapping and more.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://virajsinghchadha.github.io/notchapples-site/","downloadUrl":"https://github.com/AdityaJainDXB/NotchApples/releases/latest"}</script>
 <meta name="theme-color" content="#09080d">
 <meta name="color-scheme" content="dark">
-<link rel="icon" href="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/icon.png">
-<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="icon" href="assets/icon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<link rel="preload" href="assets/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<link rel="preload" href="assets/icons/phosphor-subset.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/icons/phosphor.css">
 <style>
 /* ============ Tokens ============
    One accent (the app icon's violet), violet-tinted neutrals, one radius rule:
@@ -98,8 +105,8 @@ section[id],header[id],[id].anchor{scroll-margin-top:84px}
 /* past the hero the notch tucks its links away until you hover it, like the app */
 .compact .nl{grid-template-columns:0fr;opacity:0}
 .compact .notchnav:hover .nl,.compact .notchnav:focus-within .nl{grid-template-columns:1fr;opacity:1}
-.mobile-menu{position:fixed;top:calc(60px + env(safe-area-inset-top));left:12px;right:12px;z-index:59;background:rgba(19,17,26,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:var(--r-m);box-shadow:inset 0 0 0 1px var(--line2),0 30px 60px -20px rgba(0,0,0,.8);padding:8px;display:grid;opacity:0;transform:translateY(-8px) scale(.98);transform-origin:top center;pointer-events:none;transition:opacity .2s ease,transform .25s var(--ease-out)}
-.mobile-menu.on{opacity:1;transform:none;pointer-events:auto}
+.mobile-menu{position:fixed;top:calc(60px + env(safe-area-inset-top));left:12px;right:12px;z-index:59;background:rgba(19,17,26,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:var(--r-m);box-shadow:inset 0 0 0 1px var(--line2),0 30px 60px -20px rgba(0,0,0,.8);padding:8px;display:grid;opacity:0;transform:translateY(-8px) scale(.98);transform-origin:top center;pointer-events:none;visibility:hidden;transition:opacity .2s ease,transform .25s var(--ease-out),visibility 0s linear .25s}
+.mobile-menu.on{opacity:1;transform:none;pointer-events:auto;visibility:visible;transition-delay:0s}
 .mobile-menu a{padding:13px 14px;border-radius:12px;font-size:16px}
 .mobile-menu a:active{background:rgba(255,255,255,.06)}
 @media(max-width:860px){
@@ -120,7 +127,10 @@ h1 .l2{display:block;color:var(--mut)}
 .facts span{display:inline-flex;align-items:center;gap:8px}.facts .ph{color:var(--ok);font-size:15px}
 /* intro: the hero lines arrive once, staggered */
 .js .intro{animation:intro .9s var(--ease-out) both;animation-delay:calc(var(--i,0) * 90ms + 80ms)}
-@keyframes intro{from{opacity:0;transform:translateY(14px);filter:blur(6px)}}
+@keyframes intro{from{opacity:0;transform:translateY(14px)}}
+/* The headline is the largest paint: slide it in without fading from transparent, which browsers skip when timing it. */
+@keyframes intro-h{from{transform:translateY(14px)}}
+.js h1 .intro{animation-name:intro-h}
 
 /* ============ Live demo (laptop + notch) ============ */
 .laptop{position:relative;margin:64px auto 0;max-width:1000px}
@@ -146,8 +156,8 @@ h1 .l2{display:block;color:var(--mut)}
 .ears .eq i:nth-child(2){animation-delay:.2s}.ears .eq i:nth-child(3){animation-delay:.4s}
 @keyframes eq{0%,100%{transform:scaleY(.34)}50%{transform:scaleY(1)}}
 .notch.open .ears{opacity:0;pointer-events:none}
-.panel{position:absolute;inset:0;padding:40px 18px 16px;display:flex;flex-direction:column;opacity:0;filter:blur(4px);transition:opacity .25s ease,filter .25s ease;pointer-events:none}
-.notch.open .panel{opacity:1;filter:none;transition-delay:.16s;pointer-events:auto}
+.panel{position:absolute;inset:0;padding:40px 18px 16px;display:flex;flex-direction:column;opacity:0;visibility:hidden;transition:opacity .25s ease,visibility 0s linear .25s;pointer-events:none}
+.notch.open .panel{opacity:1;visibility:visible;transition:opacity .25s ease .16s,visibility 0s;pointer-events:auto}
 .phead{display:flex;align-items:center;gap:6px;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:10px;margin-bottom:12px}
 .tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 28px),transparent);mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 28px),transparent)}
 .tabs::-webkit-scrollbar{display:none}
@@ -160,8 +170,8 @@ h1 .l2{display:block;color:var(--mut)}
 .nb-x{flex:none;width:32px;height:32px;border-radius:50%;border:0;background:transparent;color:var(--mut);cursor:pointer;font-size:15px;display:grid;place-items:center}
 .nb-x:hover{background:rgba(255,255,255,.08);color:#fff}
 .pwr{position:relative;flex:none}
-.pmenu{position:absolute;right:0;top:34px;width:200px;background:#1b1030;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:8px;z-index:5;box-shadow:0 20px 50px rgba(0,0,0,.5);text-align:left;opacity:0;transform:scale(.96);transform-origin:top right;pointer-events:none;transition:opacity .15s ease,transform .18s var(--ease-out)}
-.pmenu.on{opacity:1;transform:none;pointer-events:auto}
+.pmenu{position:absolute;right:0;top:34px;width:200px;background:#1b1030;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:8px;z-index:5;box-shadow:0 20px 50px rgba(0,0,0,.5);text-align:left;opacity:0;transform:scale(.96);transform-origin:top right;pointer-events:none;visibility:hidden;transition:opacity .15s ease,transform .18s var(--ease-out),visibility 0s linear .18s}
+.pmenu.on{opacity:1;transform:none;pointer-events:auto;visibility:visible;transition-delay:0s}
 .pmenu b{display:block;font-size:11px;color:var(--mut);padding:2px 6px 6px}
 .pmenu button{display:flex;align-items:center;gap:10px;width:100%;background:none;border:0;color:#fff;font:500 13px Geist,sans-serif;padding:6px;border-radius:9px;cursor:pointer}
 .pmenu button:hover{background:rgba(255,255,255,.07)}
@@ -183,7 +193,7 @@ h1 .l2{display:block;color:var(--mut)}
 .inp{display:flex;gap:8px;position:absolute;left:0;right:0;bottom:0}
 .inp div{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:8px 12px;color:var(--dim);text-align:left}
 .snapgrid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
-.sz{aspect-ratio:1.5;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);position:relative;cursor:pointer;transition:transform .2s var(--ease-out),background-color .2s,border-color .2s}
+.sz{padding:0;appearance:none;-webkit-appearance:none;aspect-ratio:1.5;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);position:relative;cursor:pointer;transition:transform .2s var(--ease-out),background-color .2s,border-color .2s}
 .sz:hover,.sz.hi{border-color:var(--p);background:rgba(155,123,255,.2);transform:scale(1.06)}
 .sz i{position:absolute;border-radius:3px;background:var(--p)}
 .arr{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
@@ -208,6 +218,12 @@ h1 .l2{display:block;color:var(--mut)}
 .search{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:10px 12px;color:#fff;text-align:left;margin-bottom:8px}
 .res{display:flex;gap:10px;align-items:center;padding:7px 10px;border-radius:10px;text-align:left}.res.on{background:rgba(155,123,255,.25)}.res span{color:var(--mut);font-size:11px;margin-left:auto}
 .hint{position:absolute;left:0;right:0;bottom:18px;text-align:center;font-size:13px;color:rgba(255,255,255,.78);z-index:1;transition:opacity .3s ease}
+.notch-trigger{position:absolute;inset:0;z-index:3;padding:0;border:0;background:transparent;border-radius:inherit;cursor:pointer;color:transparent}
+.notch-trigger:focus-visible{outline-offset:-3px}
+.notch.open .notch-trigger{visibility:hidden;pointer-events:none}
+.demo-pause{position:absolute;right:14px;bottom:14px;z-index:2;display:inline-flex;align-items:center;gap:6px;padding:6px 12px;min-height:28px;border-radius:99px;border:1px solid rgba(255,255,255,.18);background:rgba(19,17,26,.72);color:rgba(255,255,255,.88);font:600 12px Geist,sans-serif;cursor:pointer}
+.demo-pause:hover{background:rgba(19,17,26,.9);color:#fff}
+.demo-pause[hidden]{display:none}
 .hint kbd{font:500 11px var(--mono);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:1px 6px}
 .tr{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .tr .box{min-height:92px}.tr .box b{display:block;font-size:17px;font-weight:600;line-height:1.35}
@@ -228,8 +244,8 @@ h1 .l2{display:block;color:var(--mut)}
 /* ============ Sections ============ */
 section{padding:clamp(80px,9vw,128px) 0;position:relative}
 .sh{max-width:760px;margin-bottom:56px}
-.rv{transition:opacity .8s var(--ease-out),transform .8s var(--ease-out),filter .8s var(--ease-out)}
-.js .rv:not(.in){opacity:0;transform:translateY(18px);filter:blur(4px)}
+.rv{transition:opacity .8s var(--ease-out),transform .8s var(--ease-out)}
+.js .rv:not(.in){opacity:0;transform:translateY(18px)}
 @keyframes revealFallback{to{opacity:1;transform:none;filter:none}}
 .js .rv:not(.in){animation:revealFallback .01s 2.8s forwards}
 
@@ -242,8 +258,8 @@ section{padding:clamp(80px,9vw,128px) 0;position:relative}
 /* AI story: sticky media, scrolling steps */
 .sa{display:grid;grid-template-columns:1.35fr 1fr;gap:64px;align-items:start}
 .sa-media{position:sticky;top:max(88px,calc(50vh - 22vw));aspect-ratio:16/10.4;border-radius:var(--r-m);background:#0f0d16;box-shadow:inset 0 0 0 1px var(--line),0 40px 100px -30px rgba(0,0,0,.9);overflow:hidden}
-.sa-media img{position:absolute;inset:10px;width:calc(100% - 20px);height:calc(100% - 20px);object-fit:contain;border-radius:12px;opacity:0;filter:blur(6px);transform:scale(.985);transition:opacity .5s var(--ease-out),filter .5s var(--ease-out),transform .6s var(--ease-out)}
-.sa-media img.on{opacity:1;filter:none;transform:none}
+.sa-media img{position:absolute;inset:10px;width:calc(100% - 20px);height:calc(100% - 20px);object-fit:contain;border-radius:12px;opacity:0;transform:scale(.985);transition:opacity .5s var(--ease-out),transform .6s var(--ease-out)}
+.sa-media img.on{opacity:1;transform:none}
 .sa-steps{list-style:none;padding:6vh 0 10vh}
 .sa-step{min-height:46vh;display:flex;flex-direction:column;justify-content:center;padding:24px 0;opacity:.4;transition:opacity .4s ease}
 .sa-step.on{opacity:1}
@@ -331,9 +347,10 @@ section{padding:clamp(80px,9vw,128px) 0;position:relative}
 @media (hover:hover) and (pointer:fine){.shot:hover{transform:translateY(-3px);box-shadow:inset 0 0 0 1px var(--line2),0 24px 50px -20px rgba(0,0,0,.9)}}
 .js .shot.fi-in{animation:fin .45s var(--ease-out) both;animation-delay:calc(var(--d,0) * 30ms)}
 .gmore{display:flex;justify-content:center;margin-top:30px}
-.lb{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:30px;background:rgba(6,5,10,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);cursor:zoom-out;opacity:0;pointer-events:none;transition:opacity .22s ease}
+.lb{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:30px;background:rgba(6,5,10,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);cursor:zoom-out;opacity:0;pointer-events:none;visibility:hidden;transition:opacity .22s ease,visibility 0s linear .22s}
 .lb img{max-height:88vh;border-radius:16px;box-shadow:0 40px 100px rgba(0,0,0,.7);transform:scale(.96);transition:transform .28s var(--ease-out)}
-.lb.on{opacity:1;pointer-events:auto}.lb.on img{transform:none}
+.lb.on{opacity:1;pointer-events:auto;visibility:visible;transition-delay:0s}.lb.on img{transform:none}
+.lb-x{position:absolute;top:max(14px,env(safe-area-inset-top));right:max(14px,env(safe-area-inset-right));width:44px;height:44px;border-radius:50%;border:0;background:rgba(19,17,26,.9);color:var(--tx);display:grid;place-items:center;font-size:20px;cursor:pointer;box-shadow:inset 0 0 0 1px var(--line2)}
 
 /* What's new */
 .wn{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;align-items:start}
@@ -503,8 +520,10 @@ footer{background:linear-gradient(180deg,transparent,rgba(118,80,238,.06))}
 }
 /* ---------- scroll progress + back to top ---------- */
 .prog{position:fixed;top:0;left:0;right:0;height:2px;z-index:70;transform-origin:0 50%;transform:scaleX(var(--p,0));background:linear-gradient(90deg,var(--p2),var(--p3));pointer-events:none}
-.totop{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));z-index:55;width:44px;height:44px;border-radius:50%;border:0;display:grid;place-items:center;font-size:18px;color:var(--tx);background:rgba(19,17,26,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px var(--line2),0 10px 30px -10px rgba(0,0,0,.8);cursor:pointer;opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .25s ease,transform .25s var(--ease-out),background-color .2s ease}
-.totop.on{opacity:1;transform:none;pointer-events:auto}
+/* Where the browser can tie it to scrolling natively, the script no longer has to. */
+@supports (animation-timeline:scroll()){.prog{animation:prog-grow linear both;animation-timeline:scroll(root block)}@keyframes prog-grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}}
+.totop{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));z-index:55;width:44px;height:44px;border-radius:50%;border:0;display:grid;place-items:center;font-size:18px;color:var(--tx);background:rgba(19,17,26,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px var(--line2),0 10px 30px -10px rgba(0,0,0,.8);cursor:pointer;opacity:0;transform:translateY(10px);pointer-events:none;visibility:hidden;transition:opacity .25s ease,transform .25s var(--ease-out),background-color .2s ease,visibility 0s linear .25s}
+.totop.on{opacity:1;transform:none;pointer-events:auto;visibility:visible;transition-delay:0s}
 @media (hover:hover) and (pointer:fine){.totop:hover{background:var(--p2)}}
 @media(prefers-reduced-motion:reduce){.totop{transition:opacity .01s}}
 @media(prefers-reduced-motion:reduce){
@@ -521,7 +540,7 @@ footer{background:linear-gradient(180deg,transparent,rgba(118,80,238,.06))}
 
 <div class="prog" id="prog" aria-hidden="true"></div>
 <nav class="notchnav" aria-label="Main"><div class="nn">
-  <a href="#top" class="logo"><img src="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/icon.png" alt="" width="24" height="24"> Notch apple</a>
+  <a href="#top" class="logo"><img src="assets/icon-48.png" alt="" width="24" height="24"> Notch apple</a>
   <div class="nl"><div>
     <a href="#capture">How it works</a>
     <a href="#features">Features</a>
@@ -532,12 +551,11 @@ footer{background:linear-gradient(180deg,transparent,rgba(118,80,238,.06))}
   <a class="btn sm" href="#download">Download</a>
   <button class="menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu"><i class="ph ph-list"></i></button>
 </div></nav>
-<button class="totop" id="toTop" aria-label="Back to top"><i class="ph ph-arrow-up"></i></button>
 <div class="mobile-menu" id="mobileMenu">
   <a href="#capture">How it works</a><a href="#features">Features</a><a href="#screenshots">Screenshots</a><a href="#pro">Pricing</a><a href="#new">What's new</a><a href="#donate">Support the project</a>
   <a href="https://github.com/AdityaJainDXB/NotchApples" target="_blank" rel="noopener">GitHub</a>
 </div>
-
+<button class="totop" id="toTop" aria-label="Back to top"><i class="ph ph-arrow-up"></i></button>
 <header class="hero" id="top">
   <div class="wrap">
     <div class="hero-top">
@@ -551,15 +569,15 @@ footer{background:linear-gradient(180deg,transparent,rgba(118,80,238,.06))}
       </div>
     </div>
 
-    <div class="laptop intro" style="--i:4" id="demo" aria-label="Interactive illustration of Notch apple (not a screenshot)">
+    <div class="laptop intro" style="--i:4" id="demo" role="group" aria-label="Interactive illustration of Notch apple (not a screenshot)">
       <div class="screen"><div class="display" id="display">
-        <div class="menubar"><div class="l"><b></b><b>Finder</b><span>File</span><span>Edit</span><span>View</span><span>Go</span></div><div class="r"><span>⌁ 92%</span><span id="clock">Tue 9:41</span></div></div>
-        <div class="win" id="w1"><div class="bar"><i></i><i></i><i></i><span>Safari</span></div><div class="lines"><div style="width:80%"></div><div style="width:60%"></div><div style="width:70%"></div><div style="width:40%"></div></div></div>
-        <div class="win" id="w2"><div class="bar"><i></i><i></i><i></i><span>Notes</span></div><div class="lines"><div style="width:70%"></div><div style="width:85%"></div><div style="width:50%"></div></div></div>
+        <div class="menubar" aria-hidden="true"><div class="l"><b></b><b>Finder</b><span>File</span><span>Edit</span><span>View</span><span>Go</span></div><div class="r"><span>⌁ 92%</span><span id="clock">Tue 9:41</span></div></div>
+        <div class="win" id="w1" aria-hidden="true"><div class="bar"><i></i><i></i><i></i><span>Safari</span></div><div class="lines"><div style="width:80%"></div><div style="width:60%"></div><div style="width:70%"></div><div style="width:40%"></div></div></div>
+        <div class="win" id="w2" aria-hidden="true"><div class="bar"><i></i><i></i><i></i><span>Notes</span></div><div class="lines"><div style="width:70%"></div><div style="width:85%"></div><div style="width:50%"></div></div></div>
 
-        <div class="notch" id="notch" role="button" tabindex="0" aria-label="Notch apple demo, click to open">
-          <div class="ears"><span class="eq"><i></i><i></i><i></i></span><span id="earTimer">24:59</span></div>
-          <div class="panel">
+        <div class="notch" id="notch"><button class="notch-trigger" id="notchBtn" type="button" aria-expanded="false" aria-controls="notchPanel" aria-label="Open the Notch apple demo"></button>
+          <div class="ears" aria-hidden="true"><span class="eq"><i></i><i></i><i></i></span><span id="earTimer">24:59</span></div>
+          <div class="panel" id="notchPanel" role="region" aria-label="Notch apple demo">
             <div class="phead">
               <div class="tabs" id="tabs"></div>
               <a class="nb-gh" href="https://github.com/AdityaJainDXB/NotchApples" target="_blank" rel="noopener" title="Notch apple on GitHub"><i class="ph ph-github-logo"></i><span>GitHub</span></a>
@@ -590,8 +608,8 @@ footer{background:linear-gradient(180deg,transparent,rgba(118,80,238,.06))}
                 <div class="inp"><div>Message AI…</div></div>
               </div>
               <div class="view" data-t="Windows" data-i="🪟">
-                <small style="color:var(--mut)">Snap the front window. Hover a zone to try it.</small>
-                <div class="snapgrid" id="snaps" style="margin-top:8px"></div>
+                <small style="color:var(--mut)">Snap the front window. Hover or focus a zone to try it.</small>
+                <div class="snapgrid" id="snaps" role="group" aria-label="Window snap zones" style="margin-top:8px"></div>
                 <div class="arr"><button data-tile="split">⬌ Split screen</button><button data-tile="grid">⊞ 4-window grid</button><button data-tile="cols">⫴ 3 columns</button><button data-tile="reset">↺ Reset</button></div>
               </div>
               <div class="view" data-t="Clipboard" data-i="📋">
@@ -663,6 +681,7 @@ footer{background:linear-gradient(180deg,transparent,rgba(118,80,238,.06))}
           </div>
         </div>
         <div class="hint" id="hint">Click the notch to try it. This demo is live.</div>
+        <button class="demo-pause" id="demoPause" type="button"><i class="ph ph-pause" aria-hidden="true"></i> Pause tour</button>
       </div></div>
       <div class="base"></div>
     </div>
@@ -894,14 +913,14 @@ footer{background:linear-gradient(180deg,transparent,rgba(118,80,238,.06))}
 <section id="download"><div class="wrap">
   <div class="dl-head rv">
     <h2>Download Notch apple.</h2>
-    <p class="ver" id="dlVer">Latest version: <b>Notch apple 1.34.9</b></p>
+    <p class="ver" id="dlVer">Latest release on GitHub</p>
   </div>
   <div class="plats rv">
     <div class="plat" id="platMac">
       <div class="os"><i class="ph ph-apple-logo"></i>macOS</div>
       <div class="req"><span id="dlArch">Apple silicon and Intel</span>, macOS 14 Sonoma or newer</div>
       <div class="cta"><a class="btn" id="dlBtn" href="https://github.com/AdityaJainDXB/NotchApples/releases/latest"><i class="ph ph-download-simple"></i> <span>Download for Mac</span></a></div>
-      <div class="alt" id="dlSize">DMG, free, MIT licence</div>
+      <div class="alt" id="dlSize">DMG, free, source-available licence</div>
     </div>
     <div class="plat" id="platWin">
       <div class="os"><i class="ph ph-windows-logo"></i>Windows</div>
@@ -936,7 +955,7 @@ brew install --cask notch-apple</code></pre>
     </div>
     <div class="card rv" id="github">
       <h3><i class="ph ph-github-logo"></i>Built in the open</h3>
-      <p>Swift, SwiftUI and AppKit under the MIT licence.</p>
+      <p>Swift, SwiftUI and AppKit, source-available under the Notch apple Source-Available License.</p>
       <div class="rows">
         <a href="https://github.com/AdityaJainDXB/NotchApples" target="_blank" rel="noopener"><i class="ph ph-star"></i><div><b>Star on GitHub</b><span>Free, and it helps people find it</span></div><i class="ph ph-arrow-up-right go"></i></a>
         <a href="https://github.com/AdityaJainDXB/NotchApples/issues" target="_blank" rel="noopener"><i class="ph ph-bug"></i><div><b>Report an issue</b><span>Bugs, ideas and payment help</span></div><i class="ph ph-arrow-up-right go"></i></a>
@@ -964,12 +983,12 @@ brew install --cask notch-apple</code></pre>
 
 <footer><div class="wrap">
   <div class="foot">
-    <div class="brand"><a href="#top" class="logo"><img src="https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/icon.png" alt="" width="26" height="26"> Notch apple</a><p>The notch, put to work. Free and open source for macOS and Windows.</p></div>
+    <div class="brand"><a href="#top" class="logo"><img src="assets/icon-48.png" alt="" width="26" height="26"> Notch apple</a><p>The notch, put to work. Free to start and source-available, for macOS and Windows.</p></div>
     <div><h4>Product</h4><ul><li><a href="#download">Download</a></li><li><a href="#features">Features</a></li><li><a href="#screenshots">Screenshots</a></li><li><a href="#new">What's new</a></li><li><a href="pro.html">Pricing</a></li></ul></div>
     <div><h4>Project</h4><ul><li><a href="https://github.com/AdityaJainDXB/NotchApples" target="_blank" rel="noopener">GitHub</a></li><li><a href="https://github.com/AdityaJainDXB/NotchApples#readme" target="_blank" rel="noopener">Documentation</a></li><li><a href="https://github.com/AdityaJainDXB/NotchApples/releases" target="_blank" rel="noopener">Releases</a></li><li><a href="https://github.com/AdityaJainDXB/NotchApples/issues" target="_blank" rel="noopener">Report an issue</a></li></ul></div>
-    <div><h4>About</h4><ul><li><a href="#donate">Donate</a></li><li><a href="#privacy">Privacy</a></li><li><a href="terms.html">Terms and refunds</a></li><li><a href="https://github.com/AdityaJainDXB/NotchApples/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a></li></ul></div>
+    <div><h4>About</h4><ul><li><a href="#donate">Donate</a></li><li><a href="#privacy">Privacy</a></li><li><a href="terms.html">Terms and refunds</a></li><li><a href="https://github.com/AdityaJainDXB/NotchApples/blob/main/LICENSE" target="_blank" rel="noopener">Source-Available License</a></li></ul></div>
   </div>
-  <div class="footbar"><span id="footVer">Notch apple 1.24.3</span><span id="footMade">Made by three high school developers</span></div>
+  <div class="footbar"><span id="footVer">Notch apple</span><span id="footMade">Made by three high school developers</span></div>
 </div></footer>
 
 <section class="the-end" aria-label="End of page"><div class="wrap">
@@ -979,27 +998,35 @@ brew install --cask notch-apple</code></pre>
   <button class="loop" id="loop"><span class="ring" id="loopRing"><div><i class="ph ph-arrow-up"></i></div></span><span id="loopText">Back to the start</span></button>
 </div></section>
 
-<div class="lb" id="lb" role="dialog" aria-label="Screenshot"><img alt=""></div>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Screenshot"><button class="lb-x" type="button" aria-label="Close"><i class="ph ph-x" aria-hidden="true"></i></button><img alt=""></div>
 
 <script>
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const notch=$('#notch'),tabsEl=$('#tabs'),views=$$('.view'),hint=$('#hint');
-let cur=0,auto=true;
+const notch=$('#notch'),tabsEl=$('#tabs'),views=$$('.view'),hint=$('#hint'),pauseBtn=$('#demoPause'),notchBtn=$('#notchBtn');
+let cur=0,auto=!reduce;
 
 /* ---------- live demo ---------- */
-views.forEach((v,i)=>{const b=document.createElement('button');b.innerHTML=`<span>${v.dataset.i}</span>${v.dataset.t}${v.dataset.new?' <em class="nw">NEW</em>':''}`;b.onclick=e=>{e.stopPropagation();stopAuto();show(i)};tabsEl.appendChild(b)});
-function show(i){cur=i;views.forEach((v,j)=>v.classList.toggle('on',i===j));[...tabsEl.children].forEach((b,j)=>{b.classList.toggle('on',i===j);if(i===j)tabsEl.scrollTo({left:b.offsetLeft-tabsEl.clientWidth/2+b.clientWidth/2,behavior:'smooth'})})}
+views.forEach((v,i)=>{const b=document.createElement('button');b.innerHTML=`<span>${v.dataset.i}</span>${v.dataset.t}${v.dataset.new?' <em class="nw">NEW</em>':''}`;b.onclick=e=>{e.stopPropagation();stopAuto();show(i)};b.setAttribute('role','tab');b.id='tab'+i;b.setAttribute('aria-controls','view'+i);v.id='view'+i;v.setAttribute('role','tabpanel');v.setAttribute('aria-labelledby','tab'+i);tabsEl.appendChild(b)});
+tabsEl.setAttribute('role','tablist');tabsEl.setAttribute('aria-label','Demo modules');
+tabsEl.addEventListener('keydown',e=>{const k=e.key;if(!['ArrowRight','ArrowLeft','Home','End'].includes(k))return;e.preventDefault();stopAuto();const n=k==='Home'?0:k==='End'?views.length-1:(cur+(k==='ArrowRight'?1:-1)+views.length)%views.length;show(n);tabsEl.children[n].focus({preventScroll:true})});
+function centerTab(b,behavior){tabsEl.scrollTo({left:b.offsetLeft-tabsEl.clientWidth/2+b.clientWidth/2,behavior})}
+function show(i){cur=i;views.forEach((v,j)=>v.classList.toggle('on',i===j));[...tabsEl.children].forEach((b,j)=>{b.classList.toggle('on',i===j);b.setAttribute('aria-selected',i===j);b.tabIndex=i===j?0:-1;if(i===j)centerTab(b,reduce?'auto':'smooth')})}
 show(0);
-function openN(){notch.classList.add('open');hint.style.opacity=0}
-function closeN(){notch.classList.remove('open');hint.style.opacity=1}
-function stopAuto(){auto=false}
-notch.addEventListener('click',()=>{if(!notch.classList.contains('open')){stopAuto();openN()}});
-notch.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&!notch.classList.contains('open')&&e.target===notch){e.preventDefault();stopAuto();openN()}});
+// show(0) runs while the notch is still a 190px pill, so the tab row keeps a stale scroll offset and the first tab opens clipped.
+// Re-centre the selected tab as the row widens while the notch opens.
+new ResizeObserver(()=>{const b=tabsEl.querySelector('[aria-selected="true"]');if(b&&notch.classList.contains('open'))centerTab(b,'auto')}).observe(tabsEl);
+function openN(f){notch.classList.add('open');notchBtn.setAttribute('aria-expanded','true');hint.style.opacity=0;if(f){const t=tabsEl.querySelector('[aria-selected="true"]')||tabsEl.querySelector('button');t&&t.focus({preventScroll:true})}}
+function closeN(){const had=notch.contains(document.activeElement)&&document.activeElement!==notchBtn;notch.classList.remove('open');notchBtn.setAttribute('aria-expanded','false');hint.style.opacity=1;if(had)notchBtn.focus({preventScroll:true})}
+function stopAuto(){auto=false;pauseBtn.hidden=true}
+if(reduce)pauseBtn.hidden=true;
+pauseBtn.onclick=e=>{e.stopPropagation();stopAuto()};
+notch.addEventListener('focusin',stopAuto);notch.addEventListener('pointerenter',stopAuto);
+notch.addEventListener('click',()=>{if(!notch.classList.contains('open')){stopAuto();openN(true)}});
 $('#pwrBtn').onclick=e=>{e.stopPropagation();stopAuto();$('#pmenu').classList.toggle('on')};
 $$('#pmenu button').forEach(b=>b.onclick=e=>{e.stopPropagation();$('#pmenu').classList.remove('on')});
 $('#closeBtn').onclick=e=>{e.stopPropagation();stopAuto();closeN()};
-document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='e'){e.preventDefault();stopAuto();notch.classList.contains('open')?closeN():openN()}if(e.key==='Escape'){stopAuto();closeN()}});
+document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='e'){e.preventDefault();stopAuto();notch.classList.contains('open')?closeN():openN(true)}if(e.key==='Escape'){stopAuto();closeN();$('#pmenu').classList.remove('on')}});
 document.addEventListener('click',e=>{if(!notch.contains(e.target)&&notch.classList.contains('open')&&!auto)closeN()});
 let demoVisible=true;new IntersectionObserver(es=>{demoVisible=es[0].isIntersecting}).observe($('#demo'));
 setTimeout(function tour(){if(!auto)return;if(!demoVisible){setTimeout(tour,2000);return}openN();let n=0;show(0);const t=setInterval(()=>{if(!auto){clearInterval(t);return}n++;if(n>=views.length){clearInterval(t);closeN();setTimeout(tour,3500);return}show(n)},2300)},1600);
@@ -1007,7 +1034,8 @@ setTimeout(function tour(){if(!auto)return;if(!demoVisible){setTimeout(tour,2000
 const zones=[[0,0,.5,1],[.5,0,.5,1],[0,0,1,.5],[0,.5,1,.5],[0,0,.667,1],[.333,0,.667,1],[0,0,1,1],[.2,.15,.6,.7],[0,0,.5,.5],[.5,0,.5,.5],[0,.5,.5,.5],[.5,.5,.5,.5],[0,0,.333,1],[.333,0,.333,1],[.667,0,.333,1],[.05,.05,.9,.9]];
 const W1=$('#w1'),W2=$('#w2'),area={x:.02,y:.07,w:.96,h:.9};
 function place(el,[x,y,w,h]){Object.assign(el.style,{left:(area.x+x*area.w)*100+'%',top:(area.y+y*area.h)*100+'%',width:w*area.w*100+'%',height:h*area.h*100+'%'})}
-zones.forEach(z=>{const d=document.createElement('div');d.className='sz';const i=document.createElement('i');Object.assign(i.style,{left:4+z[0]*84+'%',top:6+z[1]*80+'%',width:z[2]*84+'%',height:z[3]*80+'%'});d.appendChild(i);d.onmouseenter=()=>place(W1,z);d.onclick=e=>{e.stopPropagation();place(W1,z)};$('#snaps').appendChild(d)});
+const zoneNames=['Left half','Right half','Top half','Bottom half','Left two thirds','Right two thirds','Maximize','Center','Top left','Top right','Bottom left','Bottom right','Left third','Middle third','Right third','Almost maximize'];
+zones.forEach((z,k)=>{const d=document.createElement('button');d.type='button';d.className='sz';d.setAttribute('aria-label','Snap window: '+zoneNames[k]);d.onfocus=()=>place(W1,z);const i=document.createElement('i');Object.assign(i.style,{left:4+z[0]*84+'%',top:6+z[1]*80+'%',width:z[2]*84+'%',height:z[3]*80+'%'});d.appendChild(i);d.onmouseenter=()=>place(W1,z);d.onclick=e=>{e.stopPropagation();place(W1,z)};$('#snaps').appendChild(d)});
 $$('.arr button').forEach(b=>b.onclick=e=>{e.stopPropagation();const t=b.dataset.tile;
   if(t==='split'){place(W1,[0,0,.5,1]);place(W2,[.5,0,.5,1])}
   if(t==='grid'){place(W1,[0,0,.5,.5]);place(W2,[.5,.5,.5,.5])}
@@ -1018,20 +1046,22 @@ let s=1499;setInterval(()=>{s=s>0?s-1:1499;const t=String(Math.floor(s/60)).padS
 
 const TR={Spanish:['Hola, ¿cómo estás?','es-ES'],French:['Bonjour, comment allez-vous ?','fr-FR'],German:['Hallo, wie geht es dir?','de-DE'],Hindi:['नमस्ते, आप कैसे हैं?','hi-IN'],Arabic:['مرحبا، كيف حالك؟','ar-SA'],Mandarin:['你好，你好吗？','zh-CN'],English:['Hello, how are you?','en-US']};
 let trCur='Spanish';
-function setLang(l){trCur=l;$('#trLang').textContent=l;$('#trOut').textContent=TR[l][0];$$('#langs button').forEach(b=>b.classList.toggle('on',b.textContent===l))}
+function setLang(l){trCur=l;$('#trLang').textContent=l;$('#trOut').textContent=TR[l][0];$$('#langs button').forEach(b=>{b.classList.toggle('on',b.textContent===l);b.setAttribute('aria-pressed',b.textContent===l)});$('#trOut').lang=TR[l][1].slice(0,2);$('#trOut').dir=l==='Arabic'?'rtl':'ltr'}
 Object.keys(TR).forEach(l=>{const b=document.createElement('button');b.textContent=l;b.onclick=e=>{e.stopPropagation();stopAuto();setLang(l)};$('#langs').appendChild(b)});setLang('Spanish');
 $('#speak').onclick=e=>{e.stopPropagation();stopAuto();if('speechSynthesis' in window){const u=new SpeechSynthesisUtterance(TR[trCur][0]);u.lang=TR[trCur][1];speechSynthesis.cancel();speechSynthesis.speak(u)}};
-$$('#themes button').forEach(b=>b.onclick=e=>{e.stopPropagation();stopAuto();$$('#themes button').forEach(x=>x.classList.remove('on'));b.classList.add('on');const d=$('#demo');b.dataset.th?d.dataset.theme=b.dataset.th:d.removeAttribute('data-theme')});
-setInterval(()=>{const r=7.6+Math.random()*1.6,c=12+Math.random()*30;$('#stRam').textContent=r.toFixed(1)+' GB';$('#mRam').style.width=r/16*100+'%';$('#stCpu').textContent=Math.round(c)+'%';$('#mCpu').style.width=c+'%';$('#stNet').textContent='↓ '+(2+Math.random()*6).toFixed(1)+' MB/s';$('#stUp').textContent='↑ '+(0.2+Math.random()*1.2).toFixed(1)+' MB/s'},1500);
+$$('#themes button').forEach(b=>b.onclick=e=>{e.stopPropagation();stopAuto();$$('#themes button').forEach(x=>{x.classList.remove('on');x.setAttribute('aria-pressed','false')});b.classList.add('on');b.setAttribute('aria-pressed','true');const d=$('#demo');b.dataset.th?d.dataset.theme=b.dataset.th:d.removeAttribute('data-theme')});
+$$('#themes button').forEach(b=>b.setAttribute('aria-pressed',b.classList.contains('on')));
+setInterval(()=>{if(!demoVisible||reduce)return;const r=7.6+Math.random()*1.6,c=12+Math.random()*30;$('#stRam').textContent=r.toFixed(1)+' GB';$('#mRam').style.width=r/16*100+'%';$('#stCpu').textContent=Math.round(c)+'%';$('#mCpu').style.width=c+'%';$('#stNet').textContent='↓ '+(2+Math.random()*6).toFixed(1)+' MB/s';$('#stUp').textContent='↑ '+(0.2+Math.random()*1.2).toFixed(1)+' MB/s'},1500);
 const cities=[['London','Europe/London'],['New York','America/New_York'],['Tokyo','Asia/Tokyo']];
 function tick(){const now=new Date();$('#clocks').innerHTML=cities.map(([n,z])=>{const h=+now.toLocaleString('en-GB',{hour:'2-digit',hour12:false,timeZone:z});return `<div class="box clock"><small>${h>=7&&h<19?'☀️':'🌙'} ${n}</small><b>${now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',timeZone:z})}</b></div>`}).join('');
   $('#clock').textContent=now.toLocaleDateString([],{weekday:'short'})+' '+now.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})}
-tick();setInterval(tick,10000);
+tick();setInterval(()=>{if(demoVisible&&!reduce)tick()},10000);
 
 /* ---------- nav: tuck the notch's links away once past the hero ---------- */
 new IntersectionObserver(es=>document.documentElement.classList.toggle('compact',!es[0].isIntersecting),{rootMargin:'-120px 0px 0px 0px'}).observe($('.hero-top'));
 const menuBtn=$('#menuBtn'),mm=$('#mobileMenu');
-function setMenu(on){mm.classList.toggle('on',on);menuBtn.setAttribute('aria-expanded',on);menuBtn.innerHTML=on?'<i class="ph ph-x"></i>':'<i class="ph ph-list"></i>'}
+function setMenu(on){mm.classList.toggle('on',on);menuBtn.setAttribute('aria-expanded',on);menuBtn.innerHTML=on?'<i class="ph ph-x"></i>':'<i class="ph ph-list"></i>';if(on){const a=mm.querySelector('a');a&&a.focus({preventScroll:true})}}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&mm.classList.contains('on')){setMenu(false);menuBtn.focus()}});
 menuBtn.onclick=()=>setMenu(!mm.classList.contains('on'));
 $$('#mobileMenu a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
 
@@ -1060,11 +1090,15 @@ $$('.rv').forEach(el=>io.observe(el));
 setTimeout(()=>$$('.rv').forEach(el=>el.classList.add('in')),4000);
 
 /* ---------- lightbox ---------- */
-const lb=$('#lb');
-function openLb(src,alt){const im=lb.querySelector('img');im.src=src;im.alt=alt||'';lb.classList.add('on')}
-lb.onclick=()=>lb.classList.remove('on');
-document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('on')});
-$$('.cell img,.stage img,.sa-inline').forEach(img=>{img.style.cursor='zoom-in';img.onclick=()=>openLb(img.src,img.alt)});
+const lb=$('#lb'),lbX=lb.querySelector('.lb-x');let lbOpener=null;
+function lbInert(on){document.querySelectorAll('body > *').forEach(el=>{if(el!==lb&&el.tagName!=='SCRIPT')el.inert=on})}
+function openLb(src,alt){const im=lb.querySelector('img');im.src=src;im.alt=alt||'';lbOpener=document.activeElement;lb.classList.add('on');lbInert(true);lbX.focus({preventScroll:true})}
+function closeLb(){if(!lb.classList.contains('on'))return;lb.classList.remove('on');lbInert(false);if(lbOpener&&lbOpener.focus)lbOpener.focus({preventScroll:true});lbOpener=null}
+lb.onclick=closeLb;
+document.addEventListener('keydown',e=>{if(!lb.classList.contains('on'))return;if(e.key==='Escape')closeLb();else if(e.key==='Tab'){e.preventDefault();lbX.focus()}});
+// Enlargeable images work from the keyboard too
+function zoomable(el,get){el.style.cursor='zoom-in';el.tabIndex=0;el.setAttribute('role','button');el.setAttribute('aria-label','Enlarge: '+(el.querySelector('img')||el).alt);el.onclick=()=>openLb(...get());el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLb(...get())}})}
+$$('.cell img,.stage img,.sa-inline').forEach(img=>zoomable(img,()=>[img.src,img.alt]));
 
 /* ---------- screenshots ---------- */
 const R='https://raw.githubusercontent.com/AdityaJainDXB/NotchApples/main/docs/screenshots/',L='assets/screenshots/';
@@ -1091,7 +1125,7 @@ const PAGE=9;let gCat='AI',gShown=PAGE;
 ['AI','Notch','Settings','Get Pro'].forEach((c,i)=>{const b=document.createElement('button');b.setAttribute('role','tab');b.setAttribute('aria-selected',i===0);b.dataset.c=c;b.textContent=c;$('#gseg').appendChild(b)});
 function renderGal(){const list=shots.filter(s=>s[0]===gCat);
   $('#gal').innerHTML=list.slice(0,gShown).map((s,i)=>{const src=s[4]?L+s[1]+'.webp':R+s[1]+'.png';return `<figure class="shot fi-in" style="--d:${i%PAGE}" data-src="${src}"><img loading="lazy" src="${src}" alt="${s[2]}: ${s[3]}"><figcaption>${s[2]}<span>${s[3]}</span></figcaption></figure>`}).join('');
-  $$('#gal .shot').forEach(f=>f.onclick=()=>openLb(f.dataset.src,f.querySelector('img').alt));
+  $$('#gal .shot').forEach(f=>zoomable(f,()=>[f.dataset.src,f.querySelector('img').alt]));
   const more=list.length-gShown;$('#gMore').hidden=more<=0;$('#gMore').textContent=`Show ${more} more`}
 segment($('#gseg'),b=>{gCat=b.dataset.c;gShown=PAGE;renderGal()});
 $('#gMore').onclick=()=>{gShown=999;renderGal()};
@@ -1170,11 +1204,33 @@ const rest=REL.filter(r=>r!==feat);
 $('#timeline').innerHTML=rest.slice(0,4).map(relHTML).join('')+`<details class="older"><summary>Earlier releases (${rest.length-4})</summary>${rest.slice(4).map(relHTML).join('')}<p style="padding:16px 0;color:var(--mut)">Full notes on <a href="https://github.com/AdityaJainDXB/NotchApples/releases" target="_blank" rel="noopener">GitHub releases</a>.</p></details>`;
 
 /* ---------- latest release, straight from GitHub ---------- */
-fetch('https://api.github.com/repos/AdityaJainDXB/NotchApples/releases/latest').then(r=>r.ok?r.json():null).then(j=>{
-  if(!j)return;const v=(j.tag_name||'').replace(/^v/,'');const dmg=(j.assets||[]).find(a=>/\.dmg$/i.test(a.name));
-  if(v){$('#dlVer').innerHTML='Latest version: <b>Notch apple '+v+'</b>'+(j.published_at?', released '+new Date(j.published_at).toLocaleDateString(undefined,{day:'numeric',month:'long',year:'numeric'}):'');$('#footVer').textContent='Notch apple '+v}
-  if(dmg){$('#dlBtn').href=dmg.browser_download_url;$('#dlSize').textContent='DMG, '+(dmg.size/1048576).toFixed(0)+' MB, free, MIT licence'}
-}).catch(()=>{});
+// GitHub's unauthenticated API allows 60 requests an hour per IP, so keep the last good answer for an hour,
+// and fall back to it (however old) when a request fails.
+function ghGet(path,slim){
+  const k='gh:'+path;let c=null;try{c=JSON.parse(localStorage.getItem(k)||'null')}catch(e){}
+  if(c&&Date.now()-c.t<36e5)return Promise.resolve(c.d);
+  return fetch('https://api.github.com/repos/AdityaJainDXB/NotchApples'+path).then(r=>r.ok?r.json():null).then(j=>{
+    if(!j)return c&&c.d;const d=slim(j);try{localStorage.setItem(k,JSON.stringify({t:Date.now(),d}))}catch(e){}return d
+  }).catch(()=>c&&c.d);
+}
+Promise.all([
+  ghGet('/releases/latest',j=>({tag_name:j.tag_name,published_at:j.published_at,assets:(j.assets||[]).filter(a=>/\.dmg$/i.test(a.name)).map(a=>({name:a.name,size:a.size,browser_download_url:a.browser_download_url}))})),
+  ghGet('',j=>({stargazers_count:j.stargazers_count}))
+]).then(([j,repo])=>{
+  const v=((j&&j.tag_name)||'').replace(/^v/,'');const dmg=((j&&j.assets)||[])[0];
+  const stars=repo&&Number.isFinite(repo.stargazers_count)?repo.stargazers_count:null;
+  const el=$('#dlVer');
+  if(v){
+    el.textContent='';el.append('Latest version: ');const b=document.createElement('b');b.textContent='Notch apple '+v;el.append(b);
+    if(j.published_at)el.append(', released '+new Date(j.published_at).toLocaleDateString(undefined,{day:'numeric',month:'long',year:'numeric'}));
+    $('#footVer').textContent='Notch apple '+v;
+  }
+  if(stars!==null){
+    const a=document.createElement('a');a.href='https://github.com/AdityaJainDXB/NotchApples';a.rel='noopener';a.target='_blank';
+    a.textContent='\u2605 '+stars.toLocaleString()+' on GitHub';el.append(v?' \u00b7 ':'',a);
+  }
+  if(dmg){$('#dlBtn').href=dmg.browser_download_url;$('#dlSize').textContent='DMG, '+(dmg.size/1048576).toFixed(0)+' MB, free, source-available licence'}
+});
 
 /* ---------- lead with the visitor's own platform ---------- */
 const onWin=/Windows/i.test(navigator.userAgent);
@@ -1212,11 +1268,11 @@ if(!reduce){
   addEventListener('touchend',()=>{if(!looping){push=0;setRing()}},{passive:true});
 }
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer onload="qr()"></script>
+<script src="assets/qrcode.min.js" defer onload="qr()"></script>
 <script>/* hidden: click the footer line 3 times */(function(){var n=0,t;var el=document.getElementById("footMade");if(!el)return;el.addEventListener("click",function(){n++;clearTimeout(t);t=setTimeout(function(){n=0},1500);if(n>=3){n=0;location.href="admin.html"}})})()
 /* ---------- scroll progress + back to top ---------- */
-;(()=>{const bar=$('#prog'),top=$('#toTop');let t=false;
-function upd(){t=false;const max=document.documentElement.scrollHeight-innerHeight,y=scrollY;bar.style.setProperty('--p',max>0?Math.min(1,y/max):0);top.classList.toggle('on',y>innerHeight*1.2)}
+;(()=>{const bar=$('#prog'),top=$('#toTop'),nativeProg=CSS.supports('animation-timeline','scroll()');let t=false;
+function upd(){t=false;const max=document.documentElement.scrollHeight-innerHeight,y=scrollY;if(!nativeProg)bar.style.setProperty('--p',max>0?Math.min(1,y/max):0);top.classList.toggle('on',y>innerHeight*1.2)}
 addEventListener('scroll',()=>{if(!t){t=true;requestAnimationFrame(upd)}},{passive:true});addEventListener('resize',upd);upd();
 top.onclick=()=>scrollTo({top:0,behavior:reduce?'auto':'smooth'})})();
 </script>

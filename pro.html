@@ -403,6 +403,16 @@ function showKey(r, order) {
   if (order && order.usd) printReceipt(order); else $('#printer').hidden = true;
 }
 
+// Demo: pro.html#receipt-demo prints a sample receipt in the browser only. No order, no server call, no key.
+if (location.hash === '#receipt-demo') {
+  $('#forms').style.display = 'none'; $('#result').classList.add('on');
+  [...$('#result').children].forEach(c => { if (c.id !== 'printer') c.style.display = 'none' });
+  const note = document.createElement('p'); note.className = 'muted'; note.style.textAlign = 'center'; note.textContent = 'Demo receipt: nothing was bought and no key was made.';
+  $('#result').append(note);
+  printReceipt({ tier: 'pro', usd: 1, ltc: '0.00000000', order: 'DEMO' });
+  $('#result').scrollIntoView({ block: 'center' });
+}
+
 // Server availability
 let config = null;
 (async () => {

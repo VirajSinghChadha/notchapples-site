@@ -1,8 +1,36 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><title>Notch Apple</title>
+<html lang="en"><head><meta charset="utf-8"><title>Notch Apple has moved</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
 <link rel="canonical" href="https://adityajaindxb.github.io/NotchApples/legacy.html">
-<meta http-equiv="refresh" content="0; url=https://adityajaindxb.github.io/NotchApples/legacy.html">
-<script>location.replace("https://adityajaindxb.github.io/NotchApples/legacy.html" + location.search + location.hash)</script>
-<style>body{background:#0d0518;color:#e9ddff;font:16px -apple-system,system-ui,sans-serif;display:grid;place-items:center;height:100vh;margin:0}a{color:#b98cff}</style>
-</head><body><p>Notch Apple has moved: <a href="https://adityajaindxb.github.io/NotchApples/legacy.html">continue to the new address</a>.</p></body></html>
+<noscript><meta http-equiv="refresh" content="6; url=https://adityajaindxb.github.io/NotchApples/legacy.html"></noscript>
+<style>
+:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:#09080d;color:#e9ddff;font:16px/1.55 -apple-system,BlinkMacSystemFont,system-ui,sans-serif}
+main{max-width:30rem;text-align:center}
+h1{font-size:clamp(26px,5vw,34px);line-height:1.15;letter-spacing:-.02em;margin:0 0 14px;text-wrap:balance}
+p{margin:0 0 14px;color:#b9b2d0;text-wrap:pretty}
+a.go{display:inline-block;margin:6px 0 18px;padding:13px 24px;border-radius:99px;background:#7650ee;color:#fff;font-weight:600;text-decoration:none}
+a.go:focus-visible{outline:2px solid #cdbfff;outline-offset:3px}
+small{color:#8b85a0}
+code{color:#cdbfff;word-break:break-all}
+</style></head><body><main>
+<h1>Notch Apple has moved</h1>
+<p>This is the old address of the website. Everything now lives in the main project on GitHub, and this page only stays so that old links keep working.</p>
+<a class="go" id="go" href="https://adityajaindxb.github.io/NotchApples/legacy.html">Continue to the new site</a>
+<p><small id="count">Taking you there in 6 seconds. New address: <code>https://adityajaindxb.github.io/NotchApples/legacy.html</code></small></p>
+</main>
+<script>
+(function(){
+  var dest = "https://adityajaindxb.github.io/NotchApples/legacy.html" + location.search + location.hash;
+  var go = document.getElementById("go"); go.href = dest;
+  var n = 6, c = document.getElementById("count");
+  var t = setInterval(function(){
+    n--; if (n <= 0) { clearInterval(t); location.replace(dest); return; }
+    c.firstChild.nodeValue = "Taking you there in " + n + " second" + (n === 1 ? "" : "s") + ". New address: ";
+  }, 1000);
+  go.addEventListener("click", function(){ clearInterval(t); });
+})();
+</script>
+</body></html>
